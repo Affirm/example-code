@@ -43,6 +43,22 @@
 				_title = "Prequal Test - Stage Live";
 				_heading = "Prequal Test - Stage Live";
 				break;
+			case 'special2':
+				_affirm_config = {
+					script:"https://special-2.affirm-dev.com/js/v2/affirm.js",
+					public_api_key:"QAZKCCUVPDTP7RE2" 
+				};
+				_title = "Prequal Test - Dev Special-2";
+				_heading = "Prequal Test - Dev Special-2";
+				break;			
+			case 'int14':
+				_affirm_config = {
+					script:"https://int-1-4.affirm-stage.com/js/v2/affirm.js",
+					public_api_key:"FND06LW8187URGAA" 
+				};
+				_title = "Prequal Test - Stage Int-1-4";
+				_heading = "Prequal Test - Stage Int-1-4";
+				break;
 			default:
 				_affirm_config = {
 					script:"https://cdn1-sandbox.affirm-stage.com/js/v2/affirm.js",
@@ -96,7 +112,8 @@
 		var prequalButton = document.getElementById('startPrequal');
 		prequalButton.addEventListener('click', startPrequal, false);
 		function startPrequal() {
-			affirm.ui.prequal.show();
+			affirm.ui.prequal.launchPrequalFlow();
+			// affirm.ui.prequal.show();
 		}
 		document.title = _title;;
 		document.getElementById('heading').innerText = _heading;
