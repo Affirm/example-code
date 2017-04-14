@@ -80,7 +80,23 @@
 			font-family:arial;
 			font-weight:200;
 		}
-		#startPrequal {
+		#launchPrequal {
+			text-align: center;
+			padding:10px 20px;
+			margin:10px;
+			background:#1e2f59;
+			border:1px solid #5846e4;
+			border-radius:5px;
+			font-size:1.3em;
+			color:#f2f4f5;
+		}
+		#launchPrequal:hover {
+			color:#fff;
+			background:#5846e4;
+			border:1px solid #0f72e5;
+			cursor: pointer;
+		}
+		#showPrequal {
 			text-align: center;
 			padding:10px 20px;
 			margin:10px;
@@ -90,7 +106,7 @@
 			font-size:1.3em;
 			color:#f2f4f5;
 		}
-		#startPrequal:hover {
+		#showPrequal:hover {
 			color:#fff;
 			background:#0fa0ea;
 			border:1px solid #0f72e5;
@@ -102,20 +118,25 @@
 	<h1 id="heading">Prequal Test - Prod Sandbox</h1>
 	Environment select:
 	<ul>
-		<li><a href="https://affirm.github.io/example-code/prequal.html?env=live">Prod Live</a></li>
-		<li><a href="https://affirm.github.io/example-code/prequal.html?env=sandbox">Prod Sandbox</a></li><br/>
-		<li><a href="https://affirm.github.io/example-code/prequal.html?env=stagelive">Stage Live</a></li>
-		<li><a href="https://affirm.github.io/example-code/prequal.html">Stage Sandbox</a></li>
-		<li><a href="https://affirm.github.io/example-code/prequal.html?env=int14">Stage Int-1-4</a></li><br/>
-		<li><a href="https://affirm.github.io/example-code/prequal.html?env=special2">Dev Special-2</a></li>
+		<li><a href="./prequal.html?env=live">Prod Live</a></li>
+		<li><a href="./prequal.html?env=sandbox">Prod Sandbox</a></li><br/>
+		<li><a href="./prequal.html?env=stagelive">Stage Live</a></li>
+		<li><a href="./prequal.html?env=stagesandbox">Stage Sandbox</a></li>
+		<li><a href="./prequal.html?env=int14">Stage Int-1-4</a></li><br/>
+		<li><a href="./prequal.html?env=special2">Dev Special-2</a></li>
 	</ul>
-	<div id="startPrequal">Run Prequal Widget</div>
+	<div id="showPrequal">Show Prequal Widget</div>
+	<div id="launchPrequal">Launch Prequal Flow</div>
 	<script type="text/javascript">
-		var prequalButton = document.getElementById('startPrequal');
-		prequalButton.addEventListener('click', startPrequal, false);
-		function startPrequal() {
+		var launchPrequalButton = document.getElementById('launchPrequal'),
+		showPrequalButton = document.getElementById('showPrequal');
+		showPrequalButton.addEventListener('click', showPrequal, false);
+		launchPrequalButton.addEventListener('click', launchPrequal, false);
+		function showPrequal() {
+			affirm.ui.prequal.show();
+		}
+		function launchPrequal() {
 			affirm.ui.prequal.launchPrequalFlow();
-			// affirm.ui.prequal.show();
 		}
 		document.title = _title;;
 		document.getElementById('heading').innerText = _heading;
