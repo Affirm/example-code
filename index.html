@@ -3,94 +3,33 @@
 <head>
 	<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-	<title>Example Pages - Prod Sandbox</title>
-  <link rel="stylesheet" type="text/css" href="./assets/default.css">  
-  <script>
-    var qd = {};
-    if (location.search) {
-      var qs = location.search.substr(1).split("&");
-      for (var i = qs.length - 1; i >= 0; i--) {
-          var s = qs[i].split("="), 
-          k = s[0], 
-          v = s[1] && decodeURIComponent(s[1]); 
-          qd[k] = v;
-      }   
-    }
-    var env = qd.env;
-    var query = "?env=" + env;
-    var _affirm_config = {};
-    var _title = "Example Pages";
-    var _heading = "Example Pages";
-    switch(env){
-      case 'sandbox':
-        _title = "Example Pages - Prod Sandbox";
-        _heading = "Example Pages - Prod Sandbox";
-        break;
-      case 'live':
-        _title = "Example Pages - Prod Live";
-        _heading = "Example Pages - Prod Live";
-        break;
-      case 'stagelive':
-        _title = "Example Pages - Stage Live";
-        _heading = "Example Pages - Stage Live";
-        break;
-      case 'special2':
-        _title = "Example Pages - Dev Special-2";
-        _heading = "Example Pages - Dev Special-2";
-        break;      
-      case 'int14':
-        _title = "Example Pages - Stage Int-1-4";
-        _heading = "Example Pages - Stage Int-1-4";
-        break;
-      case 'stagesandbox':
-        _title = "Example Pages - Stage Sandbox";
-        _heading = "Example Pages - Stage Sandbox";
-        break;
-      default:
-        _title = "Example Pages - Prod Sandbox";
-        _heading = "Example Pages - Prod Sandbox";
-        break;
-    }
-  </script>
+	<title>Example Pages</title>
+  <link rel="stylesheet" type="text/css" href="./assets/default.css">
+  <script src="./assets/default.js"></script>
   </head>
 <body>
-  <h1 id="heading"></h1>
-  Environment select:
-  <ul>
-    <li><a href="./index.html?env=live">Prod Live</a></li>
-    <li><a href="./index.html?env=sandbox">Prod Sandbox</a></li><br/>
-    <li><a href="./index.html?env=stagelive">Stage Live</a></li>
-    <li><a href="./index.html?env=stagesandbox">Stage Sandbox</a></li>
-    <li><a href="./index.html?env=int14">Stage Int-1-4</a></li><br/>
-    <li><a href="./index.html?env=special2">Dev Special-2</a></li>
-  </ul>
-  <h2>Checkout</h2>
+  <div class="column">
+    <h2>Checkout</h2>
+      <ul>
+        <li><a class="dynamic_env" href="./checkout.html" id="checkout">Regular</a></li>
+        <li><a class="dynamic_env"  href="./checkout-vcn.html" id="checkoutVcn">VCN</a></li>
+      </ul>
+    <h2>Promos</h2>
+      <ul>
+        <li><a class="dynamic_env" href="./promos.html" id="promos">Current</a></li>
+        <li><a class="dynamic_env" href="./promos-legacy.html" id="promosLegacy">Legacy</a></li>
+      </ul>
+    <h2>Other</h2>
     <ul>
-      <li><a href="./checkout.html" id="checkout">Regular</a></li>
-      <li><a href="./checkout-vcn.html" id="checkoutVcn">VCN</a></li>
+        <li><a class="dynamic_env" href="./prequal.html" id="prequal">Prequal</a></li>
     </ul>
-  <h2>Promos</h2>
-    <ul>
-      <li><a href="./promos.html" id="promos">Current</a></li>
-      <li><a href="./promos-legacy.html" id="promosLegacy">Legacy</a></li>
-    </ul>
-  <h2>Other</h2>
-  <ul>
-      <li><a href="./prequal.html" id="prequal">Prequal</a></li>
-  </ul>
+  </div>
   <script>
-    document.title = _title;
-    document.getElementById('heading').innerText = _heading;
-    var linkToCheckout = document.getElementById('checkout'),
-    linkToCheckoutVcn = document.getElementById('checkoutVcn'),
-    linkToPromos = document.getElementById('promos'),
-    linkToPromosLegacy = document.getElementById('promosLegacy'),
-    linkToPrequal = document.getElementById('prequal');
-    linkToCheckout.href = "checkout.html" + query;
-    linkToCheckoutVcn.href = "checkout-vcn.html" + query;
-    linkToPromos.href = "promos.html" + query;
-    linkToPromosLegacy.href = "promos-legacy.html" + query;
-    linkToPrequal.href = "prequal.html" + query;
+    var linksToUpdate = document.getElementsByClassName("dynamic_env");
+    for (var i = linksToUpdate.length - 1; i >= 0; i--) {
+      linksToUpdate[i].href = linksToUpdate[i].href + query;
+    };
   </script>
+  <script src="./assets/render.js"></script>
 </body>
 </html>

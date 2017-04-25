@@ -10,7 +10,40 @@ body {
 	vertical-align: top;
 	display: inline-block;
 }
-/*interactive styles
+
+/*environment selector
+*/
+#env_select,#page_select,#api_key_select {
+	background: #eee;
+	padding:0px 16px;
+	margin:0px 5px;
+	width:200px;
+	z-index:1000;
+	border-radius: 4px;
+}
+#top_nav h3 {
+	text-align: center;
+}
+#env_heading, #page_heading, #api_key_heading {
+	cursor: pointer;
+	text-decoration: underline;
+}
+#env_heading:hover, #page_heading:hover {
+	color:#ff0000;
+}
+#api_key_form {
+	margin:10px 0px;
+}
+#api_key_submit, #api_key_form {
+	text-align: center;
+}
+#api_key_entry {
+	padding:4px;
+	margin:0px 0px 10px;
+	width:100%;
+	box-sizing:border-box;
+}
+/*interactive elements
 */
 .button1 {
 	text-align: center;
@@ -73,4 +106,8 @@ body {
 	background:#aa0000 !important;
 	color:#fff !important;
 	border:#000 1px solid !important;
+}
+.hide {
+	/*background: #ff0000;*/
+	display: none;
 }

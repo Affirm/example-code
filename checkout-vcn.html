@@ -179,7 +179,7 @@
 			total = document.getElementById('total').value;
 
 			// Define checkout object
-			affirm.checkout({
+			var cartObject = {
 				
 				// Financial Product Key is provided along with your API keys
 				// "config": {
@@ -256,11 +256,51 @@
 				"shipping_amount":shipping,
 				"tax_amount": tax,
 				"total":total
-			});
+			};
 
 			// Initialize Affirm checkout
-			affirm.checkout.post();
+		checkoutObject = {
+			success: vcn_success,
+	      	error: vcn_cancel,
+	      	checkout_data: cartObject
+		};
+
+		// Initialize Affirm checkout
+		affirm.checkout.open_vcn(checkoutObject);
+		
+	}
+
+	function vcn_success(e) {
+		console.log(e);
+		cardNumber.value = e.number;
+		cardExpiration.value = e.expiration;
+		cardCvv.value = e.cvv;
+		cardName.value = billingFirst + " " + billingLast;
+		checkoutButton.value = "Affirm checkout successful!";
+		checkoutButton.style = "background:#00aa00";
+		setTimeout(
+			function(){
+				checkoutButton.value = "Auth the card...";
+				checkoutButton.style = "background:#0000aa";
+				// setTimeout(function(){location="order_confirmation.html"},3000);
+			},3000);
+	}
+
+	function vcn_cancel(e) {
+		console.log(e);
+		if (e.reason === "popups_disabled") {
+			window.alert("Please enable popups");
 		}
+		else {
+			window.alert("Please try a different payment method");
+		}
+		checkoutButton.value = "Affirm checkout cancelled";
+		checkoutButton.style = "background:#aa0000";
+		setTimeout(function(){
+			checkoutButton.value = "Checkout"
+			checkoutButton.style = "background:rgba(0,0,0,.3);"
+		},3000)
+	}
 	</script>
 	<script src="./assets/render.js"></script>
 </body>
