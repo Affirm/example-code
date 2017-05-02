@@ -112,7 +112,6 @@
 			}, 1500);
 		}
 		// (function(){
-			var IE = detectIE();
 			function detectIE() {
 				var ua = window.navigator.userAgent;
 				var a = ua.indexOf('MSIE ');
@@ -120,7 +119,8 @@
 				if (a > 0 || b > 0) {return true}
 				else {return false}
 			}
-			if (IE == false) {
+			var IE = detectIE();
+			if (IE == true) {
 				document.getElementById('launchPrequal').style.visibility('hidden');
 				console.log('IE detected, prequal hidden');
 			}
