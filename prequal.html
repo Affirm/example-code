@@ -111,18 +111,20 @@
 				setPrequalButton.classList.toggle('working');
 			}, 1500);
 		}
-		var IE = detectIE();
-		function detectIE() {
-			var ua = window.navigator.userAgent;
-			var a = ua.indexOf('MSIE ');
-			var b = ua.indexOf('Trident/');
-			if (a > 0 || b > 0) {return true}
-			else {return false}
-		}
-		if (IE) {
-			document.getElementById('launchPrequal').style.visibility('hidden');
-			console.log('IE detected, prequal hidden');
-		}
+		// (function(){
+			var IE = detectIE();
+			function detectIE() {
+				var ua = window.navigator.userAgent;
+				var a = ua.indexOf('MSIE ');
+				var b = ua.indexOf('Trident/');
+				if (a > 0 || b > 0) {return true}
+				else {return false}
+			}
+			if (IE == false) {
+				document.getElementById('launchPrequal').style.visibility('hidden');
+				console.log('IE detected, prequal hidden');
+			}
+		// });
 	</script>
 </body>
 </html>
