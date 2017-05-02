@@ -111,7 +111,8 @@
 				setPrequalButton.classList.toggle('working');
 			}, 1500);
 		}
-		var IE = function() {
+		var IE = detectIE();
+		function detectIE() {
 			var ua = window.navigator.userAgent;
 			if (ua.indexOf('MSIE ') > 0) {return true}
 			if (ua.indexOf('Trident/') > 0) {return true}
