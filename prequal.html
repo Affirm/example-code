@@ -112,15 +112,15 @@
 			}, 1500);
 		}
 		// (function(){
-			function detectIE() {
+			
+			var IE = function () {
 				var ua = window.navigator.userAgent;
 				var a = ua.indexOf('MSIE ');
 				var b = ua.indexOf('Trident/');
 				if (a > 0 || b > 0) {return true}
 				else {return false}
 			}
-			var IE = detectIE();
-			if (IE == true) {
+			if (IE) {
 				document.getElementById('launchPrequal').style.visibility = 'hidden';
 				console.log('IE detected, prequal hidden');
 			}
