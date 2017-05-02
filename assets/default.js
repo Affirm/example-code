@@ -50,8 +50,6 @@ build menus/lists/buttons
 
 // querystring -> array & object
 var qsParse = function (a) {
-  console.log('input to qsParse(): ');
-  console.log(a);
   var _qo = {},
   _qa = [];
   if (a) {
@@ -63,9 +61,6 @@ var qsParse = function (a) {
       _qo[_k] = _v;
     }   
   }
-  console.log('output from qsParse(): ');
-  console.log(_qa);
-  console.log(_qo);
   return {
       "qa" : _qa,
       "qo" : _qo
@@ -73,8 +68,6 @@ var qsParse = function (a) {
 }
 
 var qoParse = function (a) {
-  console.log('input to qoParse(): ');
-  console.log(a);
   var _qs = "";
   Object.keys(a).forEach(function(key,i){
     if (a[key] !== "" && a[key] !== undefined) {
@@ -88,8 +81,6 @@ var qoParse = function (a) {
       }
     }
   });
-  console.log('output from qoParse(): ');
-  console.log(_qs);
   return _qs;
 }
 
@@ -98,7 +89,6 @@ var qoParse = function (a) {
 };
 */
 function qsUpdate(url,val,action) {
-  // console.log(url);
   _base = "";
   _qs = "";
   if (url.indexOf("?") > -1) {
@@ -110,7 +100,6 @@ function qsUpdate(url,val,action) {
     _base = url;
     _qs = ""; 
   }
-  console.log('qsUpdate is calling qsParse with this as the qs: ' + _qs);
   var _orig_qs = qsParse(_qs).qo == undefined ? {} : qsParse(_qs).qo,
   _new_qs = "",
   _k = val[0],
@@ -194,7 +183,6 @@ var initialQs = location.search.replace('?','');
 if (qsParse(initialQs).qo !== undefined){
   if (qsParse(initialQs).qo.env) {
     env = qsParse(initialQs).qo.env;
-    console.log('update current env');
   }
   if (qsParse(initialQs).qo.api_key) {
     api_key = qsParse(initialQs).qo.api_key;
@@ -253,7 +241,10 @@ switch(env){
   case 'prod-live':
   _affirm_config = {
     script:"https://cdn1.affirm.com/js/v2/affirm.js",
-    public_api_key:"5GDPSC5HC4Y7Y9TX"
+    // joybird
+    public_api_key:"2G2ECY2213R2WD4W"
+    // test account
+    // public_api_key:"5GDPSC5HC4Y7Y9TX"
     // amruth
     // public_api_key:"3Z17R1IRI6GS8RFF"
   };

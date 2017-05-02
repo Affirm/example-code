@@ -109,6 +109,15 @@
 				setPrequalButton.classList.toggle('working');
 			}, 1500);
 		}
+		var IE = function() {
+			var ua = window.navigator.userAgent;
+			if (ua.indexOf('MSIE ') > 0) {return true}
+			if (ua.indexOf('Trident/') > 0) {return true}
+			else {return false}
+		}
+		if (IE) {
+			launchPrequalButton.style.visibility('hidden');
+		}
 	</script>
 	<script src="./assets/render.js"></script>
 </body>
