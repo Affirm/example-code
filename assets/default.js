@@ -260,6 +260,7 @@ switch(env){
     script:"https://special-1.affirm-dev.com/js/v2/affirm.js",
     public_api_key:"QAZKCCUVPDTP7RE2" 
   };
+  break;
   case 'dev-special_2':
   _affirm_config = {
     script:"https://special-2.affirm-dev.com/js/v2/affirm.js",
@@ -271,16 +272,19 @@ switch(env){
     script:"https://int-1-1.affirm-stage.com/js/v2/affirm.js",
     public_api_key:"FND06LW8187URGAA" 
   };
+  break;
   case 'stage-int_1_2':
   _affirm_config = {
     script:"https://int-1-2.affirm-stage.com/js/v2/affirm.js",
     public_api_key:"FND06LW8187URGAA" 
   };
+  break;
   case 'stage-int_1_3':
   _affirm_config = {
     script:"https://int-1-3.affirm-stage.com/js/v2/affirm.js",
     public_api_key:"FND06LW8187URGAA" 
   };
+  break;
   case 'stage-int_1_4':
   _affirm_config = {
     script:"https://int-1-4.affirm-stage.com/js/v2/affirm.js",
