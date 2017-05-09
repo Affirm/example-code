@@ -132,7 +132,10 @@ function qsUpdate(url,val,action) {
         }
         _orig_qs[_k] = _d;
       }
-      break
+      break;
+    case 'replace':
+      _orig_qs[_k] = _v;
+      break;
   }
   _new_qs = qoParse(_orig_qs);
 
@@ -175,8 +178,8 @@ function envParse(a) {
 
 // Query vars
 var show = [],
-env = "prod-sandbox",
-api_key = "";
+env = "prod-sandbox";
+var api_key;
 
 var initialQs = location.search.replace('?','');
 
@@ -227,7 +230,7 @@ function toggle(a) {
     };
   }
   z = _new_href.base + "?" + _new_href.qs;
-  window.history.pushState({path:z},'',z); 
+  window.history.pushState({path:z},'',z);
 }
 
 // Define env api keys
@@ -303,6 +306,10 @@ switch(env){
     public_api_key:"ARQBLCL7NAMBTZ7F"
   };
   break;
+}
+
+if (api_key) {
+  _affirm_config.public_api_key = api_key;
 }
 
 // Top nav
@@ -405,3 +412,7 @@ top_nav.appendChild(api_key_select);
 env_heading.addEventListener('click',function(){toggle("env_list")});
 page_heading.addEventListener('click',function(){toggle("page_list")});
 api_key_heading.addEventListener('click',function(){toggle("api_key_form")});
+api_key_submit.addEventListener('click',function() {
+    var api_key = document.getElementById('api_key_entry').value;
+    location.href = qsUpdate(document.location.href,['api_key', api_key],'replace').url;
+});
