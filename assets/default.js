@@ -384,6 +384,7 @@ var api_key_heading = document.createElement('h3');
 var api_key_form = document.createElement('form');
 var api_key_entry = document.createElement('input');
 var api_key_submit = document.createElement('input');
+var merchant_config = document.createElement('div');
 
 api_key_select.id = 'api_key_select';
 api_key_select.classList.add('column');
@@ -395,6 +396,8 @@ api_key_entry.id = 'api_key_entry';
 api_key_submit.id = 'api_key_submit';
 api_key_submit.type = 'button';
 api_key_submit.value = 'Update API key';
+merchant_config.id = 'merchant_config';
+merchant_config.innerHTML = " You're pointed to " + env + " with public API key " + _affirm_config.public_api_key;
 
 api_key_select.appendChild(api_key_heading);
 api_key_select.appendChild(api_key_form);
@@ -408,6 +411,7 @@ top_nav.appendChild(page_title);
 top_nav.appendChild(env_select);
 top_nav.appendChild(page_select);
 top_nav.appendChild(api_key_select);
+top_nav.appendChild(merchant_config);
 
 env_heading.addEventListener('click',function(){toggle("env_list")});
 page_heading.addEventListener('click',function(){toggle("page_list")});
