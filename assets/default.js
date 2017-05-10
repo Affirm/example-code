@@ -14,7 +14,8 @@ var envs = [
   "stage-live",
   "br",
   "dev-special_1",
-  "dev-special_2"];
+  "dev-special_2",
+  "localhost"];
 var pages = [
   "index",
   "br",
@@ -65,7 +66,7 @@ var qsParse = function (a) {
       "qa" : _qa,
       "qo" : _qo
     }
-}
+};
 
 var qoParse = function (a) {
   var _qs = "";
@@ -82,12 +83,8 @@ var qoParse = function (a) {
     }
   });
   return _qs;
-}
-
-/*var newQs = {
-  "env" = qsParse().qo.env
 };
-*/
+
 function qsUpdate(url,val,action) {
   _base = "";
   _qs = "";
@@ -152,26 +149,10 @@ function qsUpdate(url,val,action) {
 
 // Helper to decode env values
 function envParse(a) {
-  var _env_subdomainname = a.split("-")[1],
-  _env_subdomain;
-  if (_env_subdomainname === "live") {
-    _env_subdomain = "www";
-  }
-  else {
-    _env_subdomain = _env_subdomainname.replace(/_/g,"-");
-  }
-  var _env_domainname = a.split("-")[0],
-  _env_domain = domain_mapping[_env_domainname],
-  _env_name = _env_domainname.charAt(0).toUpperCase() + _env_domainname.slice(1) + " " + _env_subdomainname.charAt(0).toUpperCase() + _env_subdomainname.slice(1).replace(/_/g,"-"),
-  _env_query = "?env=" + a,
-  _env_components = {
-    "domainname" : _env_domainname,
-    "domain": _env_domain,
-    "subdomainname": _env_subdomainname,
-    "subdomain": _env_subdomain,
-    "name": _env_name,
-    "query" : _env_query,
-    "base_url" : "https://" + _env_subdomain + "." + _env_domain + ".com"
+  var _env_query = "?env=" + a;
+  var _env_components = {
+    "name": a,
+    "query" : _env_query
   };
   return _env_components;
 }
@@ -222,12 +203,12 @@ function toggle(a) {
       _orig_link = pageLinks[i].href;
       _new_link = qsUpdate(_orig_link,['show',a],'add');
       pageLinks[i].href = _new_link.base + "?" + _new_link.qs;
-    };
+    }
     for (var i = 0; i < envLinks.length; i++) {
       _orig_link = envLinks[i].href;
       _new_link = qsUpdate(_orig_link,['show',a],'add');
       envLinks[i].href = _new_link.base + "?" + _new_link.qs;
-    };
+    }
   }
   z = _new_href.base + "?" + _new_href.qs;
   window.history.pushState({path:z},'',z);
@@ -298,6 +279,12 @@ switch(env){
   _affirm_config = {
     script:"https://cdn1-sandbox.affirm-stage.com/js/v2/affirm.js",
     public_api_key:"C2S4ECO7NTD9T5GO" 
+  };
+  break;
+  case 'localhost':
+  _affirm_config = {
+    script:"http://localhost:3000/v2/affirm.js",
+    public_api_key:"xxxxxxxxxxxxxxxx"
   };
   break;
   default:
