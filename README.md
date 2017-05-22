@@ -26,5 +26,5 @@ You can also modify dev_keys.json to point to a locally running instance of plat
 
 ## Testing Promos ##
 1. In promos.html, you'll have to set data-promo-id to the externalId of the promo, which you can find in mordor.
-2. have to set the promos_url_prefix and dev_keys.js in web-ux if you're testing the local affirm.js
+2. If you're testing the local affirm.js, you'll have to set the promos_url_prefix in dev_keys.js in the web-ux project.
 
