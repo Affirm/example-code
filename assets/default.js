@@ -22,6 +22,8 @@ var pages = [
   "checkout",
   "checkout-vcn",
   "br",
+  "omnichannel",
+  "br",
   "promos",
   "promos-legacy",
   "br",
