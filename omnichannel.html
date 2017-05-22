@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width">
     <title>Omnichannel checkout</title>
     <link rel="stylesheet" href="./assets/default.css">
-    <script src="./assets/default.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/default.js"></script>
     <script>
         // Begin Affirm JS embed code
         // =======================
@@ -134,6 +134,8 @@
         <input class="button1" id="launchCheckout" type="button"  value="Send Omnichannel Checkout">
     </div>
 </form>
+</body>
+<script src="./assets/render.js"></script>
 <script>
     // Global variables
     // -----------------------
@@ -187,7 +189,7 @@
                 "user_confirmation_url": confirmLocation,
                 // This is always 'POST'
                 "user_confirmation_url_action" : "POST",
-                "public_api_key": _affirm_config.public_api_key
+                "public_api_key": window.affirm_config.public_api_key
             },
             "items": [{
                 "display_name": productName,
@@ -246,15 +248,14 @@
 
         $.ajax({
             type: "post",
-            url: 'https://www.affirm-stage.com/api/v2/checkout/store',
-            data: checkoutBody,
+            url: window.affirm_config.base_url + '/api/v2/checkout/store',
+            data: JSON.stringify(checkoutBody),
             success: function (response) {
-                alert(response);
+                console.log(response);
+                alert('Response logged to console');
             },
             contentType: "application/json"
         });
     }
 </script>
-<script src="./assets/render.js"></script>
-</body>
 </html>

@@ -10,6 +10,7 @@ var envs = [
   "stage-int_1_2",
   "stage-int_1_3",
   "stage-int_1_4",
+  "stage-int_2_4",
   "stage-sandbox",
   "stage-live",
   "br",
@@ -218,80 +219,80 @@ function toggle(a) {
 
 // Define env api keys
 switch(env){
-  case 'prod-sandbox':
-  _affirm_config = {
-    script:"https://cdn1-sandbox.affirm.com/js/v2/affirm.js",
-    public_api_key:"ARQBLCL7NAMBTZ7F"
-  };
-  break;
-  case 'prod-live':
-  _affirm_config = {
-    script:"https://cdn1.affirm.com/js/v2/affirm.js",
-    // joybird
-    public_api_key:"2G2ECY2213R2WD4W"
-    // test account
-    // public_api_key:"5GDPSC5HC4Y7Y9TX"
-    // amruth
-    // public_api_key:"3Z17R1IRI6GS8RFF"
-  };
-  break;
   case 'stage-live':
   _affirm_config = {
     script:"https://cdn1.affirm-stage.com/js/v2/affirm.js",
-    public_api_key:"TOPYWMTUK7GVMNED" 
+    base_url:"https://affirm-stage.com",
+    public_api_key:"TOPYWMTUK7GVMNED"
   };
   break;
   case 'dev-special_1':
   _affirm_config = {
     script:"https://special-1.affirm-dev.com/js/v2/affirm.js",
+    base_url:"https://special-1.affirm-dev.com",
     public_api_key:"QAZKCCUVPDTP7RE2" 
   };
   break;
   case 'dev-special_2':
   _affirm_config = {
     script:"https://special-2.affirm-dev.com/js/v2/affirm.js",
+    base_url:"https://special-2.affirm-dev.com",
     public_api_key:"QAZKCCUVPDTP7RE2" 
   };
   break;      
   case 'stage-int_1_1':
   _affirm_config = {
     script:"https://int-1-1.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-1.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
   };
   break;
   case 'stage-int_1_2':
   _affirm_config = {
     script:"https://int-1-2.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-2.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
   };
   break;
   case 'stage-int_1_3':
   _affirm_config = {
     script:"https://int-1-3.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-3.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
   };
   break;
   case 'stage-int_1_4':
   _affirm_config = {
     script:"https://int-1-4.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-4.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
+  };
+  break;
+  case 'stage-int_2_4':
+  _affirm_config = {
+    script:"https://int-2-4.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-2-4.affirm-stage.com",
+    public_api_key:"W3HRPZ1233KHHKPI"
   };
   break;
   case 'stage-sandbox':
   _affirm_config = {
     script:"https://cdn1-sandbox.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://sandbox.affirm-stage.com",
     public_api_key:"C2S4ECO7NTD9T5GO" 
   };
   break;
   case 'localhost':
   _affirm_config = {
     script:"http://localhost:3000/v2/affirm.js",
+    base_url:"http://localhost:3000",
     public_api_key:"xxxxxxxxxxxxxxxx"
   };
   break;
   default:
   _affirm_config = {
     script:"https://cdn1-sandbox.affirm.com/js/v2/affirm.js",
+    base_url:"https://sandbox.affirm-stage.com",
     public_api_key:"ARQBLCL7NAMBTZ7F"
   };
   break;
@@ -409,3 +410,4 @@ api_key_submit.addEventListener('click',function() {
     var api_key = document.getElementById('api_key_entry').value;
     location.href = qsUpdate(document.location.href,['api_key', api_key],'replace').url;
 });
+window.affirm_config = $.extend({}, _affirm_config);
