@@ -10,16 +10,20 @@ var envs = [
   "stage-int_1_2",
   "stage-int_1_3",
   "stage-int_1_4",
+  "stage-int_2_4",
   "stage-sandbox",
   "stage-live",
   "br",
   "dev-special_1",
-  "dev-special_2"];
+  "dev-special_2",
+  "localhost"];
 var pages = [
   "index",
   "br",
   "checkout",
   "checkout-vcn",
+  "br",
+  "omnichannel",
   "br",
   "promos",
   "promos-legacy",
@@ -65,7 +69,7 @@ var qsParse = function (a) {
       "qa" : _qa,
       "qo" : _qo
     }
-}
+};
 
 var qoParse = function (a) {
   var _qs = "";
@@ -82,12 +86,8 @@ var qoParse = function (a) {
     }
   });
   return _qs;
-}
-
-/*var newQs = {
-  "env" = qsParse().qo.env
 };
-*/
+
 function qsUpdate(url,val,action) {
   _base = "";
   _qs = "";
@@ -132,7 +132,10 @@ function qsUpdate(url,val,action) {
         }
         _orig_qs[_k] = _d;
       }
-      break
+      break;
+    case 'replace':
+      _orig_qs[_k] = _v;
+      break;
   }
   _new_qs = qoParse(_orig_qs);
 
@@ -149,34 +152,18 @@ function qsUpdate(url,val,action) {
 
 // Helper to decode env values
 function envParse(a) {
-  var _env_subdomainname = a.split("-")[1],
-  _env_subdomain;
-  if (_env_subdomainname === "live") {
-    _env_subdomain = "www";
-  }
-  else {
-    _env_subdomain = _env_subdomainname.replace(/_/g,"-");
-  }
-  var _env_domainname = a.split("-")[0],
-  _env_domain = domain_mapping[_env_domainname],
-  _env_name = _env_domainname.charAt(0).toUpperCase() + _env_domainname.slice(1) + " " + _env_subdomainname.charAt(0).toUpperCase() + _env_subdomainname.slice(1).replace(/_/g,"-"),
-  _env_query = "?env=" + a,
-  _env_components = {
-    "domainname" : _env_domainname,
-    "domain": _env_domain,
-    "subdomainname": _env_subdomainname,
-    "subdomain": _env_subdomain,
-    "name": _env_name,
-    "query" : _env_query,
-    "base_url" : "https://" + _env_subdomain + "." + _env_domain + ".com"
+  var _env_query = "?env=" + a;
+  var _env_components = {
+    "name": a,
+    "query" : _env_query
   };
   return _env_components;
 }
 
 // Query vars
 var show = [],
-env = "prod-sandbox",
-api_key = "";
+env = "prod-sandbox";
+var api_key;
 
 var initialQs = location.search.replace('?','');
 
@@ -219,86 +206,100 @@ function toggle(a) {
       _orig_link = pageLinks[i].href;
       _new_link = qsUpdate(_orig_link,['show',a],'add');
       pageLinks[i].href = _new_link.base + "?" + _new_link.qs;
-    };
+    }
     for (var i = 0; i < envLinks.length; i++) {
       _orig_link = envLinks[i].href;
       _new_link = qsUpdate(_orig_link,['show',a],'add');
       envLinks[i].href = _new_link.base + "?" + _new_link.qs;
-    };
+    }
   }
   z = _new_href.base + "?" + _new_href.qs;
-  window.history.pushState({path:z},'',z); 
+  window.history.pushState({path:z},'',z);
 }
 
 // Define env api keys
 switch(env){
-  case 'prod-sandbox':
-  _affirm_config = {
-    script:"https://cdn1-sandbox.affirm.com/js/v2/affirm.js",
-    public_api_key:"ARQBLCL7NAMBTZ7F"
-  };
-  break;
-  case 'prod-live':
-  _affirm_config = {
-    script:"https://cdn1.affirm.com/js/v2/affirm.js",
-    // joybird
-    public_api_key:"2G2ECY2213R2WD4W"
-    // test account
-    // public_api_key:"5GDPSC5HC4Y7Y9TX"
-    // amruth
-    // public_api_key:"3Z17R1IRI6GS8RFF"
-  };
-  break;
   case 'stage-live':
   _affirm_config = {
     script:"https://cdn1.affirm-stage.com/js/v2/affirm.js",
-    public_api_key:"TOPYWMTUK7GVMNED" 
+    base_url:"https://affirm-stage.com",
+    public_api_key:"TOPYWMTUK7GVMNED"
   };
   break;
   case 'dev-special_1':
   _affirm_config = {
     script:"https://special-1.affirm-dev.com/js/v2/affirm.js",
+    base_url:"https://special-1.affirm-dev.com",
     public_api_key:"QAZKCCUVPDTP7RE2" 
   };
+  break;
   case 'dev-special_2':
   _affirm_config = {
     script:"https://special-2.affirm-dev.com/js/v2/affirm.js",
+    base_url:"https://special-2.affirm-dev.com",
     public_api_key:"QAZKCCUVPDTP7RE2" 
   };
   break;      
   case 'stage-int_1_1':
   _affirm_config = {
     script:"https://int-1-1.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-1.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
   };
+  break;
   case 'stage-int_1_2':
   _affirm_config = {
     script:"https://int-1-2.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-2.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
   };
+  break;
   case 'stage-int_1_3':
   _affirm_config = {
     script:"https://int-1-3.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-3.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
   };
+  break;
   case 'stage-int_1_4':
   _affirm_config = {
     script:"https://int-1-4.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-1-4.affirm-stage.com",
     public_api_key:"FND06LW8187URGAA" 
+  };
+  break;
+  case 'stage-int_2_4':
+  _affirm_config = {
+    script:"https://int-2-4.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://int-2-4.affirm-stage.com",
+    public_api_key:"W3HRPZ1233KHHKPI"
   };
   break;
   case 'stage-sandbox':
   _affirm_config = {
     script:"https://cdn1-sandbox.affirm-stage.com/js/v2/affirm.js",
+    base_url:"https://sandbox.affirm-stage.com",
     public_api_key:"C2S4ECO7NTD9T5GO" 
+  };
+  break;
+  case 'localhost':
+  _affirm_config = {
+    script:"http://localhost:3000/v2/affirm.js",
+    base_url:"http://localhost:3000",
+    public_api_key:"xxxxxxxxxxxxxxxx"
   };
   break;
   default:
   _affirm_config = {
     script:"https://cdn1-sandbox.affirm.com/js/v2/affirm.js",
+    base_url:"https://sandbox.affirm-stage.com",
     public_api_key:"ARQBLCL7NAMBTZ7F"
   };
   break;
+}
+
+if (api_key) {
+  _affirm_config.public_api_key = api_key;
 }
 
 // Top nav
@@ -373,6 +374,7 @@ var api_key_heading = document.createElement('h3');
 var api_key_form = document.createElement('form');
 var api_key_entry = document.createElement('input');
 var api_key_submit = document.createElement('input');
+var merchant_config = document.createElement('div');
 
 api_key_select.id = 'api_key_select';
 api_key_select.classList.add('column');
@@ -384,6 +386,8 @@ api_key_entry.id = 'api_key_entry';
 api_key_submit.id = 'api_key_submit';
 api_key_submit.type = 'button';
 api_key_submit.value = 'Update API key';
+merchant_config.id = 'merchant_config';
+merchant_config.innerHTML = " You're pointed to " + env + " with public API key " + _affirm_config.public_api_key;
 
 api_key_select.appendChild(api_key_heading);
 api_key_select.appendChild(api_key_form);
@@ -397,7 +401,13 @@ top_nav.appendChild(page_title);
 top_nav.appendChild(env_select);
 top_nav.appendChild(page_select);
 top_nav.appendChild(api_key_select);
+top_nav.appendChild(merchant_config);
 
 env_heading.addEventListener('click',function(){toggle("env_list")});
 page_heading.addEventListener('click',function(){toggle("page_list")});
 api_key_heading.addEventListener('click',function(){toggle("api_key_form")});
+api_key_submit.addEventListener('click',function() {
+    var api_key = document.getElementById('api_key_entry').value;
+    location.href = qsUpdate(document.location.href,['api_key', api_key],'replace').url;
+});
+window.affirm_config = $.extend({}, _affirm_config);

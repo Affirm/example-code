@@ -43,6 +43,10 @@ body {
 	width:100%;
 	box-sizing:border-box;
 }
+#merchant_config {
+	padding-top: 30px;
+	display: block;
+}
 /*interactive elements
 */
 .button1 {
