@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Checkout</title>
+	<script>
+	    // Begin Affirm JS embed code
+		// =======================
+		_affirm_config = {
+		    script:"https://cdn1-sandbox.affirm.com/js/v2/affirm.js",
+		    public_api_key:"ARQBLCL7NAMBTZ7F"
+		};
+		(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+		// =======================
+		// End Affirm JS embed code
+	</script>
+	<style>
+		.button3 {
+			margin:20px;
+			padding:20px;
+			background:#00c8e5;
+			color:#fff;
+			cursor: pointer;
+		}
+		.space {
+			height:2000px;
+			line-height: 2000px;
+			vertical-align: middle;
+			text-align: center;
+			background:#eee;
+		}
+	</style>
+</head>
+<body>
+<header>
+	<div class="affirm-site-modal"><img src="https://cdn-assets.affirm.com/images/banners/468x60.png" alt=""></div>
+</header>
+<label>Phone number <input id="affirm-phone_number" type="text" value="9253236612"></label>
+<br/>
+<label>Loan amount <input id="affirm-total" type="number" value="49999"></label>
+<br/>
+<br/>
+<div class="affirm-as-low-as" show-learn-more="false" data-amount="49999"></div>
+<br/>
+<div class="button3" id="launchCheckout" onclick="affirmCheckout()">Checkout with Affirm</div>
+<br/>
+<div class="space">Lots of space here</div>
+<script type="text/javascript">
+
+var checkout_object = {};
+
+function buildCheckout () {
+	var _phone = document.getElementById('affirm-phone_number').value;
+	var _total = document.getElementById('affirm-total').value;
+	var _location = document.location.href;
+
+	checkout_object = {
+		"merchant": {
+			"user_cancel_url": _location,
+			"user_confirmation_url": _location,
+			"user_confirmation_url_action" : "POST"
+		},
+		"items": [{
+			"display_name": "Best Product Ever",
+			"sku": "123ABC",
+			"unit_price": 49999,
+			"qty": 1,
+			"item_image_url": "http://merchantsite.com/images/awesome-pants.jpg",
+			"item_url": "http://merchantsite.com/products/awesome-pants.html"
+		}],
+		"discounts": {
+			"discountABC123": {
+				"discount_amount": 4000
+			}
+		},
+		"order_id": "123456789",
+		"metadata": {
+			"shipping_type": "UPS Ground"
+		},
+		"shipping": {
+			"name": {
+				"first": "Joe",
+				"last": "Doe"
+			},
+			"address": {
+				"line1": "633 Folsom St",
+				"city": "San Francisco",
+				"state": "CA",
+				"zipcode": "94107"
+			},
+			"phone_number": _phone,
+			"email": "joedoe@gmail.com",
+		},
+		"billing": {
+			"name": {
+				"first": "Joe",
+				"last": "Doe"
+			},
+			"address": {
+				"line1": "633 Folsom St",
+				"city": "San Francisco",
+				"state": "CA",
+				"zipcode": "94107"
+			},
+			"phone_number": _phone,
+			"email": "joedoe@gmail.com",
+		},
+		"shipping_amount": 0,
+		"tax_amount": 0,
+		"total":_total
+	};
+}
+
+function affirmCheckout() {
+	buildCheckout();
+	affirm.checkout(checkout_object);
+	affirm.checkout.post();
+}
+
+
+function detectIE() {
+  var ua = window.navigator.userAgent;
+  var a = ua.indexOf('MSIE ');
+  var b = ua.indexOf('Trident/');
+  if (a > 0 || b > 0) {return true}
+  else {return false}
+}
+
+var IE = detectIE();
+
+affirm.ui.ready(function(){
+    var a = {
+    "page_type":"home"
+    };
+    affirm.prequal.set(a);
+    if (!IE) {
+    	affirm.ui.prequal.show();
+      }
+});
+
+</script>
+</body>
+</html>
