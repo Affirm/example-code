@@ -30,15 +30,21 @@
 			text-align: center;
 			background:#eee;
 		}
+		label {
+			display:block;
+		}
 	</style>
 </head>
 <body>
+<container>
 <header>
 	<div class="affirm-site-modal"><img src="https://cdn-assets.affirm.com/images/banners/468x60.png" alt=""></div>
 </header>
+<h1>Stage - Live</h1>
+<form>
 <label>Phone number <input id="affirm-phone_number" type="text" value="9253236612"></label>
-<br/>
 <label>Loan amount <input id="affirm-total" type="number" value="49999"></label>
+</form>
 <br/>
 <br/>
 <div class="affirm-as-low-as" show-learn-more="false" data-amount="49999"></div>
@@ -46,6 +52,7 @@
 <div class="button3" id="launchCheckout" onclick="affirmCheckout()">Checkout with Affirm</div>
 <br/>
 <div class="space">Lots of space here</div>
+<container>
 <script type="text/javascript">
 
 var checkout_object = {};
