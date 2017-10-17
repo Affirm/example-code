@@ -38,6 +38,10 @@
 					<td>Page Type</td>
 					<td><input type="text" value="home" id="pageType"></td>
 				</tr>
+				<tr>
+					<td>Mode</td>
+					<td><input type="text" value="modal" id="mode"></td>
+				</tr>
 			</table>
 		</div>
 		<div>
@@ -94,6 +98,7 @@
 		function setPrequal() {
 			// Grab form values
 			var merchantName = document.getElementById('merchantName').value,
+			mode = document.getElementById('mode').value,
 			pageType = document.getElementById('pageType').value,
 			itemName = document.getElementById('itemName').value,
 			itemUrl = document.getElementById('itemUrl').value,
