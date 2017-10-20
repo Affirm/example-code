@@ -29,9 +29,16 @@
 			height:300px;
 			text-align: center;
 		}
+		#checkout_button {
+			margin:50px;
+			padding:20px;
+			border:1px solid #000;
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body>
+<div id="checkout_button">Checkout</div>
 
 <script>
 
@@ -112,6 +119,11 @@ function initiateCheckout () {
 		}
 	);
 }
+
+var checkout_button = document.getElementById('checkout_button');
+
+checkout_button.addEventListener('click',function(){initiateCheckout()});
+
 console.log('hi!');
 </script>
 
