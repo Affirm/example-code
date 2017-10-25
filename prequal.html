@@ -106,17 +106,19 @@
 			itemPrice = document.getElementById('itemPrice').value,
 			itemSku = document.getElementById('itemSku').value
 
-		    var a = {
-				"mode": mode,
-		    	"merchant_name": merchantName,
-    			"page_type": pageType,
-    			"item": [{
-	        		"display_name": itemName,
-	        	    "item_url": itemUrl,
-	            	"sku": itemSku,
-	            	"unit_price": itemPrice,
-	            	"qty": itemQuantity
-        		}]
+		    var a = {};
+		    if (mode) {
+		    	a = {
+		    		"mode": mode,
+		    		"merchant_name": merchantName,
+    				"page_type": pageType
+    			}
+		    }
+		    else {
+		    	a = {
+			    	"merchant_name": merchantName,
+	    			"page_type": pageType
+	    		}
     		}
     		affirm.prequal.set(a);
     		setPrequalButton.classList.toggle('working');
