@@ -144,7 +144,7 @@
 		// Use current location
 		var baseURL = location.href.substring(0, location.href.lastIndexOf("/")+1);
 		var currentLocation = location.href;
-		var confirmLocation = baseURL + "order_confirmation.php?env=live";
+		var confirmLocation = location.href;
 
 	// Checkout
 	// -----------------------
@@ -276,10 +276,10 @@
 
 	function vcn_success(e) {
 		console.log(e);
-		cardNumber.value = e.number;
-		cardExpiration.value = e.expiration;
-		cardCvv.value = e.cvv;
-		cardName.value = billingFirst + " " + billingLast;
+		// cardNumber.value = e.number;
+		// cardExpiration.value = e.expiration;
+		// cardCvv.value = e.cvv;
+		// cardName.value = billingFirst + " " + billingLast;
 		checkoutButton.value = "Affirm checkout successful!";
 		checkoutButton.style = "background:#00aa00";
 		setTimeout(
