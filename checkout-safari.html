@@ -75,9 +75,9 @@ var currentLocation = location.href;
 				console.log(Date.now() + ": " + a.method + " request " + "processing...");
 			}
 		};
-		xhttp.open(a.method, a.page, true);
-		xhttp.send();
+		xhttp.open(a.method, a.page, false);
 		console.log(Date.now() + ": " + a.method + " request initiated");
+		xhttp.send();
 	}
 function initiateCheckout () {
 	checkout_object = {
@@ -150,7 +150,7 @@ function initiateCheckout () {
 			if (_a) {
 				console.log(Date.now() + ': Watcher is initiating checkout!');
 				initiateCheckout();
-				var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?';
+				var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '';
 			    window.history.pushState({path:newurl},'',newurl);
 				clearInterval(watcher);
 				return
