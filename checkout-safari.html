@@ -16,7 +16,7 @@
 		// End Affirm JS embed code
 	</script>
 	<style>
-		#checkout_button, #first_button {
+		.checkout_button {
 			height:50px;
 			width:400px;
 			text-align:center;
@@ -26,24 +26,48 @@
 			cursor:pointer;
 			line-height:50px;
 			font-family: helvetica;
+			margin:5px;
+			border-radius: 5px;
 		}
-		#first_button {
-			background: #00ff00;
+		#checkout_button {
+			background: #333333;
+		}
+		#working {
+			background: #00aa00;
+		}
+		#not_working {
+			background: #aa0000;
 		}
 	</style>
 </head>
 <body>
-<div id="first_button">First</div>
-<div id="checkout_button">Checkout</div>
+<div id="working" class="checkout_button">Working (async:false)</div>
+<div id="not_working" class="checkout_button">Not Working (async:true)</div>
+<div id="checkout_button" class="checkout_button">Checkout</div>
 <script>
 // Checkout
 // -----------------------
 // Checkout button
 var checkout_button = document.getElementById('checkout_button');
-var first_button = document.getElementById('first_button');
+var working = document.getElementById('working');
+var not_working = document.getElementById('not_working');
 checkout_button.addEventListener('click',function(){initiateCheckout()});
-first_button.addEventListener('click',function(){
-	breakIt();
+working.addEventListener('click',function(){
+	var _a = {
+			"page": "https://httpbin.org/post",
+			"method": "POST",
+			"async": false
+		}
+	ajaxRequest(_a);
+	watchIt();
+});
+not_working.addEventListener('click',function(){
+	var _a = {
+			"page": "https://httpbin.org/post",
+			"method": "POST",
+			"async": true
+		}
+	ajaxRequest(_a);
 	watchIt();
 });
 
@@ -54,31 +78,22 @@ document.body.onkeypress=function(e){
 
 var currentLocation = location.href;
 
-	function breakIt() {
-		console.log('break it!');
-		var _a = {
-			"page": "https://httpbin.org/post",
-			"method": "POST"
+function ajaxRequest(a) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState === 4) {
+			console.log(Date.now() + ": " + a.method + " request returned a " + xhttp.status + " response.");
+		    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?1234';
+		    window.history.pushState({path:newurl},'',newurl);
 		}
-		ajaxRequest(_a);
-
-	}
-	function ajaxRequest(a) {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (xhttp.readyState === 4) {
-				console.log(Date.now() + ": " + a.method + " request returned a " + xhttp.status + " response.");
-			    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?1234';
-			    window.history.pushState({path:newurl},'',newurl);
-			}
-			else {
-				console.log(Date.now() + ": " + a.method + " request " + "processing...");
-			}
-		};
-		xhttp.open(a.method, a.page, false);
-		console.log(Date.now() + ": " + a.method + " request initiated");
-		xhttp.send();
-	}
+		else {
+			console.log(Date.now() + ": " + a.method + " request " + "processing...");
+		}
+	};
+	xhttp.open(a.method, a.page, a.async);
+	console.log(Date.now() + ": " + a.method + " request initiated");
+	xhttp.send();
+}
 function initiateCheckout () {
 	checkout_object = {
 		"merchant": {
