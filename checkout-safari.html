@@ -59,7 +59,7 @@ working.addEventListener('click',function(){
 			"async": false
 		}
 	ajaxRequest(_a);
-	watchIt();
+	// watchIt();
 });
 not_working.addEventListener('click',function(){
 	var _a = {
@@ -68,7 +68,7 @@ not_working.addEventListener('click',function(){
 			"async": true
 		}
 	ajaxRequest(_a);
-	watchIt();
+	// watchIt();
 });
 
 document.body.onkeypress=function(e){
@@ -83,8 +83,9 @@ function ajaxRequest(a) {
 	xhttp.onreadystatechange = function() {
 		if (xhttp.readyState === 4) {
 			console.log(Date.now() + ": " + a.method + " request returned a " + xhttp.status + " response.");
-		    var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?1234';
-		    window.history.pushState({path:newurl},'',newurl);
+		    // var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?1234';
+		    // window.history.pushState({path:newurl},'',newurl);
+		    initiateCheckout();
 		}
 		else {
 			console.log(Date.now() + ": " + a.method + " request " + "processing...");
