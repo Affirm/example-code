@@ -497,9 +497,9 @@
 	var case_15_button = document.getElementById('case_15-button');
 	var case_15_amount = document.getElementById('case_15-amount');
 	var case_15_ala = document.getElementById('case_15-ala');
-	case_15_button.addEventListener('click',function(){case9Refresh()});
-	case_15_button.addEventListener('touch',function(){case9Refresh()});
-	function case9Refresh() {
+	case_15_button.addEventListener('click',function(){case15Refresh()});
+	case_15_button.addEventListener('touch',function(){case15Refresh()});
+	function case15Refresh() {
 		var _a = case_15_amount.value;
 		case_15_ala.setAttribute('data-amount',_a);
 		affirm.ui.refresh();
