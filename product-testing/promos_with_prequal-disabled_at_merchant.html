@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Promos with Prequal disabled at merchant</title>
+
+<script>
+	_affirm_config = {
+		public_api_key: "RC9BBKRDHU2096OO",
+		script: "https://cdn1-sandbox.affirm.com/js/v2/affirm.js"
+	};
+	(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+</script>
+<link rel="stylesheet" href="default.css">
+</head>
+<body>
+<h1>Product Testing</h1>
+<h2>Promos with Prequal, Prequal disabled at merchant</h2>
+<h3>prod-sandbox</h3>
+<div class="section">
+	<div class="case unhappy">
+		<h4>Case #8</h4>
+		<h3>ALA with Prequal disabled at merchant</h3>
+		<div class="details">
+			<table>
+				<tr>
+					<td>Type</td>
+					<td>New feature</td>
+				</tr>
+				<tr>
+					<td>Promo ID</td>
+					<td>Valid</td>
+				</tr>
+				<tr>
+					<td>Prequal enabled @ promoset</td>
+					<td>n/a</td>
+				</tr>
+				<tr>
+					<td>Prequal enabled @ merchant</td>
+					<td>False</td>
+				</tr>
+			</table>
+		</div>
+		<div class="instructions">
+			<u>Instructions:</u> none
+		</div>
+	<div class="content">
+		<span class="affirm-as-low-as" data-amount="50000" data-promo-id="promo_set_prequal_enabled"></span>
+	</div>
+	<div class="result">
+		Should open custom ALA modal, no Prequal.
+	</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="case unhappy">
+		<h4>Case #14</h4>
+		<h3>Product Modal, with Prequal disabled at merchant</h3>
+		<div class="details">
+			<table>
+				<tr>
+					<td>Type</td>
+					<td>New Feature</td>
+				</tr>
+				<tr>
+					<td>Promo ID</td>
+					<td>Valid</td>
+				</tr>
+				<tr>
+					<td>Prequal enabled @ promoset</td>
+					<td>True</td>
+				</tr>
+				<tr>
+					<td>Prequal enabled @ merchant</td>
+					<td>False</td>
+				</tr>
+			</table>
+		</div>
+		<div class="instructions">
+			<u>Instructions:</u> none
+		</div>
+	<div class="content">
+		<span class="affirm-product-modal" data-amount="50000" data-promo-id="promo_set_prequal_enabled"></span>
+	</div>
+	<div class="result">
+		Should open custom product modal, no Prequal.
+	</div>
+	</div>
+</div>
+
+<div class="section">
+	<div class="case unhappy">
+		<h4>Case #17</h4>
+		<h3>Site Modal, with Prequal disabled at merchant</h3>
+		<div class="details">
+			<table>
+				<tr>
+					<td>Type</td>
+					<td>New Feature</td>
+				</tr>
+				<tr>
+					<td>Promo ID</td>
+					<td>Valid</td>
+				</tr>
+				<tr>
+					<td>Prequal enabled @ promoset</td>
+					<td>True</td>
+				</tr>
+				<tr>
+					<td>Prequal enabled @ merchant</td>
+					<td>False</td>
+				</tr>
+			</table>
+		</div>
+		<div class="instructions">
+			<u>Instructions:</u> none
+		</div>
+	<div class="content">
+		<span class="affirm-site-modal" data-promo-id="promo_set_prequal_enabled"></span>
+	</div>
+	<div class="result">
+		Should open custom product modal, no Prequal.
+	</div>
+	</div>
+</div>
+
+</body>
+</html>

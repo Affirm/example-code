@@ -10,6 +10,8 @@
 		_affirm_config = {
 		    script:"https://cdn1-sandbox.affirm.com/js/v2/affirm.js",
 		    public_api_key:"ARQBLCL7NAMBTZ7F"
+		    // script:"https://cdn1.affirm.com/js/v2/affirm.js",
+		    // public_api_key:"5GDPSC5HC4Y7Y9TX"
 		};
 		(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
 		// =======================
@@ -65,7 +67,9 @@ function initiateCheckout () {
 		},
 		"metadata":{
 			"mode":"modal"
+
 		},
+		"order_id":"testest",
 		"shipping": {
 			"name": {
 				"first":"Joe",
@@ -76,10 +80,10 @@ function initiateCheckout () {
 				"line2": "Floor 7",
 				"city": "San Francisco",
 				"state": "CA",
-				"zipcode": "94107"
+				"zipcode": "94707"
 			},
 			"phone_number": "4153334452",
-			"email": "joe.doe@123fakestreet.com"
+			"email": "example@test.com"
 		},
 		"billing": {
 			"name": {
@@ -91,10 +95,10 @@ function initiateCheckout () {
 				"line2": "Floor 7",
 				"city": "San Francisco",
 				"state": "CA",
-				"zipcode": "94107"
+				"zipcode": "94707"
 			},
 			"phone_number": "4153334452",
-			"email": "joe.doe@123fakestreet.com"
+			"email": "example@test.com"
 		},
 		"items": [
 			{
@@ -107,8 +111,8 @@ function initiateCheckout () {
 			}
 		],
 		"shipping_amount":499,
-		"taxAmount": 0,
-		"total": 0,
+		"taxAmount": 1000,
+		"total": 10000,
 		// "checkout_expiration": expire_time()
 	};
 	affirm.checkout(checkout_object);
