@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GTM-VCN Example</title>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WFLMNVK');
+	</script>
+	<!-- End Google Tag Manager -->
+
+	<style>
+		html,body {
+			font-family: helvetica;
+			padding:0;
+			margin:0;
+		}
+		.container {
+			display:table;
+			width:100%;
+			margin-top:20px;
+		}
+		.col {
+			width:33%;
+			display:table-cell;
+		}
+		.checkout_button {
+			padding:1em 2em;
+			display:inline-block;
+			cursor:pointer;
+			border:1px solid #aaa;
+			text-align:center;
+			margin:2px;
+		}
+		.checkout_button:hover {
+			border:#000 1px solid;
+		}
+		
+		#checkout_submit {
+			padding:1em 2em;
+			display:inline-block;
+			cursor:pointer;
+			border:1px solid #aaa;
+			text-align:center;
+			margin:2px;
+		}
+		.greyed {
+			color:#aaa !important;
+			background:#eee !important;
+		}
+	</style>
+</head>
+<body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WFLMNVK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="container">
+	<div class="col">
+		<table>
+			<tr>
+				<td>Full Name</td>
+				<td><input type="text" id="checkout_name" value="Joe Doe"></td>
+			</tr>
+			<tr>
+				<td>Line 1</td>
+				<td><input type="text" id="checkout_line1" value="650 California"></td>
+			</tr>
+			<tr>
+				<td>Line 2</td>
+				<td><input type="text" id="checkout_line2" value="Floor 12"></td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td><input type="text" id="checkout_city" value="San Francisco"></td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td><input type="text" id="checkout_state" value="CA"></td>
+			</tr>
+			<tr>
+				<td>Zip</td>
+				<td><input type="text" id="checkout_zip" value="94108"></td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td><input type="text" id="checkout_phone" value="4159081408"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" id="checkout_email" value="joedoe@domain.com"></td>
+			</tr>
+			<tr>
+				<td>Item Name</td>
+				<td><input type="text" id="checkout_item_name" value="Ultimate Stationary Bike"></td>
+			</tr>
+			<tr>
+				<td>Item SKU</td>
+				<td><input type="text" id="checkout_item_sku" value="A1B2C3D4-E5"></td>
+			</tr>
+			<tr>
+				<td>Item Price</td>
+				<td><input type="number" id="checkout_item_price" value="30000"></td>
+			</tr>
+			<tr>
+				<td>Item Quantity</td>
+				<td><input type="number" id="checkout_item_qty" value="1"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="col">
+		<form id="payments">
+			<input name="payment_methods" type="radio" id="payment_cc" value="cc" class="checkout_button" checked>Credit Card<br/>
+			<div id="cc_form">
+				<table>
+					<tr>
+						<td>Cardholder Name</td>
+						<td><input type="text" id="checkout_card_name" value=""></td>
+					</tr>
+					<tr>
+						<td>Card Number</td>
+						<td><input type="number" id="checkout_card_number" value=""></td>
+					</tr>
+					<tr>
+						<td>Expiration</td>
+						<td><input type="text" id="checkout_card_exp" value=""></td>
+					</tr>
+					<tr>
+						<td>CVC</td>
+						<td><input type="number" id="checkout_card_cvc" value=""></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+		<div id="checkout_submit">Submit Checkout</div>
+	</div>
+	<div class="col">
+		<table>
+			<tr>
+				<td>Shipping</td>
+				<td><input type="number" id="checkout_shipping" value="4000"></td>
+			</tr>
+			<tr>
+				<td>Tax</td>
+				<td><input type="number" id="checkout_tax" value="3000"></td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td><input type="number" id="checkout_total" value="37000"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
+</html>
