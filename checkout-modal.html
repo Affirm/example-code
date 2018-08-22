@@ -133,6 +133,7 @@ function initiateCheckout () {
 var checkout_button = document.getElementById('checkout_button');
 
 checkout_button.addEventListener('click',function(){initiateCheckout()});
+checkout_button.addEventListener('touchstart',function(){initiateCheckout()});
 
 console.log('hi!');
 </script>
