@@ -62,7 +62,7 @@ function initiateCheckout () {
 		"merchant": {
 			"name": "Affirm Example Code",
 			"user_cancel_url": "http://www.espn.com",
-			"user_confirmation_url": "http://www.google.com",
+			"user_confirmation_url": "http://www.google.com"
 			// User is sent to this URL if they voluntarily cancel/close checkout, or are denied
 		},
 		"metadata":{
@@ -124,8 +124,8 @@ function initiateCheckout () {
 	affirm.checkout(checkout_object);
 	affirm.checkout.open(
 		{
-		onSuccess:function(a){console.log(a)},
-		onFail:function(a){console.log(a)}
+		onSuccess:function(a){console.log(a.checkout_token)},
+		onFail:function(a){console.log(a.reason)}
 		}
 	);
 }
