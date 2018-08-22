@@ -124,8 +124,8 @@ function initiateCheckout () {
 	affirm.checkout(checkout_object);
 	affirm.checkout.open(
 		{
-		onSuccess:function(a){window.alert(a)},
-		onFail:function(a){window.alert(a)}
+		onSuccess:function(a){console.log(a)},
+		onFail:function(a){console.log(a)}
 		}
 	);
 }
