@@ -37,7 +37,7 @@
 		box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
 	}
 
-	content {
+	#content {
 		/*margin-top:60px;*/
 		top:60px;
 		position: absolute;
@@ -302,7 +302,7 @@
 			<div class="small-button1" id="create_fiddle_live">Create Live JSFiddle</div>
 		</div>
 	</header>
-	<content>
+	<div id="content">
 	<div class="col" id="inputs">
 		<div>
 			<table>
@@ -339,7 +339,7 @@
 			<div id="live_frame_container"><h2>Live Environment</h2></div>
 		</div>
 	</div>
-	</content>
+	</div>
 	
 	<form target="_blank" method="post" action="http://jsfiddle.net/api/post/library/pure/" id="sandbox_hidden_form" class="hide">
 		<input type="text" name="html" id="sandbox_html" value="">
