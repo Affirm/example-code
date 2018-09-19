@@ -477,8 +477,10 @@ create_fiddle_live.addEventListener("click",function(){createFiddle("live")});
 
 
 function removeItem(a) {
-	var _a = a.target.parentNode.parentNode.parentNode.parentNode.parentNode;
-	promos_container.removeChild(_a);
+	var _target = a.target.dataset.close;
+	var _toremove = document.getElementById(a.target.dataset.close);
+	var _parent = _toremove.parentNode;
+	_parent.removeChild(_toremove);
 }
 
 function addItem(_type) {
