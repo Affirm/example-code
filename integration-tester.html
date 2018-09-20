@@ -16,9 +16,11 @@
 	}
 	#sandbox_frame_container,#live_frame_container{
 		width:600px;
+		display: inline-block;
+
 	}
 	.hide {
-		display: none;
+		display: none !important;
 	}
 	.sub_form {
 		margin-left:20px;
@@ -29,6 +31,7 @@
 		font-family:helvetica;
 	}
 	header {
+
 		position:fixed;
 		width:100%;
 		height:60px;
@@ -207,6 +210,7 @@
 
 	#action, #controls, #title {
 		display: inline-block;
+		vertical-align: top;
 	}
 
 	#add_promo,#add_checkout {
@@ -285,9 +289,19 @@
 	#test_integration {
 		width:180px;
 	}
+
+	#controls_jsfiddle,#controls_sandbox,#controls_live {
+		display: inline-block;
+		vertical-align: top;
+	}
+
+	#controls_jsfiddle div,#controls_sandbox div,#controls_live div {
+		display: block;
+	}
 	</style>
 </head>
 <body>
+
 	<script>
 		// console.log('bla!');
 	</script>
@@ -297,9 +311,20 @@
 			<div class="small-button3" id="test_integration">Test</div>
 		</div>
 		<div class="hide" id="controls">
-			<div class="small-button1" id="copy_embed">Copy Embed Code</div>
-			<div class="small-button1" id="create_fiddle_sandbox">Create Sandbox JSFiddle</div>
-			<div class="small-button1" id="create_fiddle_live">Create Live JSFiddle</div>
+			<div id="controls_jsfiddle">
+				<div class="small-button1" id="create_fiddle_sandbox">Create Sandbox JSFiddle</div>
+				<div class="small-button1" id="create_fiddle_live">Create Live JSFiddle</div>
+			</div>
+			<div id="controls_sandbox">
+				<div class="small-button1 copy_embed" data-copy="frame_sandbox" id="copy_sandbox_embed">Copy Sandbox Example</div>
+				<div class="small-button1 copy_embed" data-copy="sandbox_js" id="copy_sandbox_js">Copy Sandbox JS Embed</div>
+				<div class="small-button1 copy_embed" data-copy="sandbox_html" id="copy_sandbox_html">Copy Sandbox HTML</div>
+			</div>
+			<div id="controls_live">
+				<div class="small-button1 copy_embed" data-copy="frame_live" id="copy_live_embed">Copy Live Example</div>
+				<div class="small-button1 copy_embed" data-copy="live_js" id="copy_live_js">Copy Live JS Embed</div>
+				<div class="small-button1 copy_embed" data-copy="live_html" id="copy_live_html">Copy Live HTML</div>
+			</div>
 		</div>
 	</header>
 	<div id="content">
@@ -357,18 +382,52 @@
 
 // helpers
 function copyTextToClipboard(text) {
+	// console.log('copying');
 	var textArea = document.createElement("textarea");
 	textArea.style.position = 'fixed';
 	textArea.style.top = 0;textArea.style.left = 0;textArea.style.width = '1.3em';textArea.style.height = '1.1em';textArea.style.padding = 0;textArea.style.border = 'none';textArea.style.outline = 'none';textArea.style.boxShadow = 'none';textArea.style.background = 'transparent';
-	textArea.value = text;document.body.appendChild(textArea);textArea.select();try {var successful = document.execCommand('copy');var msg = successful ? 'successful' : 'unsuccessful';console.log('Copying text command was ' + msg);
+	textArea.value = text;
+	document.body.appendChild(textArea);
+	textArea.select();
+	try {
+		var successful = document.execCommand('copy');
+		var msg = successful ? 'successful' : 'unsuccessful';
+		console.log('Copying text command was ' + msg);
 	} 
 	catch (err) {console.log('Oops, unable to copy');}
 	document.body.removeChild(textArea);
 }
 
+
+
 function copyAction(a) {
-	a.target.classList.add('success');a.target.innerText = "Copied!";setTimeout(function() {a.target.classList.remove('success');a.target.innerText = "Copy";}, 2000);var _a = a.target.id.replace('_copy','');
-	copyTextToClipboard(document.getElementById(_a).innerText);
+	if (typeof _source == null) {
+		return
+	}
+	var _label = a.target.innerText;
+	var _target = a.target.dataset.copy;
+	var _source = document.getElementById(_target);
+	var _copy;
+	a.target.classList.add('success');
+	a.target.innerText = "Copied!";
+	console.log(_source.tagName);
+	switch (_source.tagName) {
+		case "IFRAME":
+			_copy = _source.srcdoc
+			break
+		case "INPUT":
+			_copy = _source.value
+			break
+		default:
+			_copy = _source.innerHTML
+	}
+	setTimeout(function() {
+		a.target.classList.remove('success');
+		a.target.innerText = _label;
+	}, 2000);
+	// var _a = a.targest.id.replace('_copy','');
+	console.log(_copy);
+	copyTextToClipboard(_copy);
 }
 
 function grabField(a) {
@@ -438,7 +497,9 @@ function parseQs() {
 	var _qs = qs();
 	for (var key in _qs) {
 		var val = _qs[key];
-		if (key.substr(0,1) === "p") {console.log(key)}
+		if (key.substr(0,1) === "p") {
+			console.log(key)
+		}
 		setField(key,val);
 	}
 }
@@ -458,7 +519,7 @@ add_checkout.addEventListener("click", function(){addItem("checkout")});
 var test_integration_button = document.getElementById("test_integration");
 test_integration_button.addEventListener("click", testIntegration);
 
-var copyable = document.getElementsByClassName("code_copy");
+var copyable = document.getElementsByClassName("copy_embed");
 for (var i = copyable.length - 1; i >= 0; i--) {
 	copyable[i].addEventListener("click",function(a){copyAction(a)});
 }
@@ -675,16 +736,29 @@ function createFiddle(a) {
 
 
 function generatePromo(_id,_type,_page,_promo,_amount="50000",_logotype,_logocolor,_hidelearnmore){
+	var _container = document.createElement('div');
+	_container.classList.add("container-promo");
 	var _a = document.createElement('p');
 	var _promo_type;
 	switch(_type) {
-		case "ala":_promo_type = "affirm-as-low-as";
-		inner_html = "as-low-as placeholder";break;
-		case "pmo":_promo_type = "affirm-product-modal";
-		inner_html = '<div class="offer_banner" style="border:1px solid #999; padding:5px 10px;">&nbsp</div>';break;
-		case "smo":_promo_type = "affirm-site-modal";break;
-		default:_promo_type = "affirm-as-low-as";
+		case "ala":
+			_promo_type = "affirm-as-low-as";
+			_promo_label = "As low as";
+			inner_html = "as-low-as placeholder";break;
+		case "pmo":
+			_promo_type = "affirm-product-modal";
+			_promo_label = "Product modal";
+			inner_html = '<div class="offer_banner" style="border:1px solid #999; padding:5px 10px;">&nbsp</div>';break;
+		case "smo":
+			_promo_type = "affirm-site-modal";
+			_promo_label = "Site modal";
+			break;
+		default:
+			_promo_type = "affirm-as-low-as";
+			_promo_label = "As low as";
+			break;
 	}
+	var _comment = document.createComment(`Promo placement #${_id}: ${_promo_label} for ${_page} pages with Promo ID: ${_promo}`);
 	_a.id = _id;
 	_a.classList.add(_promo_type);
 	_a.innerHTML = inner_html;
@@ -706,10 +780,10 @@ function generatePromo(_id,_type,_page,_promo,_amount="50000",_logotype,_logocol
 	if (_promo) {
 		_a.setAttribute('data-promo-id',_promo);
 	}
-	return _a
+	_container.appendChild(_comment);
+	_container.appendChild(_a);
+	return _container
 }
-
-
 
 function generateCheckoutButton(_id,_label,_amount,_program=""){
 	var _button = document.createElement('div');
