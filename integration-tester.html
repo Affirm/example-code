@@ -24,22 +24,26 @@
 		padding:0px;
 		margin:0px;
 		font-family:helvetica;
+		background: #F2F4F5;
 	}
 	header {
-
-		position:fixed;
-		width:100%;
+		text-align: center;
+		padding:1em;
+		/*position:fixed;*/
+		/*width:100%;*/
 		z-index: 9999;
-		background:rgba(242,244,245,.9);
-		box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
+		background:rgba(255,255,255,.9);
+		border-bottom: 1px solid #D5D9DE;
+
 	}
 
 	#content {
 		/*margin-top:60px;*/
-		top:70px;
-		position: absolute;
-		display:block;
+		/*top:90px;*/
+		/*position: absolute;*/
+		/*display:block;*/
 		padding:1em;
+		margin-bottom:200px;
 	}
 
 	.affirm-prequal-text {
@@ -65,7 +69,7 @@
 		/*padding:10px;*/
 	}
 	table {
-		background:rgba(242,244,245,1);
+		background:rgba(255,255,255,1);
 		padding:.5em;
 		border-radius:5px;
 	}
@@ -181,9 +185,25 @@
 	}
 
 	.small-button1 {
-		background:#0fa0ea;
+/*		background:#0fa0ea;
 		font-size:.8em;
-		padding:.2em .5em;
+		padding:.2em .5em;*/
+			    font-size: 0.8em;
+	    cursor: pointer;
+	    text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+	    font-weight: 800;
+	    display: inline-block;
+	    padding: 1em 2em;
+	    line-height: 1em;
+	    border-radius: 40px;
+	    border: 0;
+	    outline: 0;
+	    text-align: center;
+	    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	    color:#fff;
 
 	}
 	#inputs {
@@ -206,10 +226,19 @@
 	#promos h4 {
 		/*display: inline-block;*/
 	}
+	#action {
+		position: relative;
+		padding: 1em;
+		text-align: center;
+	}
+	#controls {
+		/*display: inline-block;*/
+		vertical-align: middle;
+		
+	}
 
-	#action, #controls, #title {
-		display: inline-block;
-		vertical-align: top;
+	#title, #setup{
+		vertical-align: middle;
 		padding:.5em;
 	}
 
@@ -244,8 +273,21 @@
 		display: inline-block;
 		cursor: pointer;
 		float:right;
-		padding:0em .5em;
+		/*padding:.5em;*/
+		/*max-height: 10px;*/
 		vertical-align: top;
+		border-radius:15px;
+		background:#fff;
+		height:30px;
+		width:30px;
+		text-align: center;
+		line-height: 28px;
+		border:1px solid #666;
+		box-sizing: border-box;
+	}
+	.close-button:hover {
+		border:1px solid #000;
+		background: none;
 	}
 	.checkout_button {
 			width:200px;
@@ -278,8 +320,10 @@
 		top: c2em;
 	}
 	#merchant_label {
+		width: 100%;
+		text-align: center;
 		font-size:1.5em;
-		padding:.5em;
+		/*padding:.5em;*/
 		color: #0FA0EA;
 		font-weight:800;
 		/*color:#1E2F59;*/
@@ -287,34 +331,57 @@
 		border:0px solid #000;
 		border-bottom:1px solid #0FA0EA;
 		border-radius: 0px;
-		background:none;
+		/*background:none;*/
 		padding:0em 0em .1em .3em;
 	}
 
 	#test_integration {
-		/*width:180px;*/
+		/*width:90%;*/
+		/*padding:1em 5em;*/
 		background:#00C8E5;
+		display:block !important;
+		margin:0 auto;
+		font-size:.9em;
+		/*width:auto;*/
 	}
 
-	#controls_jsfiddle,#controls_sandbox,#controls_live {
+	#controls_sandbox,#controls_live {
 		display: inline-block;
+		/*display: block;*/
 		vertical-align: top;
+		/*background:#fff;*/
+		border-radius:5px;
+		padding:.5em 1em;
+		width:49%;
+		box-sizing: border-box;
 	}
 
-	#controls_jsfiddle div,#controls_sandbox div,#controls_live div {
-		display: block;
+	#controls_sandbox span,#controls_live span {
+		text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-size:.8em;
+	    font-weight:800;
+	    color:#666;
 	}
 	#controls_jsfiddle div {
 		background: #0FA0EA;
 	}
 	#controls_sandbox div {
 		
-		background: #0F72E5;
+		/*background: #0F72E5;*/
+	}
+	#controls_live {
+		/*margin-left:20px;*/
 	}
 
 	#controls_live div {
-		background: #5846E4;
+		/*background: #5846E4;*/
 		
+	}
+
+	#actions_sandbox, #actions_live {
+		border-radius:5px;
+		padding:1px;
 	}
 	
 	.btn {
@@ -324,7 +391,7 @@
 	    letter-spacing: 1px;
 	    font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
 	    font-weight: 800;
-	    display: inline-block;
+	    /*display: inline-block;*/
 	    padding: 1em 2em;
 	    line-height: 1em;
 	    border-radius: 40px;
@@ -335,8 +402,77 @@
 	    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	    color:#fff;
 	}
-
 	
+	.copy_embed {
+		display:inline-block;
+		padding:.5em 1em;
+		font-weight: 300;
+		border-radius: 5px;
+		width:70px;
+		margin:1px;
+	}
+	.copy_embed:hover {
+		background:#fff !important;
+		color:#333;
+	}
+	
+	footer {
+		position: fixed;
+		/*padding:1em 2em;*/
+		background: rgba(255,255,255,.9);
+		width:100%;
+		bottom:0px;
+		border-top: 1px solid #D5D9DE;
+		box-shadow: 5px 0px 0px 0px rgba(0,0,0,.2);
+	}
+	#setup {
+		/*display: inline-block;*/
+	}
+	.api_key_container {
+		margin:.5em 0em;
+		display: inline-block;
+		/*background:#999;*/
+		padding:.2em .4em;
+		/*color:#fff;*/
+		/*border-radius: 5px;*/
+	}
+	.api_key_container label {
+		display: inline-block;
+			    font-size: 0.8em;
+		   text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+	    font-weight: 800;
+	}
+	.api_key_container input {
+		display: inline-block;
+		font-size:.9em;
+		/*padding:.5em;*/
+		color: #333;
+		margin-left:5px;
+		/*font-weight:300;*/
+		/*color:#1E2F59;*/
+		outline:0px solid #000;
+		border:0px solid #000;
+		border-bottom:1px solid #333;
+		border-radius: 0px;
+		/*background:none;*/
+		padding:.1em 0.5em .1em 0em;
+		text-indent:.5em;
+	}
+	#actions_sandbox .copy_embed {
+		border:1px solid #0F72E5;
+		background:#0F72E5;
+	}
+	#actions_sandbox .copy_embed:hover {
+		/*border:1px solid #333;*/
+	}
+	#actions_live .copy_embed {
+		border:1px solid #5846E4;
+	}
+	#actions_live .copy_embed:hover {
+		/*border:1px solid #333;*/
+	}
 	</style>
 </head>
 <body>
@@ -346,54 +482,25 @@
 	</script>
 	<header>
 		<div id="title"><input class="field" type="text" placeholder="This merchant's name" value="Example merchant" id="merchant_label"></div>
-		<div id="action">
-			<div class="btn" id="test_integration">Test</div>
-		</div>
-		<div class="hide" id="controls">
-			<div id="controls_jsfiddle">
-				<div class="small-button1" id="create_fiddle_sandbox">Create Sandbox JSFiddle</div>
-				<div class="small-button1" id="create_fiddle_live">Create Live JSFiddle</div>
+		<div id="setup">
+			<div class="api_key_container">
+				<label>Sandbox</label><input name="sandbox_api_key" class="field" type="text" placeholder="Sandbox public API Key" value="ARQBLCL7NAMBTZ7F" id="sandbox_api_key">
 			</div>
-			<div id="controls_sandbox">
-				<div class="small-button1 copy_embed" data-copy="frame_sandbox" id="copy_sandbox_embed">Copy Sandbox Example</div>
-				<div class="small-button1 copy_embed" data-copy="sandbox_js" id="copy_sandbox_js">Copy Sandbox JS Embed</div>
-				<div class="small-button1 copy_embed" data-copy="sandbox_html" id="copy_sandbox_html">Copy Sandbox HTML</div>
+			<div class="api_key_container">
+				<label for="">Live</label><input name="live_api_key" class="field" type="text" placeholder="Live public API Key" value="5GDPSC5HC4Y7Y9TX" id="live_api_key">
 			</div>
-			<div id="controls_live">
-				<div class="small-button1 copy_embed" data-copy="frame_live" id="copy_live_embed">Copy Live Example</div>
-				<div class="small-button1 copy_embed" data-copy="live_js" id="copy_live_js">Copy Live JS Embed</div>
-				<div class="small-button1 copy_embed" data-copy="live_html" id="copy_live_html">Copy Live HTML</div>
-			</div>
+			
 		</div>
 	</header>
 	<div id="content">
 	<div class="col" id="inputs">
-		<div>
-			<table>
-				<tr>
-					<td><label>Sandbox API key</label></td>
-					<td>
-						<input class="field" type="text" placeholder="Sandbox public API Key" value="ARQBLCL7NAMBTZ7F" id="sandbox_api_key">
-					</td>
-				</tr>
-				<tr>
-					<td><label>Live API key</label></td>
-					<td>
-						<input class="field" type="text" placeholder="Live public API Key" value="5GDPSC5HC4Y7Y9TX" id="live_api_key">
-					</td>
-				</tr>
-			</table>
-			
-		</div>
 		<div id="promos">
-			<h4>Promos</h4>
 			<div class="btn" id="add_promo">Add promo</div>
 
 		</div>
 		<hr>
 		
 		<div id="checkouts">
-			<h4>Checkouts</h4>
 			<div class="btn" id="add_checkout">Add checkout</div>
 			
 		</div>
@@ -416,7 +523,33 @@
 		<input type="text" name="js" id="live_js" value="">
 		<input type="text" name="css" id="live_css" value="">
 	</form>
-
+	<footer>
+		<div id="action">
+			<div class="btn" id="test_integration">Test</div>
+			<div id="controls">
+				<!-- <div id="controls_jsfiddle"> -->
+				<!-- </div> -->
+				<div class="hide" id="controls_sandbox">
+					<span>Sandbox</span>
+					<div id="actions_sandbox">
+						<div class="small-button1 copy_embed" id="create_fiddle_sandbox">JSFiddle</div>
+						<div class="small-button1 copy_embed" data-copy="frame_sandbox" id="copy_sandbox_embed">Full</div>
+						<div class="small-button1 copy_embed" data-copy="sandbox_js" id="copy_sandbox_js">JS</div>
+						<div class="small-button1 copy_embed" data-copy="sandbox_html" id="copy_sandbox_html">HTML</div>
+					</div>
+				</div>
+				<div class="hide" id="controls_live">
+					<span>Live</span>
+					<div id="actions_live">
+						<div class="small-button1 copy_embed" id="create_fiddle_live">JSFiddle</div>
+						<div class="small-button1 copy_embed" data-copy="frame_live" id="copy_live_embed">Full</div>
+						<div class="small-button1 copy_embed" data-copy="live_js" id="copy_live_js">JS</div>
+						<div class="small-button1 copy_embed" data-copy="live_html" id="copy_live_html">HTML</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 <script type="text/javascript">
 
@@ -535,6 +668,20 @@ function updateQs() {
 
 function parseQs() {
 	var _qs = qs();
+	var _promos = Object.keys(_qs);
+	console.log(_promos);
+	var _array = [];
+	for (var i = _promos.length - 1; i >= 0; i--) {
+		console.log(_promos[i].substr(0,3));
+		if (_array.indexOf(_promos[i].substr(0,3)) < 0) {
+			_array.push(_promos[i].substr(0,3));
+		}	
+	}
+	var _promo_array = _array.filter(value => /^p/.test(value));
+	var _checkout_array = _array.filter(value => /^c/.test(value));
+	console.log(_promo_array);
+	console.log(_checkout_array);
+	var _checkouts;
 	for (var key in _qs) {
 		var val = _qs[key];
 		if (key.substr(0,1) === "p") {
@@ -710,7 +857,7 @@ function addItem(_type) {
 								</table>
 							</td>
 							<td>
-								<div data-close="${_new_item_id}" class="close-button">X</`+`div>
+								<div data-close="${_new_item_id}" class="close-button">x</`+`div>
 							</td>
 						</tr>
 					</table>
@@ -733,7 +880,7 @@ function addItem(_type) {
 								<input value="${checkout_counter}" type="text" data-type="label" class="field checkoutdata item-label">
 							</`+`td>
 							<td>
-								<div data-close="${_new_item_id}" class="close-button">X</`+`div>
+								<div data-close="${_new_item_id}" class="close-button">x</`+`div>
 							</`+`td>
 						</`+`tr>
 						<tr>
@@ -969,8 +1116,14 @@ function testIntegration() {
 	}
 
 	var _result = document.getElementById('result');
-	var _controls = document.getElementById('controls');
-	_controls.classList.remove('hide');
+	var _controls_sandbox = document.getElementById('controls_sandbox');
+	var _controls_live = document.getElementById('controls_live');
+	if (grabField('sandbox_api_key')) {
+		_controls_sandbox.classList.remove('hide');
+	}
+	if (grabField('live_api_key')) {
+		_controls_live.classList.remove('hide');
+	}
 	_result.classList.remove('hide');
 	
 	var _label = document.getElementById('merchant_label').value;
@@ -1062,7 +1215,11 @@ affirm.ui.ready(function(){
 	return _a
 };
 
-var css = `.small-button3, .small-button2, .small-button1{
+var css = `
+body {
+	background:#fff;
+}
+.small-button3, .small-button2, .small-button1{
 	width:200px;
 	text-align:center;
 	border-radius:5px;
