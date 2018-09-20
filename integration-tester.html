@@ -34,7 +34,6 @@
 
 		position:fixed;
 		width:100%;
-		height:60px;
 		z-index: 9999;
 		background:rgba(255,255,255,.9);
 		box-shadow: 0px 0px 5px 0px rgba(0,0,0,.2);
@@ -42,7 +41,7 @@
 
 	#content {
 		/*margin-top:60px;*/
-		top:60px;
+		top:70px;
 		position: absolute;
 		display:block;
 		padding:1em;
@@ -184,7 +183,7 @@
 	.small-button1 {
 		background:#0fa0ea;
 		font-size:.8em;
-		padding:.2em;
+		padding:.2em .5em;
 
 	}
 	#inputs {
@@ -211,6 +210,7 @@
 	#action, #controls, #title {
 		display: inline-block;
 		vertical-align: top;
+		padding:.5em;
 	}
 
 	#add_promo,#add_checkout {
@@ -219,7 +219,7 @@
 		text-align:center;
 		border-radius:5px;
 		padding:.5em 1.5em;
-		background:#333;
+		background:#1E2F59;
 		color:#eee;
 		cursor:pointer;
 		font-size:.8em;
@@ -232,7 +232,7 @@
 
 	#add_checkout {
 		
-		background:#333;
+		/*background:#333;*/
 		color:#eee;
 	}
 	#add_promo:hover {
@@ -278,7 +278,7 @@
 	}
 
 	#merchant_label {
-		color:#0f72e5;
+		color:#1E2F59;
 		outline:0px solid #000;
 		border:0px solid #000;
 		border-bottom:1px solid #000;
@@ -288,6 +288,7 @@
 
 	#test_integration {
 		width:180px;
+		background:#00C8E5;
 	}
 
 	#controls_jsfiddle,#controls_sandbox,#controls_live {
@@ -298,6 +299,39 @@
 	#controls_jsfiddle div,#controls_sandbox div,#controls_live div {
 		display: block;
 	}
+	#controls_jsfiddle div {
+		background: #0FA0EA;
+	}
+	#controls_sandbox div {
+		
+		background: #0F72E5;
+	}
+
+	#controls_live div {
+		background: #5846E4;
+		
+	}
+	
+	.btn {
+	    font-size: 0.75em;
+	    cursor: pointer;
+	    text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
+	    font-weight: 800;
+	    display: inline-block;
+	    padding: 1.5em 2.7em;
+	    line-height: 1.7;
+	    border-radius: 40px;
+	    border: 0;
+	    outline: 0;
+	    text-align: center;
+	    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	    margin-bottom: 1rem;
+	    color:#fff;
+	}
+	
 	</style>
 </head>
 <body>
@@ -308,7 +342,7 @@
 	<header>
 		<div id="title"><input class="field" type="text" placeholder="This merchant's name" value="Example merchant" id="merchant_label"></div>
 		<div id="action">
-			<div class="small-button3" id="test_integration">Test</div>
+			<div class="btn" id="test_integration">Test</div>
 		</div>
 		<div class="hide" id="controls">
 			<div id="controls_jsfiddle">
@@ -351,6 +385,7 @@
 			<div id="add_promo">Add promo</div>
 
 		</div>
+		<hr>
 		
 		<div id="checkouts">
 			<h4>Checkouts</h4>
