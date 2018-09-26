@@ -864,14 +864,15 @@ function updateQs() {
 		var top_level_field_value = _fields[_top_level_field_name];
 		if (typeof top_level_field_value === "object") {
 			var _items = top_level_field_value;
-			for (var _item in _items){
-				var _item_fields = _items[_item];
+			var _items_sorted = Object.keys(top_level_field_value).sort();
+			for ( i = 0; i < _items_sorted.length; i++) {
+				var _item_fields = _items[_items_sorted[i]];
 				for (var _field_name in _item_fields) {
 					if (_str.length > 0){
-						_str += "&" + _item + "-" + _field_name + "=" + _item_fields[_field_name];
+						_str += "&" + _items_sorted[i] + "-" + _field_name + "=" + _item_fields[_field_name];
 					}
 					else {
-						_str += _item + "-" + _field_name + "=" + _item_fields[_field_name];
+						_str += _items_sorted[i] + "-" + _field_name + "=" + _item_fields[_field_name];
 					}
 				}
 			}
@@ -894,7 +895,7 @@ function updateQs() {
 
 function parseQs() {
 	var _qs = qs();
-	var _qs_fields = Object.keys(_qs);
+	var _qs_fields = Object.keys(_qs).sort();
 	for (var i = 0; i < _qs_fields.length; i++) {
 		var _type = _qs_fields[i].substr(0,2);
 		if (_type === "p_") {
@@ -982,6 +983,7 @@ var fields = function() {
 			}
 		}
 	}
+	current_fields
 	return current_fields
 };
 
