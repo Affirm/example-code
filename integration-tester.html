@@ -193,14 +193,18 @@
 	}
 
 	.checkout_button {
-			width:200px;
 		text-align:center;
 		border-radius:5px;
 		padding:10px;
-		background:#000;
-		color:#fff;
+		background:#fff;
+		color:#333;
 		cursor:pointer;
-		border:1px solid #fff;
+		border:1px solid #999;
+	}
+
+	.checkout_button:hover {
+		border:1px solid #000;
+		color:#000;
 	}
 
 	#merchant_label {
@@ -554,6 +558,11 @@ var rendered_css = function(){
 	font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;\
 
 }\
+
+.affirm_logo {\
+	height:1em;\
+	width:auto;
+}\
 .small-button3, .small-button2, .small-button1{\
 	width:200px;\
 	text-align:center;\
@@ -578,14 +587,26 @@ var rendered_css = function(){
 \
 }\
 .checkout_button {\
-		width:200px;\
 	text-align:center;\
 	border-radius:5px;\
 	padding:10px;\
-	background:#000;\
-	color:#fff;\
+	background:#fff;\
+	color:#333;\
 	cursor:pointer;\
-	border:1px solid #fff;\
+	font-size:.8em;
+	border:1px solid #999;\
+}\
+\
+.checkout_button:hover {\
+	border:1px solid #000;\
+	color:#000;\
+}\
+
+.checkout_amount {
+	font-weight:900;
+}
+#promos td, #checkouts td{\
+	padding:.5em;\
 }`
 };
 
@@ -737,6 +758,22 @@ return `<div class="item-header">
 	</div>
 </div>`
 };
+var affirm_logo = `<svg class="affirm_logo" width="948px" height="287px" viewBox="0 0 948 287" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>948x287-indigo</title>
+    <defs></defs>
+    <g id="Logos" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="948x287-indigo" fill="#0FA0EA">
+            <g id="Page-1" transform="translate(15.000000, 10.000000)">
+                <path d="M481.5,0 C497.211917,0 510,12.5669863 510,28.0072558 C510,43.4475253 497.211917,56 481.5,56 C465.788083,56 453,43.4475253 453,28.0072558 C453,12.5669863 465.788083,0 481.5,0 Z" id="Fill-1"></path>
+                <polygon id="Fill-3" points="456 267 504 267 504 75 456 75"></polygon>
+                <path d="M649.61334,70 C625.56247,70 597.827211,87.3961464 588.689343,109.174304 L588.689343,74.9389228 L543,74.9389228 L543,267 L591.160222,267 L591.160222,177.806279 C591.160222,140.068219 605.619986,118.993528 637.112736,118.407305 L664,71.1138223 C661.207467,70.4103556 652.157322,70 649.61334,70" id="Fill-5"></path>
+                <path d="M844.370006,70 C823.644143,70 805.072949,77.7990772 792.056989,91.9312398 L791.382739,92.6495758 L790.723147,91.9312398 C777.868421,77.7844173 759.370515,70 738.615337,70 C694.217431,70 662,102.383762 662,146.979238 L662,267 L709.50532,267 L709.50532,145.953044 C709.50532,127.232326 720.938257,115.137893 738.615337,115.137893 C756.307074,115.137893 767.740011,127.232326 767.740011,145.953044 L767.740011,267 L815.245331,267 L815.245331,145.953044 C815.245331,127.232326 826.678268,115.137893 844.370006,115.137893 C862.061743,115.137893 873.49468,127.232326 873.49468,145.953044 L873.49468,267 L921,267 L921,146.979238 C921,102.383762 888.767912,70 844.370006,70" id="Fill-6"></path>
+                <path d="M396.741463,57.4069544 C396.741463,51.0662998 397.590244,43.4955875 403.004878,39.336821 C408.931707,34.7241047 417.609756,35.5734302 424.634146,35.9248753 L434,0.985379242 L429.009756,0.72179545 C408.887805,-0.361826808 387.712195,-1.8554683 370.063415,9.81543629 C355.107317,19.714472 348.44878,36.7449138 348.44878,54.2439489 L348.44878,75.0963556 L290.965854,75.0963556 L290.965854,57.4069544 C290.965854,51.0955869 291.8,43.6127359 297.097561,39.3953952 C303.039024,34.6948176 311.819512,35.5734302 318.858537,35.9248753 L328.22439,0.985379242 L323.234146,0.72179545 C302.95122,-0.361826808 281.570732,-1.84082475 263.892683,10.1375943 C249.229268,20.0805607 242.746341,36.9645669 242.746341,54.2439489 L242.746341,75.0963556 L221,75.0963556 L221,109.962634 L242.746341,109.962634 L242.746341,267 L290.965854,267 L290.965854,109.962634 L348.44878,109.962634 L348.44878,267 L396.668293,267 L396.668293,109.962634 L430.04878,109.962634 L430.04878,75.0963556 L396.741463,75.0963556 L396.741463,57.4069544 Z" id="Fill-7"></path>
+                <path d="M197,267 L196.9707,97.4769211 C196.838849,83.2816339 186.11497,71.6499951 172.314568,70.0678578 C163.09965,69.4672316 153.298728,72.8512475 147.526586,80.3224513 L0,266.985351 L36.3615676,266.985351 C50.8651744,266.970701 62.3948093,259.42625 71.1262735,248.160847 L152.829925,144.809195 L152.829925,267 L197,267 Z" id="Fill-8"></path>
+            </g>
+        </g>
+    </g>
+</svg>`;
 
 </script>
 <script type="text/javascript">
@@ -1029,7 +1066,7 @@ function addItem(_type,_instance) {
 }
 
 
-function generatePromo(_id,_type,_page,_promo,_amount="50000",_logotype,_logocolor,_hidelearnmore){
+function generatePromo(_id,_label,_type,_page,_promo,_amount="50000",_logotype,_logocolor,_hidelearnmore){
 	var _container = document.createElement('div');
 	_container.classList.add("container-promo");
 	var _a = document.createElement('p');
@@ -1037,26 +1074,26 @@ function generatePromo(_id,_type,_page,_promo,_amount="50000",_logotype,_logocol
 	switch(_type) {
 		case "ala":
 			_promo_type = "affirm-as-low-as";
-			_promo_label = "As low as";
+			_promo_name = "As low as";
 			inner_html = "as-low-as placeholder";
 			break;
 		case "pmo":
 			_promo_type = "affirm-product-modal";
-			_promo_label = "Product modal";
+			_promo_name = "Product modal";
 			inner_html = '<div class="offer_banner" style="border:1px solid #999; padding:5px 10px;">&nbsp</div>';
 			break;
 		case "smo":
 			_promo_type = "affirm-site-modal";
-			_promo_label = "Site modal";
+			_promo_name = "Site modal";
 			inner_html = '<div class="offer_banner" style="border:1px solid #999; padding:5px 10px;">&nbsp</div>';
 			break;
 		default:
 			_promo_type = "affirm-as-low-as";
-			_promo_label = "As low as";
+			_promo_name = "As low as";
 			inner_html = "as-low-as placeholder";
 			break;
 	}
-	var _comment = document.createComment(`Promo placement #${_id}: ${_promo_label} for ${_page} pages with Promo ID: ${_promo}`);
+	var _comment = document.createComment(`Promo placement ${_label}: ${_promo_name} for ${_page} pages with Promo ID: ${_promo}`);
 	_a.id = _id;
 	_a.classList.add(_promo_type);
 	_a.innerHTML = inner_html;
@@ -1090,7 +1127,9 @@ function generateCheckoutButton(_id,_label,_amount,_program=""){
 	_button.id = _id;
 	_button.dataset.program = _program;
 	_button.dataset.amount = _amount;
-	_button.innerHTML = _label + ": $" + _amount/100;
+	_dollar_amount = _amount/100;
+	// _button.innerHTML = `${_label}: $" + _amount/100`;
+	_button.innerHTML = `Checkout with ${affirm_logo} for: <span class="checkout_amount">$${_dollar_amount}</span>`;
 	return _button
 }
 
@@ -1169,6 +1208,10 @@ function testIntegration() {
 
 	var _promos = document.getElementById('promos').getElementsByClassName('promo');
 	if (_promos) {
+
+		var _promo_rows = "";
+		_html += `<h3>Promos</h3>`;
+
 		for (var i = 0; i < _promos.length; i++) {
 			var _label = _promos[i].getElementsByClassName('item-label')[0].value;
 			var _type = _promos[i].getElementsByClassName('promo-promotype')[0].value;
@@ -1179,13 +1222,18 @@ function testIntegration() {
 			var _promo = _promos[i].getElementsByClassName('promo-promoid')[0].value;
 			var _amount = _promos[i].getElementsByClassName('promo-amount')[0].value;
 			var _id = "p_" + i;
-			var _promo = generatePromo(_id,_type,_page,_promo,_amount,_logotype,_logocolor,_hidelearnmore).outerHTML;
-			_html += _promo;
+			var _promo = generatePromo(_id,_label,_type,_page,_promo,_amount,_logotype,_logocolor,_hidelearnmore).outerHTML;
+			_promo_rows += `<tr><td><h5>${_label}</h5></td><td>${_promo}</td></tr>`;
 		}
+		_html += `<table id="promos">${_promo_rows}</table>`;
 	}
 
 	var _checkouts = document.getElementById('checkouts').getElementsByClassName('checkout');
 	if (_checkouts) {
+
+		var _checkout_rows = "";
+		_html += `<h3>Checkouts</h3>`;
+
 		for (var i = 0; i < _checkouts.length; i++) {
 			var _label = _checkouts[i].getElementsByClassName('item-label')[0].value;
 			var _breakpoint = _checkouts[i].getElementsByClassName('checkout-breakpoint')[0].checked;
@@ -1193,27 +1241,36 @@ function testIntegration() {
 			var _amount = _checkouts[i].getElementsByClassName('checkout-amount')[0].value;
 			var _id = "c_" + i;
 			var _checkout = generateCheckoutButton(_id,_label,_amount,_program).outerHTML;
-			_html += _checkout;
+			// _html += _checkout;
+			
 			if (_breakpoint) {
 				var _id_less = "c_" + i + "a";
 				var _amount_less = _amount - 1;
-				var _label_less = _label + " (-$1)";
+				var _label_less = _label + " (-$.01)";
+			
 				var _checkout_less = generateCheckoutButton(_id_less,_label_less,_amount_less,_program).outerHTML;
-				_html += _checkout_less;
+				// _html += _checkout_less;
+				_checkout_rows += `<tr><td><h5>${_label}</h5></td><td>${_checkout}</td><td>${_checkout_less}</td></tr>`;
+			}
+			else {
+				_checkout_rows += `<tr><td><h5>${_label}</h5></td><td>${_checkout}</td><td>&nbsp</td></tr>`;
 			}
 		}
+			// _checkout_rows += `<tr><td><h5>${_label}</h5></td><td>${_checkout}</td><td>${_checkout_less}</td></tr>`;
+		_html += `<table id="checkouts">${_checkout_rows}</table>`;
 	}
 	
 
 	document.getElementById('sandbox_html').value = _html;
 	document.getElementById('live_html').value = _html;
-
 	document.getElementById('sandbox_js').value = rendered_js(grabField('sandbox_api_key'),_env="cdn1-sandbox");
 	document.getElementById('live_js').value = rendered_js(grabField('live_api_key'),_env="cdn1");
 	document.getElementById('sandbox_css').value = rendered_css();
 	document.getElementById('live_css').value = rendered_css();
+
 	loadContainer('sandbox');
 	loadContainer('live');
+
 	updateQs();
 }
 
