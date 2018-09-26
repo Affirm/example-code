@@ -5,46 +5,124 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Tester: Example merchant</title>
 	<style>
-	
-	#merchant_name_title {
-		
+
+	body {
+		padding:0px;
+		margin:0px;
+		font-family:'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif !important;
+		background: #F2F4F5;
 	}
+	header {
+		text-align: center;
+		padding:1em;
+		z-index: 9999;
+		background:rgba(255,255,255,.9);
+		border-bottom: 1px solid #D5D9DE;
+
+	}
+	table {
+		padding:.5em;
+	}
+	label {
+		padding:.1em;
+		text-transform: uppercase;
+		font-size:.7em;
+		color:#333;
+		letter-spacing: 1px;
+	}
+	input[type="text"] {
+		padding:.1em .1em;
+		border-radius: 3px;
+		font-size:.9em;
+		outline:none;
+		border:1px solid #ddd;
+	}
+
+	input[type='checkbox']{
+
+	}
+	select {
+		font-size:.9em;
+	}
+	hr {
+		margin:20px 0px 40px;
+	}
+	h2 {
+		text-transform: uppercase;
+		font-size:1.1em;
+		text-align: center;
+		color:#333;
+		font-weight: 300;
+		margin:2em 0em .5em;
+	}
+	h4 {
+		text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-size:.8em;
+	    font-weight:800;
+	    color:#666;
+	    margin:0em 0em .5em;
+	}
+	h5 {
+		color:#000;
+	}
+	footer {
+		position: fixed;
+		background: rgba(255,255,255,.9);
+		width:100%;
+		bottom:0px;
+		border-top: 1px solid #D5D9DE;
+		box-shadow: 5px 0px 0px 0px rgba(0,0,0,.2);
+	}
+	iframe {
+		border-radius:7px;
+		border:1px solid #ddd;
+	}
+	#result, #inputs {
+		vertical-align: top;
+		display: inline-block;
+		max-width:1300px;
+	}
+
 	#sandbox_frame_container,#live_frame_container{
 		width:600px;
 		display: inline-block;
-
 	}
+
+	#content {
+		padding:1em;
+		margin:0px auto 200px;
+		max-width:18 0b0px;
+	}
+
+	.btn {
+	    font-size: 0.8em;
+	    cursor: pointer;
+	    text-transform: uppercase;
+	    letter-spacing: 1px;
+	    font-weight: 800;
+	    padding: 1em 2em;
+	    line-height: 1em;
+	    border-radius: 40px;
+	    border: 0;
+	    outline: 0;
+	    text-align: center;
+	    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	    color:#fff;
+	}
+
+	.inactive h5 {
+		color:#333;
+	}
+
 	.hide {
 		display: none !important;
 	}
 	.sub_form {
 		margin-left:20px;
 	}
-	body {
-		padding:0px;
-		margin:0px;
-		font-family:helvetica;
-		background: #F2F4F5;
-	}
-	header {
-		text-align: center;
-		padding:1em;
-		/*position:fixed;*/
-		/*width:100%;*/
-		z-index: 9999;
-		background:rgba(255,255,255,.9);
-		border-bottom: 1px solid #D5D9DE;
-
-	}
-
-	#content {
-		/*margin-top:60px;*/
-		/*top:90px;*/
-		/*position: absolute;*/
-		/*display:block;*/
-		padding:1em;
-		margin-bottom:200px;
-	}
+	
 
 	.affirm-prequal-text {
 		display: inline-block;
@@ -52,55 +130,6 @@
 		background:#0f20f2;
 		border-radius:4px;
 		color:#fff;
-	}
-	label {
-		padding:.1em;
-	}
-	input[type="text"] {
-		padding:.1em .1em;
-		border-radius: 3px;
-		font-size:.9em;
-	}
-	.item {
-		padding:1em;
-		/*border:3px solid #0f7eaf;*/
-		border-radius:3px;
-		/*margin:10px;*/
-		/*padding:10px;*/
-	}
-	table {
-		background:rgba(255,255,255,1);
-		padding:.5em;
-		border-radius:5px;
-	}
-	.item table {
-		/*margin-right:40px;*/
-		/*border:1px solid #000;*/
-		/*border-radius:3px;*/
-	}
-	.item table td {
-		/*padding:4px;*/
-		vertical-align: top;
-	}
-	.item-label {
-		/*width:100px;*/
-		width:100%;
-	}
-	.item tr:nth-child(1) td, .item tr:nth-child(2) td{
-		/*margin:10px;*/
-		/*padding:10px;*/
-	}
-	.item tr:first-child td {
-		/*background: #eee;*/
-	}
-
-	.item div {
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	.item-amount {
-		width:6em;
 	}
 	.promo {
 		/*border:1px solid #0f7eaf;*/
@@ -112,87 +141,11 @@
 		position: relative;
 	}
 
-	#js_embed_copy, #embed_code_copy {
-		position: absolute;
-		top:0px;
-		left:10px;
-		z-index: 1;
-		font-family: helvetica;
-		width:100px;
-		/*height:40px;*/
-		text-align:center;
-		border-radius:5px;
-		padding:10px;
-		/*height:100px;*/
-		background:#5846e4;
-		color:#fff;
-		/*background:rgba(255,255,255,.9);*/
-		border:1px solid #fff;
-		display:block;
-
-		/*left:50%;*/
-		/*margin-left:-60px;*/
-		cursor: pointer;
-	}
-	#js_embed_copy.success, #embed_code_copy.success {
-	width:100px;
-		/*height:40px;*/
-		text-align:center;
-		border-radius:5px;
-		padding:10px;
-		/*height:100px;*/
-		background:#fff;
-		color:#5846e4;
-		/*background:rgba(255,255,255,.9);*/
-		border:1px solid #fff;
-		display:block;
-		position: absolute;
-
-		/*left:50%;*/
-		/*margin-left:-60px;*/
-		cursor: pointer;
-	}
-
-	table tr td:first-child{
-		vertical-align: top;
-	}
-	label {
-		display: block;
-	}
-	.col {
-		display:inline-block;
-		vertical-align: top;
-	}
-
-	.small-button3, .small-button2, .small-button1{
-		/*width:200px;*/
-		text-align:center;
-		border-radius:5px;
-		padding:10px;
-		background:#5846e4;
-		color:#fff;
-		cursor:pointer;
-		border:1px solid #fff;
-		display: inline-block;
-	}
-	.small-button3{
-		background:#5846e4;
-	}
-
-	.small-button2 {
-		background:#0f72e5;
-
-	}
-
 	.small-button1 {
-/*		background:#0fa0ea;
-		font-size:.8em;
-		padding:.2em .5em;*/
-			    font-size: 0.8em;
+		font-size: 0.8em;
 	    cursor: pointer;
 	    text-transform: uppercase;
 	    letter-spacing: 1px;
-	    font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
 	    font-weight: 800;
 	    display: inline-block;
 	    padding: 1em 2em;
@@ -206,45 +159,14 @@
 	    color:#fff;
 
 	}
-	#inputs {
-		/*background: #eee;*/
-		/*width:400px;*/
-	}
-	#inputs div {
-		/*border-radius: 3px;
-		border:1px solid #aaa;*/
-		margin:10px 0px;
-	}
-	#inputs div:first-child {
-		margin:0px 0px 10px;
-	}
 
-	#promos {
-		position: relative;
-	}
-
-	#promos h4 {
-		/*display: inline-block;*/
-	}
-	#action {
-		position: relative;
-		padding: 1em;
-		text-align: center;
-	}
-	#controls {
-		/*display: inline-block;*/
-		vertical-align: middle;
-		
-	}
-
-	#title, #setup{
+	#title, #setup, #controls {
 		vertical-align: middle;
 		padding:.5em;
 	}
 
 	#add_promo,#add_checkout {
 		cursor: pointer;
-			/*width:200px;*/
 		text-align:center;
 		border-radius:40px;
 		padding:.6em 1.2em;
@@ -254,41 +176,22 @@
 		font-size:.7em;
 		display: inline-block;
 		font-weight: 300;
-		/*position: absolute;*/
-		/*float:right;*/
-		/*margin-right:10px;*/
 		right:20px;
 	}
 
 	#add_checkout {
-		
-		/*background:#333;*/
 		color:#eee;
 	}
 	#add_promo:hover {
 		color:#fff;
 	}
 
-	.close-button {
-		display: inline-block;
-		cursor: pointer;
-		float:right;
-		/*padding:.5em;*/
-		/*max-height: 10px;*/
-		vertical-align: top;
-		border-radius:15px;
-		background:#fff;
-		height:30px;
-		width:30px;
+	#controls_container {
+		position: relative;
+		padding: 1em;
 		text-align: center;
-		line-height: 28px;
-		border:1px solid #666;
-		box-sizing: border-box;
 	}
-	.close-button:hover {
-		border:1px solid #000;
-		background: none;
-	}
+
 	.checkout_button {
 			width:200px;
 		text-align:center;
@@ -299,26 +202,7 @@
 		cursor:pointer;
 		border:1px solid #fff;
 	}
-	input[type='checkbox']{
 
-	}
-
-	.inactive, .inactive input {
-		color:#eee !important;
-	}
-
-	h5 {
-		color:#000;
-	}
-	.inactive h5 {
-		color:#333;
-	}
-
-	note {
-		font-size:.8em;
-		color:#333;
-		top: c2em;
-	}
 	#merchant_label {
 		width: 100%;
 		text-align: center;
@@ -336,74 +220,37 @@
 	}
 
 	#test_integration {
-		/*width:90%;*/
-		/*padding:1em 5em;*/
 		background:#00C8E5;
 		display:block !important;
 		margin:0 auto;
 		font-size:.9em;
-		/*width:auto;*/
 	}
 
-	#controls_sandbox,#controls_live {
+	#sandbox_controls,#live_controls {
 		display: inline-block;
-		/*display: block;*/
 		vertical-align: top;
-		/*background:#fff;*/
 		border-radius:5px;
 		padding:.5em 1em;
 		width:49%;
 		box-sizing: border-box;
 	}
 
-	#controls_sandbox span,#controls_live span {
-		text-transform: uppercase;
-	    letter-spacing: 1px;
-	    font-size:.8em;
-	    font-weight:800;
-	    color:#666;
+	#sandbox_controls .actions .btn {
+		border:1px solid #0F72E5;
+		background:#0F72E5;
 	}
-	#controls_jsfiddle div {
-		background: #0FA0EA;
+	#sandbox_controls .actions .btn:hover {
+		/*border:1px solid #333;*/
 	}
-	#controls_sandbox div {
-		
-		/*background: #0F72E5;*/
+	#live_controls .actions .btn {
+		border:1px solid #5846E4;
+		background:#5846E4;
 	}
-	#controls_live {
-		/*margin-left:20px;*/
+	#sandbox_controls .actions .btn:hover {
+		/*border:1px solid #333;*/
 	}
 
-	#controls_live div {
-		/*background: #5846E4;*/
-		
-	}
-
-	#actions_sandbox, #actions_live {
-		border-radius:5px;
-		padding:1px;
-	}
-	
-	.btn {
-	    font-size: 0.8em;
-	    cursor: pointer;
-	    text-transform: uppercase;
-	    letter-spacing: 1px;
-	    font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
-	    font-weight: 800;
-	    /*display: inline-block;*/
-	    padding: 1em 2em;
-	    line-height: 1em;
-	    border-radius: 40px;
-	    border: 0;
-	    outline: 0;
-	    text-align: center;
-	    -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	    color:#fff;
-	}
-	
-	.copy_embed {
+	#controls .btn {
 		display:inline-block;
 		padding:.5em 1em;
 		font-weight: 300;
@@ -411,75 +258,137 @@
 		width:70px;
 		margin:1px;
 	}
-	.copy_embed:hover {
+	#controls .btn:hover {
 		background:#fff !important;
 		color:#333;
 	}
-	
-	footer {
-		position: fixed;
-		/*padding:1em 2em;*/
-		background: rgba(255,255,255,.9);
-		width:100%;
-		bottom:0px;
-		border-top: 1px solid #D5D9DE;
-		box-shadow: 5px 0px 0px 0px rgba(0,0,0,.2);
-	}
-	#setup {
-		/*display: inline-block;*/
+	 {
+		border:1px solid #0F72E5;
+		background:#0F72E5;
 	}
 	.api_key_container {
 		margin:.5em 0em;
 		display: inline-block;
-		/*background:#999;*/
 		padding:.2em .4em;
-		/*color:#fff;*/
-		/*border-radius: 5px;*/
 	}
 	.api_key_container label {
 		display: inline-block;
-			    font-size: 0.8em;
-		   text-transform: uppercase;
 	    letter-spacing: 1px;
-	    font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;
 	    font-weight: 800;
 	}
 	.api_key_container input {
 		display: inline-block;
 		font-size:.9em;
-		/*padding:.5em;*/
 		color: #333;
 		margin-left:5px;
-		/*font-weight:300;*/
-		/*color:#1E2F59;*/
 		outline:0px solid #000;
 		border:0px solid #000;
 		border-bottom:1px solid #333;
 		border-radius: 0px;
-		/*background:none;*/
 		padding:.1em 0.5em .1em 0em;
 		text-indent:.5em;
 	}
-	#actions_sandbox .copy_embed {
-		border:1px solid #0F72E5;
-		background:#0F72E5;
+
+
+	.item {
+		border-radius:3px;
+		margin:20px 6px 6px;
 	}
-	#actions_sandbox .copy_embed:hover {
-		/*border:1px solid #333;*/
+
+	.item-amount {
+		width:6em;
 	}
-	#actions_live .copy_embed {
-		border:1px solid #5846E4;
+
+	.row {
+		margin:8px 0px;
+		background:rgba(255,255,255,1);
 	}
-	#actions_live .copy_embed:hover {
-		/*border:1px solid #333;*/
+	.col {
+		display:inline-block;
+		vertical-align: middle;
 	}
+
+	.section {
+		display:inline-block;
+		vertical-align: top;
+		margin:6px;
+	}
+
+	.col1 {
+		font-size:.8em;
+		vertical-align: middle;
+		font-weight: 900;
+
+	}
+	.col2 {
+		clear:both;
+		width:30%;
+		min-width:138px;
+
+
+	}
+	.col3 {
+
+	}
+	.col4 {
+		width:30%;
+		min-width:138px;
+
+	}
+	.col5 {
+
+	}
+	.col6 {
+
+	}
+
+	.item-header {
+		display:block;
+		position: relative;
+		height:30px;
+		padding:2px;
+		background:rgba(255,255,255,.25);
+		border-radius:15px 15px 0px 0px;
+	}
+	.item-body {
+		background:rgba(255,255,255,.95);
+		border:3px solid #ddd;
+		border-radius:0px 0px 5px 5px;
+		
+	}
+	.section2 {
+		display:inline-block;
+		padding:.5em;
+	}
+	.section3 {
+		padding:.5em;
+		display:inline-block;
+	}
+	.close-button {
+		display: inline-block;
+		position: absolute;
+		right:2px;
+		vertical-align: top;
+		top:2px;
+		height:30px;
+		width:30px;
+		text-align: center;
+		line-height: 25px;
+		cursor: pointer;
+		border-radius:15px;
+		background:#fff;
+		border:1px solid #666;
+		box-sizing: border-box;
+	}
+	.close-button:hover {
+		border:1px solid #000;
+		background: none;
+	}
+
 	</style>
+
 </head>
 <body>
-
-	<script>
-		// console.log('bla!');
-	</script>
 	<header>
 		<div id="title"><input class="field" type="text" placeholder="This merchant's name" value="Example merchant" id="merchant_label"></div>
 		<div id="setup">
@@ -493,7 +402,7 @@
 		</div>
 	</header>
 	<div id="content">
-	<div class="col" id="inputs">
+	<div id="inputs">
 		<div id="promos">
 			<div class="btn" id="add_promo">Add promo</div>
 
@@ -505,12 +414,10 @@
 			
 		</div>
 	</div>
-	<div class="col">
-		<div class="hide block" id="result">
+		<div class="hide" id="result">
 			<div id="sandbox_frame_container"><h2>Sandbox Environment</h2></div>
 			<div id="live_frame_container"><h2>Live Environment</h2></div>
 		</div>
-	</div>
 	</div>
 	
 	<form target="_blank" method="post" action="http://jsfiddle.net/api/post/library/pure/" id="sandbox_hidden_form" class="hide">
@@ -524,36 +431,318 @@
 		<input type="text" name="css" id="live_css" value="">
 	</form>
 	<footer>
-		<div id="action">
+		<div id="controls_container">
 			<div class="btn" id="test_integration">Test</div>
 			<div id="controls">
-				<!-- <div id="controls_jsfiddle"> -->
-				<!-- </div> -->
-				<div class="hide" id="controls_sandbox">
-					<span>Sandbox</span>
-					<div id="actions_sandbox">
-						<div class="small-button1 copy_embed" id="create_fiddle_sandbox">JSFiddle</div>
-						<div class="small-button1 copy_embed" data-copy="frame_sandbox" id="copy_sandbox_embed">Full</div>
-						<div class="small-button1 copy_embed" data-copy="sandbox_js" id="copy_sandbox_js">JS</div>
-						<div class="small-button1 copy_embed" data-copy="sandbox_html" id="copy_sandbox_html">HTML</div>
+				<div class="hide" id="sandbox_controls">
+					<h4>Sandbox</h4>
+					<div class="actions">
+						<div class="btn" id="create_fiddle_sandbox">JSFiddle</div>
+						<div class="btn copy_embed" data-copy="frame_sandbox" id="copy_sandbox_embed">Full</div>
+						<div class="btn copy_embed" data-copy="sandbox_js" id="copy_sandbox_js">JS</div>
+						<div class="btn copy_embed" data-copy="sandbox_html" id="copy_sandbox_html">HTML</div>
 					</div>
 				</div>
-				<div class="hide" id="controls_live">
-					<span>Live</span>
-					<div id="actions_live">
-						<div class="small-button1 copy_embed" id="create_fiddle_live">JSFiddle</div>
-						<div class="small-button1 copy_embed" data-copy="frame_live" id="copy_live_embed">Full</div>
-						<div class="small-button1 copy_embed" data-copy="live_js" id="copy_live_js">JS</div>
-						<div class="small-button1 copy_embed" data-copy="live_html" id="copy_live_html">HTML</div>
+				<div class="hide" id="live_controls">
+					<h4>Live</h4>
+					<div class="actions">
+						<div class="btn" id="create_fiddle_live">JSFiddle</div>
+						<div class="btn copy_embed" data-copy="frame_live" id="copy_live_embed">Full</div>
+						<div class="btn copy_embed" data-copy="live_js" id="copy_live_js">JS</div>
+						<div class="btn copy_embed" data-copy="live_html" id="copy_live_html">HTML</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</footer>
 
+<script id="templates">
+var rendered_html = function(_css,_html,_js) {
+	return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document<`+`/title>
+<style>
+${_css}
+</style>
+<script>
+${_js}
+<`+`/script>
+<script>
+
+<`+`/script>
+<`+`/head>
+<body>
+${_html}
+<`+`/body>
+<`+`/html>`
+};
+
+var rendered_js = function(_api_key,_env="cdn1-sandbox"){
+	return `_affirm_config = {\
+		public_api_key:  "${_api_key}",\
+		script:          "https://${_env}.affirm.com/js/v2/affirm.js",\
+		session_id:      "YOUR_VISITOR_SESSION_ID"\
+	};\
+(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");\
+\
+function doCheckout(_program,_amount){\
+	var _a = {\
+		"order_id": "ABC123",\
+		"merchant": {\
+			"name": "Affirm Example Code",\
+			"user_cancel_url": "",\
+			"user_confirmation_url": "",\
+		},\
+		"metadata": {\
+			"mode":"modal",\
+        },\
+		"shipping": {\
+			"name": "Testor McTestar",\
+			"address": {\
+				"line1": "650 California St.",\
+				"line2": "Floor 12",\
+				"city": "San Francisco",\
+				"state": "CA",\
+				"zipcode": "94108"\
+			}\
+		},\
+		"financing_program": _program,\
+		"items": [\
+			{\
+				"display_name": "Thing 1",\
+				"sku": "123",\
+				"unit_price": 23456,\
+				"qty": 1,\
+				"item_image_url": "http://www.google.com",\
+				"item_url": "http://www.google.com"\
+			},\
+			{\
+				"display_name": "Thing 2",\
+				"sku": "234",\
+				"unit_price": 12345,\
+				"qty": 1,\
+				"item_image_url": "http://www.google.com",\
+				"item_url": "http://www.google.com"\
+			}\
+		],\
+		"shipping_amount":0,\
+		"tax_amount": 0,\
+		"total": _amount,\
+	};\
+	affirm.checkout(_a);\
+	affirm.checkout.open({\
+		onSuccess:function(e){window.alert("Your checkout token is: " + e.checkout_token)},\
+		onFail:function(e){console.log(e)} \
+	});\
+}\
+\
+affirm.ui.ready(function(){\
+	var checkout_buttons = document.getElementsByClassName("checkout_button");\
+	if (checkout_buttons) {\
+		for (var i = checkout_buttons.length - 1; i >= 0; i--) {\
+			checkout_buttons[i].addEventListener('click',function(){doCheckout(this.dataset.program,this.dataset.amount)});\
+		}\
+	}\
+})`
+};
+
+var rendered_css = function(){
+	return `body {
+	background:#fff;\
+	font-family: 'proxima-nova-semibold', -apple-system,BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", sans-serif;\
+
+}\
+.small-button3, .small-button2, .small-button1{\
+	width:200px;\
+	text-align:center;\
+	border-radius:5px;\
+	padding:10px;\
+	background:#5846e4;\
+	color:#fff;\
+	cursor:pointer;\
+	border:1px solid #fff;\
+}\
+.small-button3{\
+	background:#5846e4;\
+}\
+\
+.small-button2 {\
+	background:#0f72e5;\
+\
+}\
+\
+.small-button1 {\
+	background:#0fa0ea;\
+\
+}\
+.checkout_button {\
+		width:200px;\
+	text-align:center;\
+	border-radius:5px;\
+	padding:10px;\
+	background:#000;\
+	color:#fff;\
+	cursor:pointer;\
+	border:1px solid #fff;\
+}`
+};
+
+var promo_html = function(_item_instance,_item_id) {
+return `<div class="item-header">
+	<div class="col1 col">
+		<span class="item-num"># ${_item_instance}</span>
+	</div>
+	<div class="col6 col">
+		<div data-close="${_item_id}" class="close-button">x</div>
+	</div>
+</div>
+<div class="item-body">
+	<div class="section2 section">
+		<div class="row">
+			<div class="col2 col">
+				<label for="promolabel">Label</label>
+			</div>
+			<div class="col3 col">
+				<input value="${_item_instance}" id="${_item_id}-label" placeholder="Label for this promo" name="promolabel" type="text" data-type="label" class="field promodata item-label">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col2 col">
+				<label for="promotype">Promo type</label>
+			</div>
+			<div class="col3 col">
+				<select data-type="promotype" id="${_item_id}-promotype" name="promotype" class="field promodata promo-promotype">
+					<option value="ala" name="ala" selected>As Low As</option>
+					<option value="pmo" name="pmo">Product Modal</option>
+					<option value="smo" name="smo">Site Modal</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col2 col">
+				<label for="pagetype">Page type</label>
+			</div>
+			<div class="col3 col">
+				<select data-type="pagetype" id="${_item_id}-pagetype" name="pagetype" class="field promodata promo-pagetype">
+					<option value="product" selected>Product</option>
+					<option value="cart">Cart</option>
+					<option value="search">Search</option>
+					<option value="homepage">Homepage</option>
+					<option value="category">Category</option>
+					<option value="payment">Payment</option>
+					<option value="landing">Landing</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col2 col">
+				<label for="promoamount">Amount</label>
+			</div>
+			<div class="col3 col">
+				<input id="${_item_id}-amount" name="promoamount" data-type="amount" type="text" class="field promodata promo-amount" placeholder="Amount" value="50000">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col2 col">
+				<label for="promoid">Promo ID</label>
+			</div>
+			<div class="col3 col">
+				<input name="promoid" id="${_item_id}-promoid" data-type="promoid" type="text" class="field promodata promo-promoid" placeholder="Promo ID">
+			</div>
+		</div>
+	</div>
+	<div class="section3 section">
+		<div class="row">
+			<div class="col4 col">
+				<label for="logotype">Logo type</label>
+			</div>
+			<div class="col5 col">
+				<select name="logotype" id="${_item_id}-logotype" data-type="logotype" class="field promodata promo-logotype">
+					<option value="logo" name="default" selected>Default</option>
+					<option value="logo" name="logo">Logo</option>
+					<option value="text" name="text">Text</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col4 col">
+				<label for="logocolor">Logo color</label>
+			</div>
+			<div class="col5 col">
+				<select data-type="logocolor" id="${_item_id}-logocolor" class="field promodata promo-logocolor">
+					<option value="black" name="black" selected>Black</option>
+					<option value="blue" name="blue">Blue</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col4 col">
+				<label for="hidelearnmore">Hide learn more</label>
+			</div>
+			<div class="col5 col">
+				<input name="hidelearnmore" type="checkbox" id="${_item_id}-hidelearnmore" data-type="hidelearnmore" class="field promodata promo-hidelearnmore">
+			</div>
+		</div>
+	</div>
+</div>`
+};
+
+var checkout_html = function (_item_instance,_item_id) {
+return `<div class="item-header">
+	<div class="col1 col">
+		<span class="item-num"># ${_item_instance}</span>
+	</div>
+	<div class="col6 col">
+		<div data-close="${_item_id}" class="close-button">x</div>
+	</div>
+</div>
+<div class="item-body">
+	<div class="section2 section">
+		<div class="row">
+			<div class="col2 col">
+				<label for="promolabel">Label</label>
+			</div>
+			<div class="col3 col">
+				<input value="${_item_instance}" id="${_item_id}-label" type="text" data-type="label" class="field checkoutdata item-label">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col2 col">
+				<label>Amount</label>
+			</div>
+			<div class="col3 col">
+				<input data-type="amount" id="${_item_id}-amount" type="text" class="field checkoutdata checkout-amount" placeholder="Amount" value="50000">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col2 col">
+				<label>Financing program</label>
+			</div>
+			<div class="col3 col">
+				<input data-type="program" id="${_item_id}-program" type="text" class="field checkoutdata checkout-program" placeholder="Financing Program">
+			</div>
+		</div>
+	</div>
+	<div class="section3 section">
+		<div class="row">
+			<div class="col4 col">
+				<label for="checkout-breakpoint">Test breakpoint?
+			</div>
+			<div class="col5 col">
+				<input type="checkbox" id="${_item_id}-breakpoint" name="checkout-breakpoint" checked data-type="breakpoint" class="field checkoutdata checkout-breakpoint"></label>
+			</div>
+		</div>
+	</div>
+</div>`
+};
+
+</script>
 <script type="text/javascript">
 
-// helpers
+// Helper functions
+
 function copyTextToClipboard(text) {
 	// console.log('copying');
 	var textArea = document.createElement("textarea");
@@ -566,7 +755,7 @@ function copyTextToClipboard(text) {
 		var successful = document.execCommand('copy');
 		var msg = successful ? 'successful' : 'unsuccessful';
 		console.log('Copying text command was ' + msg);
-	} 
+	}
 	catch (err) {console.log('Oops, unable to copy');}
 	document.body.removeChild(textArea);
 }
@@ -612,8 +801,12 @@ function grabField(a) {
 function setField(_id,_value) {
 	var _field = document.getElementById(_id);
 	if (_field) {
-		if(_value){_field.value = _value}
-		else{_field.value = ""}
+		if(_value){
+			_field.value = _value
+		}
+		else{
+			_field.value = ""
+		}
 	}
 	else {return}
 }
@@ -625,38 +818,34 @@ var qs = function () {
 		var s = _a[i].split("=");_b[decodeURIComponent(s[0])] = decodeURIComponent(s[1]);
 	}
 	return _b
-	console.log(a);
-};
-
-// globals
-// var fields = ["mfp_price_floor","mfp_price1","mfp_price2","mfp_program1_name","mfp_program1_amount"];
-
-var fields = function() {
-	var _a = {};
-	var _fields = document.getElementsByClassName('field');
-	for (var i = 0; i < _fields.length; i++) {
-		var _value = grabField(_fields[i].id);
-		if (_fields[i].dataset.parent) {
-			if (!_a[_fields[i].dataset.parent]) {
-				_a[_fields[i].dataset.parent] = {};
-			}
-			_a[_fields[i].dataset.parent][_fields[i].id] = _value;
-		}
-		_a[_fields[i].id] = _value;
-	}
-	return _a
 };
 
 function updateQs() {
 	var _fields = fields();
 	var _str = "";
-	for (var key in _fields) {
-		var val = _fields[key];
-		if (_str.length > 0){
-			_str += "&" + key + "=" + val;
+	for (var _top_level_field_name in _fields) {
+		var top_level_field_value = _fields[_top_level_field_name];
+		if (typeof top_level_field_value === "object") {
+			var _items = top_level_field_value;
+			for (var _item in _items){
+				var _item_fields = _items[_item];
+				for (var _field_name in _item_fields) {
+					if (_str.length > 0){
+						_str += "&" + _item + "-" + _field_name + "=" + _item_fields[_field_name];
+					}
+					else {
+						_str += _item + "-" + _field_name + "=" + _item_fields[_field_name];
+					}
+				}
+			}
 		}
 		else {
-			_str = key + "=" + val;
+			if (_str.length > 0){
+				_str += "&" + _top_level_field_name + "=" + top_level_field_value;
+			}
+			else {
+				_str = _top_level_field_name + "=" + top_level_field_value;
+			}	
 		}
 	}
 	var _qs = encodeURI(_str);
@@ -668,61 +857,122 @@ function updateQs() {
 
 function parseQs() {
 	var _qs = qs();
-	var _promos = Object.keys(_qs);
-	console.log(_promos);
-	var _array = [];
-	for (var i = _promos.length - 1; i >= 0; i--) {
-		console.log(_promos[i].substr(0,3));
-		if (_array.indexOf(_promos[i].substr(0,3)) < 0) {
-			_array.push(_promos[i].substr(0,3));
-		}	
-	}
-	var _promo_array = _array.filter(value => /^p/.test(value));
-	var _checkout_array = _array.filter(value => /^c/.test(value));
-	console.log(_promo_array);
-	console.log(_checkout_array);
-	var _checkouts;
-	for (var key in _qs) {
-		var val = _qs[key];
-		if (key.substr(0,1) === "p") {
-			console.log(key)
+	var _qs_fields = Object.keys(_qs);
+	for (var i = 0; i < _qs_fields.length; i++) {
+		var _type = _qs_fields[i].substr(0,2);
+		if (_type === "p_") {
+			var _len = _qs_fields[i].indexOf("-") - 2;
+			var _instance = _qs_fields[i].substr(2,_len)
+			var _id = _type + _instance;
+			if (Object.keys(current_fields.promos).indexOf(_id) < 0) {
+				addItem("promo",_instance);
+				// _promos_array.push(_id);
+			}
 		}
-		setField(key,val);
+		if (_type === "c_") {
+			var _len = _qs_fields[i].indexOf("-") - 2;
+			var _instance = _qs_fields[i].substr(2,_len);
+			var _id = _type + _instance;
+			if (Object.keys(current_fields.checkouts).indexOf(_id) < 0) {
+				addItem("checkout",_instance);
+				// _checkouts_array.push(_id);
+			}
+		}
+		setField(_qs_fields[i],_qs[_qs_fields[i]]);
 	}
 }
 
 
-// setup
+// Setup
+document.getElementById("add_promo").addEventListener("click", function(){addItem("promo")});
+document.getElementById("add_checkout").addEventListener("click", function(){addItem("checkout")});
+document.getElementById("test_integration").addEventListener("click", testIntegration);
+document.getElementById("create_fiddle_sandbox").addEventListener("click",function(){createFiddle("sandbox")});
+document.getElementById("create_fiddle_live").addEventListener("click",function(){createFiddle("live")});
 
-var hidden_div = document.getElementById("hidden_div");
-// document.getElementsByClassName("close-button")[0].addEventListener("click', function(a){removeItem(a)});
-
-var add_promo = document.getElementById("add_promo");
-add_promo.addEventListener("click", function(){addItem("promo")});
-
-var add_checkout = document.getElementById("add_checkout");
-add_checkout.addEventListener("click", function(){addItem("checkout")});
-
-var test_integration_button = document.getElementById("test_integration");
-test_integration_button.addEventListener("click", testIntegration);
+var promo_counter = 0;
+var checkout_counter = 0;
+var promos_container = document.getElementById("promos");
+var checkouts_container = document.getElementById("checkouts");
 
 var copyable = document.getElementsByClassName("copy_embed");
 for (var i = copyable.length - 1; i >= 0; i--) {
 	copyable[i].addEventListener("click",function(a){copyAction(a)});
 }
 
-var sandbox_public_api_key = grabField("sandbox_api_key");
-var live_public_api_key = grabField("live_api_key");
-var promo_counter = 0;
-var checkout_counter = 0;
-var promos_container = document.getElementById("promos");
-var checkouts_container = document.getElementById("checkouts");
-var create_fiddle_sandbox = document.getElementById("create_fiddle_sandbox");
-var create_fiddle_live = document.getElementById("create_fiddle_live");
-create_fiddle_sandbox.addEventListener("click",function(){createFiddle("sandbox")});
-create_fiddle_live.addEventListener("click",function(){createFiddle("live")});
+
+// Variables
+
+var current_fields = {
+	"promos":{},
+	"checkouts":{}
+};
+
+var fields = function() {
+	var _setup_fields = document.getElementsByTagName("header")[0].getElementsByClassName('field');
+	for (var i = _setup_fields.length - 1; i >= 0; i--) {
+		current_fields[_setup_fields[i].id] = _setup_fields[i].value;
+	}
+
+	var _promo_items = document.getElementsByClassName('promo');
+	for (var i = _promo_items.length - 1; i >= 0; i--) {
+		if (!Object.keys(current_fields.promos).hasOwnProperty(_promo_items[i].id)){
+			current_fields.promos[_promo_items[i].id] = {};
+			var _promo_item_id = _promo_items[i].id;
+			var _promo_fields = _promo_items[i].getElementsByClassName('promodata');
+			for (var j = _promo_fields.length - 1; j >= 0; j--) {
+				var _fieldtype = _promo_fields[j].dataset.type;
+				var _fieldvalue = _promo_fields[j].value;
+				current_fields.promos[_promo_item_id][_fieldtype] = _fieldvalue;
+			}
+		}
+	}
+
+	var _checkout_items = document.getElementsByClassName('checkout');
+	for (var i = _checkout_items.length - 1; i >= 0; i--) {
+		if (!Object.keys(current_fields.checkouts).hasOwnProperty(_checkout_items[i].id)){
+			current_fields.checkouts[_checkout_items[i].id] = {};
+			var _checkout_item_id = _checkout_items[i].id;
+			var _checkout_fields = _checkout_items[i].getElementsByClassName('checkoutdata');
+			for (var j = _checkout_fields.length - 1; j >= 0; j--) {
+				var _fieldtype = _checkout_fields[j].dataset.type;
+				var _fieldvalue = _checkout_fields[j].value;
+				current_fields.checkouts[_checkout_item_id][_fieldtype] = _fieldvalue;
+			}
+		}
+	}
+	return current_fields
+};
 
 
+var nextInstance = function (_type) {
+	var _item = "";
+	var _num = 0;
+	var _start = 1;
+	switch (_type) {
+		case "promos":
+			_item = "p_";
+			break
+		case "checkouts":
+			_item = "c_";
+			break
+		default:
+			break
+	}
+	var _a = _start;
+	while (_num == 0) {
+		var _b = Object.keys(current_fields[_type]).indexOf(_item + _a);
+		if (_b > -1) {
+			_a++;
+		}
+		else {
+			_num = _a;
+		}
+	}
+	return _num
+}
+
+// Item lists
 
 function removeItem(a) {
 	var _target = a.target.dataset.close;
@@ -731,175 +981,43 @@ function removeItem(a) {
 	_parent.removeChild(_toremove);
 }
 
-function addItem(_type) {
+
+function addItem(_type,_instance) {
+
 	var _new_item = document.createElement('div');
-	var _new_item_html;
-	var _new_item_id;
-	var _new_item_container;
+	var _new_item_html,_new_item_id,_new_item_container,_new_item_instance;
 
 	if (_type === "promo") {
 		promo_counter++;
+		if (_instance) {
+			_new_item_instance = _instance;
+		}
+		else {
+			_new_item_instance = nextInstance("promos");
+		}
 		_new_item.classList.add('promo');
 		_new_item.classList.add('item');
-
 		_new_item_container = promos_container;
-		_new_item_id = "p" + promo_counter;
-		_promo_html = `
-					<table>
-						<tr>
-							<td>
-								<span id="p${promo_counter}_num">${promo_counter}</`+`span>
-							</td>
-							<td>
-								<table>
-									<tr>
-										<td>
-											<label for="promolabel">Label</label>
-										</td>
-										<td>
-											<input value="${promo_counter}" name="promolabel" type="text" data-type="label" class="field promodata item-label">
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label for="promotype">Promo type</label>
-										</td>
-										<td>
-											<select data-type="promotype" name="promotype" class="field promodata promo-promotype">
-												<option value="ala" name="ala" selected>As Low As</option>
-												<option value="pmo" name="pmo">Product Modal</option>
-												<option value="smo" name="smo">Site Modal</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label for="pagetype">Page type</label>
-										</td>
-										<td>
-											<select data-type="pagetype" name="pagetype" class="field promodata promo-pagetype">
-												<option value="product" selected>Product</option>
-												<option value="cart">Cart</option>
-												<option value="search">Search</option>
-												<option value="homepage">Homepage</option>
-												<option value="category">Category</option>
-												<option value="payment">Payment</option>
-												<option value="landing">Landing</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label for="promoamount">Amount</label>
-										</td>
-										<td>
-											<input name="promoamount" data-type="amount" type="text" class="field promodata promo-amount" placeholder="Amount" value="50000">
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label for="promoid">Promo ID</label>
-										</td>
-										<td>
-											<input name="promoid" data-type="promoid" type="text" class="field promodata promo-promoid" placeholder="Promo ID">
-										</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<table>
-									<tr>
-										<td>
-											<label for="logotype">Logo type</label>
-										</td>
-										<td>
-											<select name="logotype" data-type="logotype" class="field promodata promo-logotype">
-												<option value="logo" name="default" selected>Default</option>
-												<option value="logo" name="logo">Logo</option>
-												<option value="text" name="text">Text</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label for="logocolor">Logo color</label>
-										</td>
-										<td>
-											<select data-type="logocolor" class="field promodata promo-logocolor">
-												<option value="black" name="black" selected>Black</option>
-												<option value="blue" name="blue">Blue</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<label for="hidelearnmore">Hide learn more</label>
-										</td>
-										<td>
-											<input name="hidelearnmore" type="checkbox" data-type="hidelearnmore" class="field promodata promo-hidelearnmore">
-										</td>
-									</tr>
-									<tr>
-										<td>
-											
-										</td>
-										<td>
-											
-										</td>
-									</tr>
-									<tr>
-										<td>
-										</td>
-										<td>
-											
-										</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<div data-close="${_new_item_id}" class="close-button">x</`+`div>
-							</td>
-						</tr>
-					</table>
-				`;
-		_new_item_html = _promo_html;
+		_new_item_id = "p_" + _new_item_instance;
+		
+		_new_item_html = promo_html(_new_item_instance,_new_item_id);
 	}
 	if (_type === "checkout") {
 		checkout_counter++;
 		_new_item.classList.add('checkout');
 		_new_item.classList.add('item');
 		_new_item_container = checkouts_container;
-		_new_item_id = "c" + checkout_counter;
-		_checkout_html = `
-					<table>
-						<tr>
-							<td>
-								<span id="p${checkout_counter}_num">${checkout_counter}</`+`span>
-							</`+`td>
-							<td colspan="3">
-								<input value="${checkout_counter}" type="text" data-type="label" class="field checkoutdata item-label">
-							</`+`td>
-							<td>
-								<div data-close="${_new_item_id}" class="close-button">x</`+`div>
-							</`+`td>
-						</`+`tr>
-						<tr>
-							<td>
-								<label for="checkout-breakpoint">Test breakpoint?
-								<input type="checkbox" name="checkout-breakpoint" checked data-type="breakpoint" class="field checkoutdata checkout-breakpoint"></`+`label>
-							</`+`td>
-							<td>
-								<input data-type="amount" type="text" class="field checkoutdata checkout-amount" placeholder="Amount" value="50000">
-							</`+`td>
-							<td>
-								<input data-type="program" type="text" class="field checkoutdata checkout-program" placeholder="Financing Program">
-							</`+`td>
-						</`+`tr>
-					</`+`table>
-				`;
-		_new_item_html = _checkout_html;
+		if (_instance) {
+			_new_item_instance = _instance;
+		}
+		else {
+			_new_item_instance = nextInstance("checkouts");
+		}
+		_new_item_id = "c_" + _new_item_instance;
+		_new_item_html = checkout_html(_new_item_instance,_new_item_id);
 	}
 	_new_item.id = _new_item_id;
+	_new_item.dataset.instance = promo_counter;
 	_new_item.innerHTML = _new_item_html;
 	_new_item_container.appendChild(_new_item);
 
@@ -907,18 +1025,7 @@ function addItem(_type) {
 	for (var i = remove_item.length - 1; i >= 0; i--) {
 		remove_item[i].addEventListener('click', function(a){removeItem(a)});
 	}
-}
-
-
-function createFiddle(a) {
-	var _form;
-	if(a === "sandbox"){
-		_form = document.getElementById('sandbox_hidden_form');
-	}
-	if(a === "live") {
-		_form = document.getElementById('live_hidden_form');
-	}
-	_form.submit()
+	fields();
 }
 
 
@@ -931,18 +1038,22 @@ function generatePromo(_id,_type,_page,_promo,_amount="50000",_logotype,_logocol
 		case "ala":
 			_promo_type = "affirm-as-low-as";
 			_promo_label = "As low as";
-			inner_html = "as-low-as placeholder";break;
+			inner_html = "as-low-as placeholder";
+			break;
 		case "pmo":
 			_promo_type = "affirm-product-modal";
 			_promo_label = "Product modal";
-			inner_html = '<div class="offer_banner" style="border:1px solid #999; padding:5px 10px;">&nbsp</div>';break;
+			inner_html = '<div class="offer_banner" style="border:1px solid #999; padding:5px 10px;">&nbsp</div>';
+			break;
 		case "smo":
 			_promo_type = "affirm-site-modal";
 			_promo_label = "Site modal";
+			inner_html = '<div class="offer_banner" style="border:1px solid #999; padding:5px 10px;">&nbsp</div>';
 			break;
 		default:
 			_promo_type = "affirm-as-low-as";
 			_promo_label = "As low as";
+			inner_html = "as-low-as placeholder";
 			break;
 	}
 	var _comment = document.createComment(`Promo placement #${_id}: ${_promo_label} for ${_page} pages with Promo ID: ${_promo}`);
@@ -980,70 +1091,10 @@ function generateCheckoutButton(_id,_label,_amount,_program=""){
 	_button.dataset.program = _program;
 	_button.dataset.amount = _amount;
 	_button.innerHTML = _label + ": $" + _amount/100;
-	// _button.dataset.onclick = function(){doCheckout(this.dataset.program,this.dataset.amount)};
 	return _button
 }
 
-function loadJs() {
-	var _sandbox_api_key = grabField('sandbox_api_key');
-	var _live_api_key = grabField('live_api_key');
-	var _sandbox_js = render_code_affirm_js(_sandbox_api_key,_env="cdn1-sandbox");
-	var _live_js = render_code_affirm_js(_live_api_key,_env="cdn1");
-	document.getElementById('sandbox_js').value = _sandbox_js;
-	document.getElementById('live_js').value = _live_js;
-}
 
-function loadCss() {
-	document.getElementById('sandbox_css').value = css;
-	document.getElementById('live_css').value = css;
-}
-
-function generateHtml() {
-	var _html = "";
-
-	var _promos = document.getElementById('promos').getElementsByClassName('promo');
-	if (_promos) {
-		for (var i = 0; i < _promos.length; i++) {
-			var _label = _promos[i].getElementsByClassName('item-label')[0].value;
-			var _type = _promos[i].getElementsByClassName('promo-promotype')[0].value;
-			var _logotype = _promos[i].getElementsByClassName('promo-logotype')[0].value;
-			var _logocolor = _promos[i].getElementsByClassName('promo-logocolor')[0].value;
-			var _hidelearnmore = _promos[i].getElementsByClassName('promo-hidelearnmore')[0].value;
-			var _page = _promos[i].getElementsByClassName('promo-pagetype')[0].value;
-			var _promo = _promos[i].getElementsByClassName('promo-promoid')[0].value;
-			var _amount = _promos[i].getElementsByClassName('promo-amount')[0].value;
-			var _id = "p" + i;
-			var _promo = generatePromo(_id,_type,_page,_promo,_amount,_logotype,_logocolor,_hidelearnmore).outerHTML;
-			console.log(_promo);
-			_html += _promo;
-			// function generatePromo(_id,_type,_page,_promo,_amount="50000",_logotype,_logocolor,_hidelearnmore){
-		}
-	}
-
-	var _checkouts = document.getElementById('checkouts').getElementsByClassName('checkout');
-	if (_checkouts) {
-		for (var i = 0; i < _checkouts.length; i++) {
-			// var _type = _checkouts[i].getElementsByClassName('checkout-promotype')[0].value;
-			// var _page = _checkouts[i].getElementsByClassName('checkout-pagetype')[0].value;
-			var _label = _checkouts[i].getElementsByClassName('item-label')[0].value;
-			var _breakpoint = _checkouts[i].getElementsByClassName('checkout-breakpoint')[0].checked;
-			var _program = _checkouts[i].getElementsByClassName('checkout-program')[0].value;
-			var _amount = _checkouts[i].getElementsByClassName('checkout-amount')[0].value;
-			var _id = "c" + i;
-			var _checkout = generateCheckoutButton(_id,_label,_amount,_program).outerHTML;
-			_html += _checkout;
-			if (_breakpoint) {
-				var _id_less = "c" + i + "a";
-				var _amount_less = _amount - 1;
-				var _label_less = _label + " (-$1)";
-				var _checkout_less = generateCheckoutButton(_id_less,_label_less,_amount_less,_program).outerHTML;
-				_html += _checkout_less;
-			}
-		}
-	}
-	document.getElementById('sandbox_html').value = _html;
-	document.getElementById('live_html').value = _html;
-}
 
 function loadContainer(_env) { 
 	var _a = _env + "_api_key";
@@ -1067,34 +1118,16 @@ function loadContainer(_env) {
 		_css = grabField('live_css');
 	}
 
-	var _template = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Document<`+`/title>
-<style>
-${_css}
-</style>
-<script>
-${_js}
-<`+`/script>
-<script>
-
-<`+`/script>
-<`+`/head>
-<body>
-${_html}
-<`+`/body>
-<`+`/html>`;
+	var _template = rendered_html(_css,_html,_js);
 	if(!document.getElementById(`frame_${_env}`)){
 		var _iframe = document.createElement('iframe');
 		_iframe.setAttribute('sandbox','allow-modals allow-same-origin allow-scripts allow-popups allow-forms');
 		_iframe.id = `frame_${_env}`;
 		_iframe.width = '100%';
 		_iframe.height = '600px';
+		_iframe.setAttribute('frameborder','false');
 		_iframe.srcdoc = _template;
 		_iframe.onload = function() { 
-		// console.log('iframes loaded');
 		};
 		var _target = `${_env}_frame_container`;
 		document.getElementById(_target).appendChild(_iframe);
@@ -1105,154 +1138,89 @@ ${_html}
 	}
 }
 
+function createFiddle(a) {
+	var _form;
+	if(a === "sandbox"){
+		_form = document.getElementById('sandbox_hidden_form');
+	}
+	if(a === "live") {
+		_form = document.getElementById('live_hidden_form');
+	}
+	_form.submit()
+}
 
 
 function testIntegration() {
-	var _promos = document.getElementById('promos').getElementsByClassName('promo');
-	var _checkouts = document.getElementById('checkouts').getElementsByClassName('checkout');
-	if (_promos.length + _checkouts.length == 0) {
+	if ((document.getElementById('promos').getElementsByClassName('promo')).length + (document.getElementsByClassName('checkout')).length == 0) {
 		window.alert("Nothing to test.");
 		return
 	}
 
-	var _result = document.getElementById('result');
-	var _controls_sandbox = document.getElementById('controls_sandbox');
-	var _controls_live = document.getElementById('controls_live');
 	if (grabField('sandbox_api_key')) {
-		_controls_sandbox.classList.remove('hide');
+		document.getElementById('sandbox_controls').classList.remove('hide');
 	}
 	if (grabField('live_api_key')) {
-		_controls_live.classList.remove('hide');
+		document.getElementById('live_controls').classList.remove('hide');
 	}
-	_result.classList.remove('hide');
+	document.getElementById('result').classList.remove('hide');
+	document.title = "Tester: " + document.getElementById('merchant_label').value;
 	
-	var _label = document.getElementById('merchant_label').value;
-	document.title = "Tester: " + _label;
+	var _html = "";
 
-	generateHtml();
-	loadJs();
-	loadCss();
+	var _promos = document.getElementById('promos').getElementsByClassName('promo');
+	if (_promos) {
+		for (var i = 0; i < _promos.length; i++) {
+			var _label = _promos[i].getElementsByClassName('item-label')[0].value;
+			var _type = _promos[i].getElementsByClassName('promo-promotype')[0].value;
+			var _logotype = _promos[i].getElementsByClassName('promo-logotype')[0].value;
+			var _logocolor = _promos[i].getElementsByClassName('promo-logocolor')[0].value;
+			var _hidelearnmore = _promos[i].getElementsByClassName('promo-hidelearnmore')[0].value;
+			var _page = _promos[i].getElementsByClassName('promo-pagetype')[0].value;
+			var _promo = _promos[i].getElementsByClassName('promo-promoid')[0].value;
+			var _amount = _promos[i].getElementsByClassName('promo-amount')[0].value;
+			var _id = "p_" + i;
+			var _promo = generatePromo(_id,_type,_page,_promo,_amount,_logotype,_logocolor,_hidelearnmore).outerHTML;
+			_html += _promo;
+		}
+	}
+
+	var _checkouts = document.getElementById('checkouts').getElementsByClassName('checkout');
+	if (_checkouts) {
+		for (var i = 0; i < _checkouts.length; i++) {
+			var _label = _checkouts[i].getElementsByClassName('item-label')[0].value;
+			var _breakpoint = _checkouts[i].getElementsByClassName('checkout-breakpoint')[0].checked;
+			var _program = _checkouts[i].getElementsByClassName('checkout-program')[0].value;
+			var _amount = _checkouts[i].getElementsByClassName('checkout-amount')[0].value;
+			var _id = "c_" + i;
+			var _checkout = generateCheckoutButton(_id,_label,_amount,_program).outerHTML;
+			_html += _checkout;
+			if (_breakpoint) {
+				var _id_less = "c_" + i + "a";
+				var _amount_less = _amount - 1;
+				var _label_less = _label + " (-$1)";
+				var _checkout_less = generateCheckoutButton(_id_less,_label_less,_amount_less,_program).outerHTML;
+				_html += _checkout_less;
+			}
+		}
+	}
+	
+
+	document.getElementById('sandbox_html').value = _html;
+	document.getElementById('live_html').value = _html;
+
+	document.getElementById('sandbox_js').value = rendered_js(grabField('sandbox_api_key'),_env="cdn1-sandbox");
+	document.getElementById('live_js').value = rendered_js(grabField('live_api_key'),_env="cdn1");
+	document.getElementById('sandbox_css').value = rendered_css();
+	document.getElementById('live_css').value = rendered_css();
 	loadContainer('sandbox');
 	loadContainer('live');
 	updateQs();
 }
 
-
 parseQs();
 
 </script>
 
-<script id="data">
-var render_code_affirm_js = function(_api_key,_env="cdn1-sandbox"){
-	var _a = `
-	_affirm_config = {
-		public_api_key:  "${_api_key}",
-		script:          "https://${_env}.affirm.com/js/v2/affirm.js",
-		session_id:      "YOUR_VISITOR_SESSION_ID"
-	};
-(function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
 
-function doCheckout(_program,_amount){
-	var _a = {
-		"order_id": "ABC123",
-		"merchant": {
-			"name": "Affirm Example Code",
-			"user_cancel_url": "",
-			"user_confirmation_url": "",
-		},
-		"metadata": {
-			"mode":"modal",
-        },
-		"shipping": {
-			"name": "Testor McTestar",
-			"address": {
-				"line1": "650 California St.",
-				"line2": "Floor 12",
-				"city": "San Francisco",
-				"state": "CA",
-				"zipcode": "94107"
-			}
-		},
-		"financing_program": _program,
-		"items": [
-			{
-				"display_name": "Thing 1",
-				"sku": "123",
-				"unit_price": 23456,
-				"qty": 1,
-				"item_image_url": "http://www.google.com",
-				"item_url": "http://www.google.com"
-			},
-			{
-				"display_name": "Thing 2",
-				"sku": "234",
-				"unit_price": 12345,
-				"qty": 1,
-				"item_image_url": "http://www.google.com",
-				"item_url": "http://www.google.com"
-			}
-		],
-		"shipping_amount":0,
-		"tax_amount": 0,
-		"total": _amount,
-	};
-	affirm.checkout(_a);
-	affirm.checkout.open({
-		onSuccess:function(e){window.alert("Your checkout token is: " + e.checkout_token)},
-		onFail:function(e){console.log(e)} 
-	});
-}
-
-affirm.ui.ready(function(){
-	var checkout_buttons = document.getElementsByClassName("checkout_button");
-	if (checkout_buttons) {
-		for (var i = checkout_buttons.length - 1; i >= 0; i--) {
-			checkout_buttons[i].addEventListener('click',function(){doCheckout(this.dataset.program,this.dataset.amount)});
-		}
-	}
-})
-`
-	return _a
-};
-
-var css = `
-body {
-	background:#fff;
-}
-.small-button3, .small-button2, .small-button1{
-	width:200px;
-	text-align:center;
-	border-radius:5px;
-	padding:10px;
-	background:#5846e4;
-	color:#fff;
-	cursor:pointer;
-	border:1px solid #fff;
-}
-.small-button3{
-	background:#5846e4;
-}
-
-.small-button2 {
-	background:#0f72e5;
-
-}
-
-.small-button1 {
-	background:#0fa0ea;
-
-}
-.checkout_button {
-		width:200px;
-	text-align:center;
-	border-radius:5px;
-	padding:10px;
-	background:#000;
-	color:#fff;
-	cursor:pointer;
-	border:1px solid #fff;
-}`;
-
-</script>
 </body>
 </html>
