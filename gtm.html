@@ -7,7 +7,7 @@
 	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WFLMNVK');
 	</script>
 	<!-- End Google Tag Manager -->
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<style>
 		html,body {
 			font-family: helvetica;
@@ -55,7 +55,7 @@
 <!-- End Google Tag Manager (noscript) -->
 <div class="container">
 	<div class="col">
-		<table>
+		<table id="checkout_form">
 			<tr>
 				<td>Full Name</td>
 				<td><input type="text" id="checkout_name" value="Joe Doe"></td>
@@ -88,22 +88,45 @@
 				<td>Email</td>
 				<td><input type="text" id="checkout_email" value="joedoe@domain.com"></td>
 			</tr>
-			<tr>
-				<td>Item Name</td>
-				<td><input type="text" id="checkout_item_name" value="Ultimate Stationary Bike"></td>
-			</tr>
-			<tr>
-				<td>Item SKU</td>
-				<td><input type="text" id="checkout_item_sku" value="A1B2C3D4-E5"></td>
-			</tr>
-			<tr>
-				<td>Item Price</td>
-				<td><input type="number" id="checkout_item_price" value="30000"></td>
-			</tr>
-			<tr>
-				<td>Item Quantity</td>
-				<td><input type="number" id="checkout_item_qty" value="1"></td>
-			</tr>
+			<tbody id="item_list">
+				<tr>
+					<th id="name">Item Name</th>
+					<th id="sku">Item SKU</th>
+					<th id="price">Item Price</th>
+					<th id="qty">Item Qty</th>
+					<th style="display: none"  id="img">Item Qty</th>
+					<th style="display: none"  id="url">Item URL</th>
+
+				</tr>
+				<tr>
+					<td><input type="text" name="checkout_item_name" id="checkout_item_name_1" value="Ultimate Stationary Bike"></td>
+
+					<td><input type="text" name="checkout_item_sku" id="checkout_item_sku_1" value="A1B2C3D4-E5"></td>
+
+					<td><input type="number" name="checkout_item_price" id="checkout_item_price_1" value="30000"></td>
+
+					<td><input type="number" name="checkout_item_qty" id="checkout_item_qty_1" value="1"></td>
+
+					<td><input type="text" style="display: none" name="checkout_item_image_url" id="checkout_item_image_url_1" value="http://google.com"></td>
+
+					<td><input type="text" style="display: none" name="checkout_item_url" id="checkout_item_url_1" value="http://google.com"></td>
+
+				</tr>
+				<tr>
+					<td><input type="text" name= "checkout_item_name" id="checkout_item_name_2" value="Ultimate Stationary Bike Sport"></td>
+
+					<td><input type="text" name="checkout_item_sku" id="checkout_item_sku_2" value="A1B2C3D4-E6"></td>
+
+					<td><input type="number" name="checkout_item_price" id="checkout_item_price_2" value="35000"></td>
+
+					<td><input type="number" name="checkout_item_qty" id="checkout_item_qty_2" value="1"></td>
+
+					<td><input type="text" style="display: none" name="checkout_item_image_url" id="checkout_item_image_url_2" value="http://google.com"></td>
+
+					<td><input type="text" style="display: none" name="checkout_item_url" id="checkout_item_url_2" value="http://google.com"></td>
+
+				</tr>
+			</tbody>
 		</table>
 	</div>
 	<div class="col">
@@ -144,7 +167,7 @@
 			</tr>
 			<tr>
 				<td>Total</td>
-				<td><input type="number" id="checkout_total" value="37000"></td>
+				<td><input type="number" id="checkout_total" value="72000"></td>
 			</tr>
 		</table>
 	</div>
