@@ -8,7 +8,7 @@
         // Begin Affirm JS embed code
         // =======================
         _affirm_config = {
-            script:"https://cherry-ave.affirm-odin.com/js/v2/affirm.js",
+            script:"https://cherry-ave-sandbox.affirm-odin.com/js/v2/affirm.js",
             public_api_key:"PreSeededApiKeyDirect"
         };
         (function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
@@ -44,12 +44,9 @@
 <body>
 <h1>Affirm ADA Demo</h1>
 <div id="container">
-    <h4>Normal "as low as":</h4>
-    <div class="affirm-as-low-as" data-amount="30000" data-page-type="product">Placeholder</div>
-    <br/>
-    <h4>Prequal "as low as":</h4>
-    <div class="affirm-as-low-as" data-amount="30000" data-promo-id="promo_set_prequal">Placeholder</div>
-    <br/>
+    <!-- <h4>"as low as":</h4>
+    <div class="affirm-as-low-as" data-amount="30000" data-promo-id="promo_set_oala">Placeholder</div>
+    <br/> -->
     <h4>Affirm checkout:</h4>
     <button id="checkout_button">&nbsp</button>
 </div>

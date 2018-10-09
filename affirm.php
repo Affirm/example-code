@@ -37,7 +37,7 @@ class Affirm {
     
     }
 
-    public function auth() {
+    public function getcard() {
 
         $checkout_token = $_REQUEST["checkout_token"];
 
