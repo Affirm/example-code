@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal Window Example</title>
+</head>
+<style>
+    .modal {
+        position: fixed;
+        top:10%;
+        left:10%;
+        width:600px;
+        height:400px;
+        border:1px solid #aaa;
+        background: red;
+    }
+</style>
+<script>
+
+/*
+ * In window A's scripts, with A being on <http://example.com:8080>:
+ */
+// var modal = ;
+
+function initiateCheckout() {
+
+    var checkout_object = {
+        "merchant": {
+            "name": "Affirm Example Code",
+            "public_api_key": "ARQBLCL7NAMBTZ7F",
+            "user_cancel_url": "http://www.espn.com",
+            "user_confirmation_url": "http://www.google.com"
+            // User is sent to this URL if they voluntarily cancel/close checkout, or are denied
+        },
+        "metadata":{
+            "mode":"modal"
+
+        },
+        "order_id":"testest",
+        "shipping": {
+            "name": {
+                "first":"Joe",
+                "last": "Doe"
+            },
+            "address": {
+                "line1": "633 Folsom St.",
+                "line2": "Floor 7",
+                "city": "San Francisco",
+                "state": "CA",
+                "zipcode": "94707"
+            },
+            "phone_number": "4153334452",
+            "email": "example@test.com"
+        },
+        "billing": {
+            "name": {
+                "first":"Joe",
+                "last": "Doe"
+            },
+            "address": {
+                "line1": "633 Folsom St.",
+                "line2": "Floor 7",
+                "city": "San Francisco",
+                "state": "CA",
+                "zipcode": "94707"
+            },
+            "phone_number": "4153334452",
+            "email": "example@test.com"
+        },
+        "items": [
+            {
+                "display_name":"Name of item",
+                "sku":"123",
+                "unit_price":19999,
+                "qty": 1,
+                "item_image_url":"http://www.google.com",
+                "item_url":"http://www.google.com"
+            }
+        ],
+        "discounts":{
+            "Test with spaces": {
+                "discount_display_name": "friendly name",
+                "discount_amount": 10000
+            }
+        },
+        "shipping_amount":499,
+        "taxAmount": 1000,
+        "total": 10000,
+        // "checkout_expiration": expire_time()
+    };
+
+    var checkout_string = encodeURIComponent(JSON.stringify(checkout_object));
+
+    var options = {
+        action: "checkout",
+        page: "affirm_checkout.php",
+        params: "action=checkout&checkout_object=" + checkout_string
+    }
+    ajaxRequest(options);
+}
+
+var newModal = function (_url) {
+var _modal = document.createElement("div");
+_modal.classList.add("modal");
+var _iframe = document.createElement("iframe");
+_iframe.width = "600";
+_iframe.height = "600";
+_iframe.src = _url;
+// _iframe.src = "http://localhost/Code/example-code/modal-child.html";
+_modal.appendChild(_iframe);
+return _modal
+}
+
+var IE = function() {
+    var ua = window.navigator.userAgent;
+    var a = ua.indexOf('MSIE ');
+    var b = ua.indexOf('Trident/');
+    if (a > 0 || b > 0) {return true}
+    else {return false}
+}
+
+function openModal(_url) {
+
+
+if (IE()) {
+    var popup = window.open(_url, "popup", 'width=600,height=400,scrollbars=yes');
+    // var popup = window.open("http://localhost/Code/example-code/modal-child.html", "popup", 'width=400,height=200,scrollbars=yes');
+}
+
+else {
+    // var _modal
+    var popup = document.body.appendChild(newModal(_url));
+}
+
+// When the popup has fully loaded, if not blocked by a popup blocker:
+
+// This does nothing, assuming the window hasn't changed its location.
+// popup.postMessage("The user is 'bob' and the password is 'secret'",
+                  // "https://secure.example.net");
+
+// This will successfully queue a message to be sent to the popup, assuming
+// the window hasn't changed its location.
+// popup.postMessage("hello there!", "http://localhost/Code/example-code/modal-child.html");
+    
+}
+
+
+
+
+function receiveMessage(event)
+{
+  // Do we trust the sender of this message?  (might be
+  // different from what we originally opened, for example).
+  // if (event.origin !== "http://localhost") {
+  //   return;
+  // }
+
+  console.log(event);
+
+  // event.source is popup
+  // event.data is "hi there yourself!  the secret response is: rheeeeet!"
+}
+
+function ajaxRequest(a) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+
+        if (a.action === "checkout") {
+            if (xhttp.readyState === 4) {
+
+                if (xhttp.status === 500) {
+                    console.log(xhttp.status);
+                }       
+                if (xhttp.status === 200) {
+                    responseJson = JSON.parse(xhttp.responseText);
+                    // responseJson = xhttp.responseText;
+                    // checkout_token = responseJson.checkout_id;
+                    // prettyJson = JSON.stringify(responseJson, null, 4);
+                    // var _message = statusMessage.innerHTML;
+                    // statusMessage.innerHTML = _message + "</li><li> Checkout link sent!</li><li> Checkout ID: " + checkout_token  + "</li><li> Polling for checkout confirmation...</li>";
+                    // responseData.innerHTML = prettyJson;
+                    // var _url = xhttp.responseText;
+                    var _url = responseJson.redirect_url;
+                    openModal(_url);
+                    // console.log(_url);
+                }
+                else {
+                }   
+            }
+            else {
+            }
+        }
+    };
+    xhttp.open("POST", a.page, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(a.params);
+}
+
+</script>
+<body>
+    <div class="btn" id="open_modal">Open Modal</div>
+</body>
+<script type="text/javascript">
+// setup
+window.addEventListener("message", function(e){receiveMessage(e)}, false);
+document.getElementById("open_modal").addEventListener("click",initiateCheckout, false);
+
+</script>
+</html>
