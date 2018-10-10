@@ -75,8 +75,8 @@ function initiateCheckout() {
             // "name": "Affirm Example Code",
             "public_api_key": "PreSeededApiKeyDirect",
             // "public_api_key":"PreSeededApiKeyDirect",
-            "user_cancel_url": "http://localhost/Code/example-code/affirm_confirmation.php?result=cancel",
-            "user_confirmation_url": "http://localhost/Code/example-code/affirm_confirmation.php?result=confirm"
+            "user_cancel_url": "http://affirm-demo.com/cherry/affirm_confirmation.php?result=cancel",
+            "user_confirmation_url": "http://affirm-demo.com/cherry/affirm_confirmation.php?result=confirm"
             // User is sent to this URL if they voluntarily cancel/close checkout, or are denied
         },
         "order_id":"testest",
@@ -164,7 +164,7 @@ var safari = function() {
 
 function launchPromo(event) {
     console.log(event);
-    var _url = "https://sandbox.affirm.com/apps/prequal/?public_api_key=9KZ6U5QQCUY1L4MB&promo_external_id=promo_set_default_search&referring_url=http://localhost/Code/example-code/modal-close.html&unit_price=80000&page_type=product&use_promo=true";
+    var _url = "https://sandbox.affirm.com/apps/prequal/?public_api_key=9KZ6U5QQCUY1L4MB&promo_external_id=promo_set_default_search&referring_url=http://affirm-demo.com/cherry/modal-close.html&unit_price=80000&page_type=product&use_promo=true";
     openModal(_url);
 }
 

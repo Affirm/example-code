@@ -75,10 +75,6 @@ class Affirm {
         $response = curl_exec($curl);
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-        if ($a === "charges/" && $status === 200) {
-            $this->writeAuth($response);
-        }
-
         curl_close($curl);
         http_response_code($status); 
         echo $response;
