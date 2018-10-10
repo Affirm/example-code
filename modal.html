@@ -51,20 +51,29 @@
         text-align: center;
         display: inline-block;
     }
+    #affirm_ala .affirm_learn_more {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    html {
+            font-family: sans-serif;
+            text-align: center;
+        }
+    #container {
+        margin: 0 auto;
+        width:600px;
+        border-radius:5px;
+        box-shadow: 0px 5px 10px 1px rgba(0,0,0,.2);
+        padding:2em;
+    }
 </style>
 <script>
-
-/*
- * In window A's scripts, with A being on <http://example.com:8080>:
- */
-// var modal = ;
-
 function initiateCheckout() {
 
     var checkout_object = {
         "merchant": {
             // "name": "Affirm Example Code",
-            "public_api_key": "ARQBLCL7NAMBTZ7F",
+            "public_api_key": "PreSeededApiKeyDirect",
             // "public_api_key":"PreSeededApiKeyDirect",
             "user_cancel_url": "http://localhost/Code/example-code/affirm_confirmation.php?result=cancel",
             "user_confirmation_url": "http://localhost/Code/example-code/affirm_confirmation.php?result=confirm"
@@ -73,33 +82,33 @@ function initiateCheckout() {
         "order_id":"testest",
         "shipping": {
             "name": {
-                "first":"Joe",
-                "last": "Doe"
+                "first":"Benjamin",
+                "last": "Mo"
             },
             "address": {
-                "line1": "633 Folsom St.",
-                "line2": "Floor 7",
-                "city": "San Francisco",
+                "line1": "2553 Center Road",
+                "line2": "",
+                "city": "Novato",
                 "state": "CA",
-                "zipcode": "94107"
+                "zipcode": "94947"
             },
-            "phone_number": "4153334452",
-            "email": "example@test.com"
+            "phone_number": "9253236612",
+            "email": "benmoo@gmail.com"
         },
         "billing": {
             "name": {
-                "first":"Joe",
-                "last": "Doe"
+                "first":"Benjamin",
+                "last": "Mo"
             },
             "address": {
-                "line1": "633 Folsom St.",
-                "line2": "Floor 7",
-                "city": "San Francisco",
+                "line1": "2553 Center Road",
+                "line2": "",
+                "city": "Novato",
                 "state": "CA",
-                "zipcode": "94107"
+                "zipcode": "94947"
             },
-            "phone_number": "4153334452",
-            "email": "example@test.com"
+            "phone_number": "9253236612",
+            "email": "benmoo@gmail.com"
         },
         "items": [
             {
@@ -145,9 +154,9 @@ _modal.appendChild(_iframe);
 return _modal
 }
 
-var IE = function() {
+var safari = function() {
     var ua = window.navigator.userAgent;
-    var a = ua.indexOf('MSIE ');
+    var a = ua.indexOf('safari');
     var b = ua.indexOf('Trident/');
     if (a > 0 || b > 0) {return true}
     else {return false}
@@ -161,28 +170,12 @@ function launchPromo(event) {
 
 
 function openModal(_url) {
-
-
-if (IE()) {
-    var popup = window.open(_url, "popup", 'width=600,height=400,scrollbars=yes');
-    // var popup = window.open("http://localhost/Code/example-code/modal-child.html", "popup", 'width=400,height=200,scrollbars=yes');
-}
-
-else {
-    // var _modal
-    var popup = document.body.appendChild(newModal(_url));
-}
-
-// When the popup has fully loaded, if not blocked by a popup blocker:
-
-// This does nothing, assuming the window hasn't changed its location.
-// popup.postMessage("The user is 'bob' and the password is 'secret'",
-                  // "https://secure.example.net");
-
-// This will successfully queue a message to be sent to the popup, assuming
-// the window hasn't changed its location.
-// popup.postMessage("hello there!", "http://localhost/Code/example-code/modal-child.html");
-    
+    if (safari()) {
+        var popup = window.open(_url, "popup", 'width=600,height=400,scrollbars=yes');
+    }
+    else {
+        var popup = document.body.appendChild(newModal(_url));
+    }
 }
 
 function closeModal() {
@@ -196,10 +189,7 @@ function displayError(_main,_sub,_sub_extra) {
     var _template = `<h4>${_main}</h4>
 <p id="sub">${_sub}</p>
 <p id="sub_extra">${_sub_extra}</p>
-<div id="error_close">Dismiss</div>
-    `;
-    // var _message = document.createElement("p");
-    // _message.innerText = message;
+<div id="error_close">Dismiss</div>`;
     _container.innerHTML = _template;
     document.body.appendChild(_container);
     document.getElementById("error_close").addEventListener("click",closeError);
@@ -221,16 +211,19 @@ function receiveMessage(event)
     closeModal();
   }
   if (event.data.result === "confirm" && event.data.checkout_token.length > 0) {
-    console.log("Lets get the FD card with this token!" + event.data.checkout_token)
+    var _checkout_token = event.data.checkout_token;
+    console.log("Fetching FD card details with this token: " + _checkout_token)
+    var options = {
+        action: "card",
+        page: "affirm.php",
+        params: "action=card&checkout_token=" + _checkout_token
+    }
+    ajaxRequest(options);
   }
   if (event.data.result === "cancel") {
-    console.log("user cancelled!")
+    console.log("User cancelled.")
   }
-
   console.log(event);
-
-  // event.source is popup
-  // event.data is "hi there yourself!  the secret response is: rheeeeet!"
 }
 
 function ajaxRequest(a) {
@@ -244,24 +237,45 @@ function ajaxRequest(a) {
                     console.log(xhttp.status);
                 }
                 if (xhttp.status === 400) {
-                    var _main = JSON.parse(xhttp.responseText).ui.main;
-                    var _sub = JSON.parse(xhttp.responseText).ui.sub;
-                    var _sub_extra = JSON.parse(xhttp.responseText).ui.sub_extra;
+                    responseJson = JSON.parse(xhttp.responseText);
+                    console.log(responseJson);
+                    var _main = responseJson.ui.main;
+                    var _sub = responseJson.ui.sub;
+                    var _sub_extra = responseJson.ui.sub_extra;
                     displayError(_main,_sub,_sub_extra);
-                    // console.log(xhttp.status);
                 }
                 if (xhttp.status === 200) {
                     responseJson = JSON.parse(xhttp.responseText);
-                    // responseJson = xhttp.responseText;
-                    // checkout_token = responseJson.checkout_id;
-                    // prettyJson = JSON.stringify(responseJson, null, 4);
-                    // var _message = statusMessage.innerHTML;
-                    // statusMessage.innerHTML = _message + "</li><li> Checkout link sent!</li><li> Checkout ID: " + checkout_token  + "</li><li> Polling for checkout confirmation...</li>";
-                    // responseData.innerHTML = prettyJson;
-                    // var _url = xhttp.responseText;
+                    console.log(responseJson);
                     var _url = responseJson.redirect_url;
                     openModal(_url);
-                    // console.log(_url);
+                }
+                else {
+                }   
+            }
+            else {
+            }
+        }
+        if (a.action === "card") {
+            if (xhttp.readyState === 4) {
+
+                if (xhttp.status === 500) {
+                    console.log(xhttp.status);
+                }
+                if (xhttp.status === 400) {
+                    responseJson = JSON.parse(xhttp.responseText);
+                    console.log(responseJson);
+                    var _main = responseJson.ui.main;
+                    var _sub = responseJson.ui.sub;
+                    var _sub_extra = responseJson.ui.sub_extra;
+                    displayError(_main,_sub,_sub_extra);
+                }
+                if (xhttp.status === 200) {
+                    responseJson = JSON.parse(xhttp.responseText);
+                    console.log(responseJson);
+                    var _num = responseJson.number;
+                    var _pin = responseJson.pin;
+                    window.alert("Card number: " + _num + "\nPIN: " + _pin);
                 }
                 else {
                 }   
@@ -277,11 +291,14 @@ function ajaxRequest(a) {
 
 </script>
 <body>
+    <h1>Affirm Custom Modal + Server-side VCN Demo</h1>
+<div id="container">
     <div class="btn" id="affirm_checkout">Affirm Checkout</div>
-    <br/>
+    <p>
     <div class="btn" class="affirm_learn_more" data-amount="50000" id="affirm_promo">Affirm Educational Modal</div>
-    <br/>
+    <p>
     <div id="affirm_ala">As low as $x a month with Affirm. <span data-amount="50000" class="affirm_learn_more">Learn more</span></div>
+</div>
 </body>
 <script type="text/javascript">
 // setup

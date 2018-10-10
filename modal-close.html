@@ -5,17 +5,14 @@
     <title>Close Modal</title>
 </head>
 <body>
-    
+&nbsp;
 </body>
 <script>
-    sendMessage();
-
+sendMessage();
 function sendMessage(event) {
-    console.log("attempting to send message to parent");
+    console.log("Sending educational modal close postMessage to parent window.");
     _a = {
         "close_modal": true
-        // "result": result,
-        // "checkout_token": checkout_token
     };
     if (window.opener) {
         window.opener.postMessage(_a,"*");

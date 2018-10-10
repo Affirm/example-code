@@ -12,14 +12,13 @@ $checkout_token = $_REQUEST["checkout_token"];
     <?php echo $checkout_token?>
 </body>
 <script>
-// setTimeout(function() {sendMessage("<?php  $checkout_token?>")}, 3000);
 var result = "<?php echo $result?>";
 var checkout_token = "<?php echo $checkout_token?>";
 
 sendMessage();
 
 function sendMessage(event) {
-    console.log("attempting to send message to parent");
+    console.log("Sending checkout confirmation/cancellation postMessage to parent window.");
     _a = {
         "close_modal": true,
         "result": result,
