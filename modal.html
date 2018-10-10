@@ -7,6 +7,10 @@
 <style>
     html {
         font-family: sans-serif;
+        text-align: center;
+    }
+    input {
+        display: block;
     }
     #affirm_checkout_modal {
         position: fixed;
@@ -55,10 +59,7 @@
         text-decoration: underline;
         cursor: pointer;
     }
-    html {
-            font-family: sans-serif;
-            text-align: center;
-        }
+    
     #container {
         margin: 0 auto;
         width:600px;
@@ -68,7 +69,63 @@
     }
 </style>
 <script>
+
+function grabField(a) {
+    var _a = document.getElementById(a);
+    if (_a) {if (_a.value) {return _a.value}else {return _a.innerHTML}}
+    else {return ""}
+}
+
+function setField(_id,_value) {
+    var _field = document.getElementById(_id);
+    if (_field) {
+        if(_value){
+            _field.value = _value
+        }
+        else{
+            _field.value = ""
+        }
+    }
+    else {return}
+}
+
+var qs = function () {
+    var _a = location.search&&location.search.substr(1).replace(/\+/gi," ").split("&");
+    var _b = {};
+    for (var i in _a) {
+        var s = _a[i].split("=");_b[decodeURIComponent(s[0])] = decodeURIComponent(s[1]);
+    }
+    return _b
+};
+
+function updateQs() {
+    var _fields = document.getElementById('form').getElementsByTagName('input');
+    var _str;
+    for (var i = _fields.length - 1; i >= 0; i--) {
+        _val = grabField(_fields[i].id);
+        if (!_val) {
+            return
+        }
+        _str += "&" + _fields[i].id + "=" + _val;
+    }
+    var _qs = encodeURI(_str);
+    if (history.pushState) {
+        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + "?" + _qs;
+        window.history.pushState({path:newurl},'',newurl);
+    }
+}
+
+function parseQs() {
+    var _qs = qs();
+    var _keys = Object.keys(_qs);
+    for (var i = _keys.length - 1; i >= 0; i--) {
+        setField(_keys[i],_qs[_keys[i]]);
+    }
+}
+
 function initiateCheckout() {
+
+    updateQs();
 
     var checkout_object = {
         "merchant": {
@@ -82,11 +139,11 @@ function initiateCheckout() {
         "order_id":"testest",
         "shipping": {
             "name": {
-                "first":"Benjamin",
-                "last": "Mo"
+                "first":"Joe",
+                "last": "Doe"
             },
             "address": {
-                "line1": "2553 Center Road",
+                "line1": "650 California",
                 "line2": "",
                 "city": "Novato",
                 "state": "CA",
@@ -288,11 +345,21 @@ function ajaxRequest(a) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(a.params);
 }
-
 </script>
 <body>
     <h1>Affirm Custom Modal + Server-side VCN Demo</h1>
 <div id="container">
+    <div id="form">
+        <input type="text" id="name_first" placeholder="First name">
+        <input type="text" id="name_last" placeholder="Last name">
+        <input type="text" id="phone" placeholder="Phone number">
+        <input type="text" id="email"  placeholder="Email address">
+        <input type="text" id="address1"  placeholder="Address Line 1">
+        <input type="text" id="address2"  placeholder="Address Line 2">
+        <input type="text" id="city"  placeholder="City">
+        <input type="text" id="state"  placeholder="State (2-character code)">
+        <input type="text" id="zip"  placeholder="Zip">
+    </div>
     <div class="btn" id="affirm_checkout">Affirm Checkout</div>
     <p>
     <div class="btn" class="affirm_learn_more" data-amount="50000" id="affirm_promo">Affirm Educational Modal</div>
@@ -308,6 +375,8 @@ var learn_more = document.getElementsByClassName("affirm_learn_more");
 for (var i = learn_more.length - 1; i >= 0; i--) {
     learn_more[i].addEventListener("click",launchPromo, false);
 }
+
+parseQs();
 
 </script>
 </html>

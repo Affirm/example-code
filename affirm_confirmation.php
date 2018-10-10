@@ -14,7 +14,7 @@ $checkout_token = $_REQUEST["checkout_token"];
 <script>
 var result = "<?php echo $result?>";
 var checkout_token = "<?php echo $checkout_token?>";
-
+console.log("Checkout_token to broadcast: " + checkout_token);
 sendMessage();
 
 function sendMessage(event) {
