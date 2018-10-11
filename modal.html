@@ -225,19 +225,60 @@ function launchPromo(event) {
     openModal(_url);
 }
 
+var third_party_cookies_enabled;
+
+function thirdPartyCookies (cookieSentUrl) {
+    if (!cookieSentUrl){return}
+    fetchCookieSent(cookieSentUrl).then(
+        function (response) {
+            response.json().then(function(data) {
+                if (data.cookie_sent) {
+                    console.log('data.cookie_sent is true');
+                    third_party_cookies_enabled = true;
+                    return;
+                }
+                else {
+                    third_party_cookies_enabled = false;
+                    return;
+                }
+            });
+        }
+    ).catch(
+        function (e) {
+            return false;
+        }
+    );
+}
+
+function fetchCookieSent(cookieSentUrl) {
+  return window.fetch(cookieSentUrl, {
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json'
+    },
+    method: 'GET'
+  });
+}
+
+var popup;
 
 function openModal(_url) {
-    if (safari()) {
-        var popup = window.open(_url, "popup", 'width=600,height=400,scrollbars=yes');
+    if (third_party_cookies_enabled) {
+        popup = document.body.appendChild(newModal(_url));
     }
     else {
-        var popup = document.body.appendChild(newModal(_url));
+        popup = window.open(_url, "popup", 'width=600,height=400,scrollbars=yes');
     }
 }
 
 function closeModal() {
     var _modal = document.getElementById("affirm_checkout_modal")
-    _modal.parentNode.removeChild(_modal);
+    if (_modal) {
+        _modal.parentNode.removeChild(_modal);
+    }
+    else {
+        popup.close();
+    }
 }
 
 function displayError(_main,_sub,_sub_extra) {
@@ -377,6 +418,10 @@ for (var i = learn_more.length - 1; i >= 0; i--) {
 }
 
 parseQs();
+
+thirdPartyCookies("https://cherry-ave-sandbox.affirm-odin.com/api/v2/cookie_sent");
+
+setTimeout(function() {console.log(third_party_cookies_enabled);}, 500);
 
 </script>
 </html>
