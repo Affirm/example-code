@@ -48,7 +48,7 @@
     <div class="affirm-as-low-as" data-amount="30000" data-promo-id="promo_set_oala">Placeholder</div>
     <br/> -->
     <h4>Affirm checkout:</h4>
-    <button id="checkout_button">&nbsp</button>
+    <button aria-label="checkout with affirm" id="checkout_button">&nbsp</button>
 </div>
 <script>
 // Checkout
@@ -68,7 +68,6 @@ function initiateCheckout() {
     
     checkout_object = {
         "merchant": {
-            "public_api_key": "PreSeededApiKeyDirect",
             "name": "Affirm ADA Demo",
             "user_cancel_url": "http://requestbin.fullcontact.com/tgwcwhtg",
             "user_confirmation_url": "http://requestbin.fullcontact.com/tgwcwhtg"
