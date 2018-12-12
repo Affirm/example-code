@@ -122,7 +122,16 @@ function initiateCheckout() {
     affirm.checkout(checkout_object);
     affirm.checkout.open(
         {
-        onSuccess:function(a){console.log(a)},
+        onSuccess:function(a){
+            var url = window.location.href;    
+            if (url.indexOf('?') > -1){
+               url += '&enableAda=1'
+            }else{
+               url += '?enableAda=1'
+            }
+            window.location.href = url;
+            console.log(a);
+        },
         onFail:function(a){console.log(a)} 
         }
     );
