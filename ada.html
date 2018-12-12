@@ -123,14 +123,14 @@ function initiateCheckout() {
     affirm.checkout.open(
         {
         onSuccess:function(a){
+            console.log(a);
             var url = window.location.href;    
             if (url.indexOf('?') > -1){
-               url += '&enableAda=1'
+               url += '&enableAda=1';
             }else{
-               url += '?enableAda=1'
+               url += '?enableAda=1';
             }
             window.location.href = url;
-            console.log(a);
         },
         onFail:function(a){console.log(a)} 
         }
