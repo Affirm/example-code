@@ -124,13 +124,15 @@ function initiateCheckout() {
         {
         onSuccess:function(a){
             console.log(a);
-            var url = window.location.href;    
-            if (url.indexOf('?') > -1){
+            if (document.getElementById("checkout-application")) {
+              var url = document.getElementById("checkout-application").src;    
+              if (url.indexOf('?') > -1){
                url += '&enableAda=1';
-            }else{
+              } else{
                url += '?enableAda=1';
+              }
+              document.getElementById("checkout-application").src = url;
             }
-            window.location.href = url;
         },
         onFail:function(a){console.log(a)} 
         }
