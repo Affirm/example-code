@@ -42,14 +42,16 @@
     </style>
 </head>
 <body>
-<h1>Affirm ADA Demo</h1>
-<div id="container">
-    <!-- <h4>"as low as":</h4>
-    <div class="affirm-as-low-as" data-amount="30000" data-promo-id="promo_set_oala">Placeholder</div>
-    <br/> -->
-    <h4>Affirm checkout:</h4>
-    <button aria-label="checkout with affirm" id="checkout_button">&nbsp</button>
-</div>
+    <div id='demo-content'>
+        <h1>Affirm ADA Demo</h1>
+        <div id="container">
+            <!-- <h4>"as low as":</h4>
+            <div class="affirm-as-low-as" data-amount="30000" data-promo-id="promo_set_oala">Placeholder</div>
+            <br/> -->
+            <h4>Affirm checkout:</h4>
+            <button aria-label="checkout with affirm" id="checkout_button">&nbsp</button>
+        </div>
+    </div>
 <script>
 // Checkout
 // -----------------------
@@ -119,7 +121,7 @@ function initiateCheckout() {
         "tax_amount": 30000,
         "total": 30000
     };
-    document.body.setAttribute('aria-hidden', 'true');
+    document.getElementById('demo-content').setAttribute('aria-hidden', 'true');
     affirm.checkout(checkout_object);
     affirm.checkout.open(
         {
