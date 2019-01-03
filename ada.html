@@ -127,17 +127,6 @@ function initiateCheckout() {
         {
         }
     );
-    setTimeout(function() {
-        if (document.getElementById("checkout-application")) {
-          var url = document.getElementById("checkout-application").src;    
-          if (url.indexOf('?') > -1){
-           url += '&enableAda=1';
-          } else{
-           url += '?enableAda=1';
-          }
-          document.getElementById("checkout-application").src = url;
-        }
-    }, 3000);
 }
 </script>
 
