@@ -8,7 +8,7 @@
         // Begin Affirm JS embed code
         // =======================
         _affirm_config = {
-            script:"https://cherry-ave-sandbox.affirm-odin.com/js/v2/affirm.js",
+            script:"https://i-025b85f52d906c5e9.affirm-odin.com/js/v2/affirm.js",
             public_api_key:"PreSeededApiKeyDirect",
             mode: "modal"
         };
@@ -72,6 +72,7 @@ function initiateCheckout() {
     checkout_object = {
         "merchant": {
             "name": "Affirm ADA Demo",
+            "public_api_key": "PreSeededApiKeyDirect",
             "user_cancel_url": "http://requestbin.fullcontact.com/tgwcwhtg",
             "user_confirmation_url": "http://requestbin.fullcontact.com/tgwcwhtg"
         },
