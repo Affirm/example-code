@@ -1,0 +1,109 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<form>
+Public Key: <input type="text" id="public_key" name="public_key" value="">
+Private Key: <input type="text" id="private_key" name="private_key" value="">
+<br>
+<br>
+After Date: <input type="text" id="beforeDate" value="" placeholder="12/01/2018">
+Up To: <input type="text" id="afterDate" value="" placeholder="12/01/2019">
+<br>
+Is this an Umbrella account? <input type="checkbox" id="isUmbrella">
+<p> Optional:</p>
+Happend Before: <input type="text" id="before" value="" placeholder="charge-id">
+And After: <input type="text" id="after" value="" placeholder="charge-id">
+<br>
+<br>
+<input style="width:10%; height:5%; background-color:#0fa0ea; border-radius:5px; cursor:pointer; font-weight:bold;" type="button" value="Run" id="run_btn">
+
+</form>
+<script>
+function formatDate(dateString) {
+    var dateObj = new Date(dateString);
+    var month = dateObj.getMonth() + 1;
+    var day = dateObj.getDate();
+    var year = dateObj.getFullYear();
+
+    newdate = year + "/" + month + "/" + day;
+    return newdate
+}
+
+function buildColumns(charge, event, isUmbrella, randomDepositId) {
+    var newColumn = []
+    newColumn.push(formatDate(event.created));
+    newColumn.push(formatDate(charge.created));
+    newColumn.push(charge.id);
+    newColumn.push(event.transaction_id);
+    newColumn.push(charge.order_id) || '';
+    newColumn.push(event.type.includes("capture") ? "loan_" + event.type + "d" : "loan_" + event.type + "ed");
+    newColumn.push(event.type.includes("capture") ? (event.amount/100) : 0);
+    newColumn.push(event.type.includes("refund") ? (-event.amount/100) : 0);
+    newColumn.push(event.type.includes("capture") ? event.fee/100 : event.fee_refunded/100);
+    newColumn.push(event.type.includes("capture") ? (event.amount - event.fee)/100 : (-event.amount + event.fee_refunded)/100);
+    newColumn.push(isUmbrella ? charge.details.merchant.name.replace(',', '') : '')
+    newColumn.push(randomDepositId)
+    return newColumn
+}
+
+function download_csv(data, isUmbrella) {
+    if (isUmbrella) {
+        var csv = ',date, charge_created_date, charge_id, transaction_id, order_id, event_type, sales, refunds, fees, total_settled, merchant, deposit_id\n';
+    } else {
+        var csv = ',date, charge_created_date, charge_id, transaction_id, order_id, event_type, sales, refunds, fees, total_settled, deposit_id\n';
+    }
+    data.forEach(function(row) {
+        csv += row.join(',');
+        csv += "\n";
+    });
+ 
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'settlement.csv';
+    hiddenElement.click();
+}
+
+function getAllEvents(eventList, isUmbrella, randomDepositId, nextUrl) {
+    var beforeDate = new Date($("#beforeDate").val());
+    var afterDate = new Date($("#afterDate").val());
+    var public_key = $("#public_key").val();
+    var private_key = $("#private_key").val();
+
+    $.ajax({
+        type: "GET",
+        url: nextUrl,
+        contentType: "application/json",
+        dataType: "json",
+        async: false,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(public_key + ":" + private_key));
+        },
+        success: function(data) {
+            var charges = data.entries;
+            for (i in charges) {
+                var events = charges[i].events;
+                for (j in events) {
+                    var eventDate = new Date(events[j].created);
+                    if ((events[j].type.includes("capture") || events[j].type.includes("refund")) && (eventDate >= beforeDate && eventDate <= afterDate)) {
+                        eventList.push(buildColumns(charges[i], events[j], isUmbrella, randomDepositId));
+                    }
+                }
+            }
+            if (data.next) {
+                getAllEvents(eventList, isUmbrella, data.next, randomDepositId);
+            }
+        }
+    });
+}
+
+$('#run_btn').click(function () {
+    var before = $("#before").val();
+    var after = $("#after").val();
+    var isUmbrella = $("#isUmbrella").is(":checked");
+    var randomDepositId = (Math.random().toString(36).substring(2, 15) + Math.random().toString(35).substring(2, 6)).toUpperCase();
+    
+    var firstRequest = "https://sandbox.affirm.com/api/v2/charges?limit=100" + "&before=" + after + "&after=" + before;
+    var columns = [];
+    getAllEvents(columns, isUmbrella, randomDepositId, firstRequest);
+    download_csv(columns, isUmbrella);
+});
+</script>
