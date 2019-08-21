@@ -19,12 +19,24 @@ var position = {
 
 if(configuration.promoMessaging){
 
-	insertPromo(configuration.promoMessaging.singlePromo[0], position);
-	insertPromoList(configuration.promoMessaging.listPromo[0], position);
-	insertLogo(configuration.promoMessaging.logo[0], position, logoPath);
+	for(i in configuration.promoMessaging.singlePromo){
+
+		insertPromo(configuration.promoMessaging.singlePromo[i], position);
+	}
+
+	for(i in configuration.promoMessaging.listPromo){
+		
+		insertPromoList(configuration.promoMessaging.listPromo[i], position);
+	}
+
+	for(i in configuration.promoMessaging.logo){
+		
+		insertLogo(configuration.promoMessaging.logo[i], position, logoPath);
+	}
 	
 	affirm.ui.refresh();
 }
+
 
 if(configuration.checkout){
 	
@@ -135,7 +147,7 @@ function addAffirmPixel(orderId, affirmPixel) {
 
 	var config = window.affirm.merchant_config[0].checkout;
 
-    affirmPixel.shipping = convertPricing(document.querySelector(config.shipping).value);
+    affirmPixel.shipping = convertPricing(document.querySelector(config.shippingAmount).value);
     affirmPixel.tax = convertPricing(document.querySelector(config.tax).value);
     affirmPixel.orderId = orderId;
     affirmPixel.total = convertPricing(document.querySelector(config.total).value);
@@ -144,26 +156,37 @@ function addAffirmPixel(orderId, affirmPixel) {
 	
 function initiateAffirmCheckout() {
 	var config = window.affirm.merchant_config[0].checkout;
-
 	var _checkout_object = {
 		"merchant": {
 			"name": "Affirm Example Code",
 		},
 		"mode": "modal",
 		"shipping": {
-			"name": document.querySelector(config.full_name).value,
+			"name": document.querySelector(config.shipping.full_name).value,
 			"address": {
-				"line1": document.querySelector(config.line1).value,
-				"line2": document.querySelector(config.line2).value,
-				"city": document.querySelector(config.city).value,
-				"state": document.querySelector(config.state).value,
-				"zipcode": document.querySelector(config.zip).value
+				"line1": document.querySelector(config.shipping.line1).value,
+				"line2": document.querySelector(config.shipping.line2).value,
+				"city": document.querySelector(config.shipping.city).value,
+				"state": document.querySelector(config.shipping.state).value,
+				"zipcode": document.querySelector(config.shipping.zip).value
 			},
-			"phone_number": document.querySelector(config.phone).value,
-			"email": document.querySelector(config.email).value
+			"phone_number": document.querySelector(config.shipping.phone).value,
+			"email": document.querySelector(config.shipping.email).value
+		},
+		"billing": {
+			"name": document.querySelector(config.billing.full_name).value,
+			"address": {
+				"line1": document.querySelector(config.billing.line1).value,
+				"line2": document.querySelector(config.billing.line2).value,
+				"city": document.querySelector(config.billing.city).value,
+				"state": document.querySelector(config.billing.state).value,
+				"zipcode": document.querySelector(config.billing.zip).value
+			},
+			"phone_number": document.querySelector(config.billing.phone).value,
+			"email": document.querySelector(config.billing.email).value
 		},
 		"items": getAllItemsforCheckout(),
-		"shipping_amount": convertPricing(document.querySelector(config.shipping).value),
+		"shipping_amount": convertPricing(document.querySelector(config.shippingAmount).value),
 		"tax_amount": convertPricing(document.querySelector(config.tax).value),
 		"total": convertPricing(document.querySelector(config.total).value)
 	};
