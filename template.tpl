@@ -386,78 +386,6 @@ ___TEMPLATE_PARAMETERS___
     "type": "GROUP",
     "subParams": [
       {
-        "displayName": "Full Name",
-        "simpleValueType": true,
-        "name": "full_name",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Address Line 1",
-        "simpleValueType": true,
-        "name": "line1",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Address Line 2",
-        "simpleValueType": true,
-        "name": "line2",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "City",
-        "simpleValueType": true,
-        "name": "city",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "State",
-        "simpleValueType": true,
-        "name": "state",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Zipcode",
-        "simpleValueType": true,
-        "name": "zip",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Phone Number",
-        "simpleValueType": true,
-        "name": "phone",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Email Address",
-        "simpleValueType": true,
-        "name": "email",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Shipping Amount",
-        "simpleValueType": true,
-        "name": "shipping",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Tax Amount",
-        "simpleValueType": true,
-        "name": "tax",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Total Amount",
-        "simpleValueType": true,
-        "name": "total",
-        "type": "TEXT"
-      },
-      {
-        "displayName": "Submit Element",
-        "simpleValueType": true,
-        "name": "submitEl",
-        "type": "TEXT"
-      },
-      {
         "displayName": "Items",
         "name": "items",
         "groupStyle": "ZIPPY_CLOSED",
@@ -503,6 +431,118 @@ ___TEMPLATE_PARAMETERS___
             "displayName": "Image URL",
             "simpleValueType": true,
             "name": "image_url",
+            "type": "TEXT"
+          }
+        ]
+      },
+      {
+        "displayName": "Billing Address",
+        "name": "billing",
+        "groupStyle": "ZIPPY_CLOSED",
+        "type": "GROUP",
+        "subParams": [
+          {
+            "displayName": "Full Name",
+            "simpleValueType": true,
+            "name": "billing_full_name",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Line 1",
+            "simpleValueType": true,
+            "name": "billing_line1",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Line 2",
+            "simpleValueType": true,
+            "name": "billing_line2",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "City",
+            "simpleValueType": true,
+            "name": "billing_city",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "State",
+            "simpleValueType": true,
+            "name": "billing_state",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Zipcode",
+            "simpleValueType": true,
+            "name": "billing_zip",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Email Address",
+            "simpleValueType": true,
+            "name": "billing_email",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Phone Number",
+            "simpleValueType": true,
+            "name": "billing_phone",
+            "type": "TEXT"
+          }
+        ]
+      },
+      {
+        "displayName": "Shipping Address",
+        "name": "shipping",
+        "groupStyle": "ZIPPY_CLOSED",
+        "type": "GROUP",
+        "subParams": [
+          {
+            "displayName": "Full Name",
+            "simpleValueType": true,
+            "name": "shipping_full_name",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Line 1",
+            "simpleValueType": true,
+            "name": "shipping_line1",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Line 2",
+            "simpleValueType": true,
+            "name": "shipping_line2",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "City",
+            "simpleValueType": true,
+            "name": "shipping_city",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "State",
+            "simpleValueType": true,
+            "name": "shipping_state",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Zipcode",
+            "simpleValueType": true,
+            "name": "shipping_zip",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Email Address",
+            "simpleValueType": true,
+            "name": "shipping_email",
+            "type": "TEXT"
+          },
+          {
+            "displayName": "Phone Number",
+            "simpleValueType": true,
+            "name": "shipping_phone",
             "type": "TEXT"
           }
         ]
@@ -627,6 +667,30 @@ ___TEMPLATE_PARAMETERS___
             "type": "TEXT"
           }
         ]
+      },
+      {
+        "displayName": "Shipping Amount",
+        "simpleValueType": true,
+        "name": "shippingAmount",
+        "type": "TEXT"
+      },
+      {
+        "displayName": "Tax Amount",
+        "simpleValueType": true,
+        "name": "tax",
+        "type": "TEXT"
+      },
+      {
+        "displayName": "Total Amount",
+        "simpleValueType": true,
+        "name": "total",
+        "type": "TEXT"
+      },
+      {
+        "displayName": "Submit Element",
+        "simpleValueType": true,
+        "name": "submitEl",
+        "type": "TEXT"
       }
     ]
   }
@@ -993,15 +1057,27 @@ var merchant_config = {
   			url : data.url,
   			image_url : data.image_url
   		},
-  		full_name : data.full_name,
-		line1 : data.line1,
-		line2 : data.line2,
-		city : data.city,
-		state : data.state,
-		zip : data.zip,
-		phone : data.phone,
-		email : data.email,
-		shipping : data.shipping,
+      	billing : {
+          full_name : data.billing_full_name,
+          line1 : data.billing_line1,
+          line2 : data.billing_line2,
+          city : data.billing_city,
+          state : data.billing_state,
+          zip : data.billing_zip,
+          phone : data.billing_phone,
+          email : data.billing_email,
+        }, 
+  		shipping : {
+          full_name : data.shipping_full_name,
+          line1 : data.shipping_line1,
+          line2 : data.shipping_line2,
+          city : data.shipping_city,
+          state : data.shipping_state,
+          zip : data.shipping_zip,
+          phone : data.shipping_phone,
+          email : data.shipping_email,
+        }, 
+		shippingAmount : data.shippingAmount,
 		tax : data.tax,
 		total : data.total,
 		submitEl : data.submitEl,
@@ -1042,4 +1118,4 @@ data.gtmOnSuccess();
 
 ___NOTES___
 
-Created on 8/20/2019, 5:58:55 PM
+Created on 8/21/2019, 1:18:52 PM
