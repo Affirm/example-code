@@ -386,6 +386,12 @@ ___TEMPLATE_PARAMETERS___
     "type": "GROUP",
     "subParams": [
       {
+        "displayName": "Merchant Name",
+        "simpleValueType": true,
+        "name": "merchantName",
+        "type": "TEXT"
+      },
+      {
         "displayName": "Items",
         "name": "items",
         "groupStyle": "ZIPPY_CLOSED",
@@ -1048,6 +1054,8 @@ var merchant_config = {
   		logo: data.logo
   	},
   	checkout:{
+      	merchant_name : data.merchantName,
+      	platform_type : "Google Tag Manager",
   		items : {
   			containerEl : data.containerEl,
   			name : data.name,
@@ -1110,7 +1118,7 @@ function failure(){
 if (queryPermission('inject_script', script)) {
  
   injectScript(script, success, failure);
-  injectScript("https://affirm.github.io/example-code/gtm/merchant_config.js");
+  //injectScript("https://affirm.github.io/example-code/gtm/merchant_config.js");
 }
 
 data.gtmOnSuccess();
@@ -1118,4 +1126,4 @@ data.gtmOnSuccess();
 
 ___NOTES___
 
-Created on 8/21/2019, 1:18:52 PM
+Created on 8/21/2019, 2:17:00 PM
