@@ -68,7 +68,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 					<td><input type="text" name="checkout_item_sku" class="checkout_item_sku" value="A1B2C3D4-E5"></td>
 
-					<td><input type="number" name="checkout_item_price" class="item-price checkout_item_price" value="30000"></td>
+					<td><input type="number" name="checkout_item_price" class="item-price checkout_item_price" value="300.00"></td>
 
 					<td><input type="number" name="checkout_item_qty" class="checkout_item_qty" value="1"></td>
 
@@ -77,13 +77,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<td><input type="text" style="display:none" name="checkout_item_url" class="checkout_item_url" value="http://google.com"></td>
 
 				</tr>
-				<tr><td colspan = "3" ><span class="add-affirm-promo"></span></td></tr>
 				<tr class="item">
 					<td><input type="text" name= "checkout_item_name" class="checkout_item_name" value="Ultimate Stationary Bike Sport"></td>
 
 					<td><input type="text" name="checkout_item_sku" class="checkout_item_sku" value="A1B2C3D4-E6"></td>
 
-					<td><input type="number" name="checkout_item_price" class="item-price checkout_item_price" value="35000"></td>
+					<td><input type="number" name="checkout_item_price" class="item-price checkout_item_price" value="350.00"></td>
 
 					<td><input type="number" name="checkout_item_qty" class="checkout_item_qty" value="1"></td>
 
@@ -91,57 +90,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 					<td><input type="text" style="display:none" name="checkout_item_url" class="checkout_item_url" value="http://google.com"></td>
 				</tr>
-				<tr><td colspan = "3" ><span class="add-affirm-promo"></span></td></tr>
 			</tbody>
 		</table>
 	</div>
 	<div class="col">
+
 		<table>
 			<tr>
+				<th>Shipping Address</th>
+			</tr>	
+			<tr>
 				<td>Full Name</td>
-				<td><input type="text" id="checkout_name" value="Joe Doe"></td>
+				<td><input type="text" id="shipping_name" value="Joe Doe"></td>
 			</tr>
 			<tr>
 				<td>Line 1</td>
-				<td><input type="text" id="checkout_line1" value="650 California"></td>
+				<td><input type="text" id="shipping_line1" value="650 California"></td>
 			</tr>
 			<tr>
 				<td>Line 2</td>
-				<td><input type="text" id="checkout_line2" value="Floor 12"></td>
+				<td><input type="text" id="shipping_line2" value="Floor 12"></td>
 			</tr>
 			<tr>
 				<td>City</td>
-				<td><input type="text" id="checkout_city" value="San Francisco"></td>
+				<td><input type="text" id="shipping_city" value="San Francisco"></td>
 			</tr>
 			<tr>
 				<td>State</td>
-				<td><input type="text" id="checkout_state" value="CA"></td>
+				<td><input type="text" id="shipping_state" value="CA"></td>
 			</tr>
 			<tr>
 				<td>Zip</td>
-				<td><input type="text" id="checkout_zip" value="94108"></td>
+				<td><input type="text" id="shipping_zip" value="94108"></td>
 			</tr>
 			<tr>
 				<td>Phone</td>
-				<td><input type="text" id="checkout_phone" value="4159081408"></td>
+				<td><input type="text" id="shipping_phone" value="4159081408"></td>
 			</tr>
 			<tr>
 				<td>Email</td>
-				<td><input type="text" id="checkout_email" value="joedoe@domain.com"></td>
+				<td><input type="text" id="shipping_email" value="joedoe@domain.com"></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<th>Billing Address</th>
+			</tr>	
+			<tr>
+				<td>Full Name</td>
+				<td><input type="text" id="billing_name" value="Joe Doe"></td>
+			</tr>
+			<tr>
+				<td>Line 1</td>
+				<td><input type="text" id="billing_line1" value="650 California"></td>
+			</tr>
+			<tr>
+				<td>Line 2</td>
+				<td><input type="text" id="billing_line2" value="Floor 12"></td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td><input type="text" id="billing_city" value="San Francisco"></td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td><input type="text" id="billing_state" value="CA"></td>
+			</tr>
+			<tr>
+				<td>Zip</td>
+				<td><input type="text" id="billing_zip" value="94108"></td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td><input type="text" id="billing_phone" value="4159081408"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" id="billing_email" value="joedoe@domain.com"></td>
 			</tr>
 		</table>
 		<table>
 			<tr>
 				<td>Shipping</td>
-				<td><input type="number" id="checkout_shipping" value="4000"></td>
+				<td><input type="number" id="checkout_shipping" value="40.00"></td>
 			</tr>
 			<tr>
 				<td>Tax</td>
-				<td><input type="number" id="checkout_tax" value="3000"></td>
+				<td><input type="number" id="checkout_tax" value="30.00"></td>
 			</tr>
 			<tr>
 				<td>Total</td>
-				<td><input type="number" id="cart-total" value="72000"></td>
+				<td><input type="number" id="cart-total" value="820.00"></td>
 			</tr>
 		</table>
 		<div class="payment-methods">
