@@ -158,9 +158,12 @@ function initiateAffirmCheckout() {
 	var config = window.affirm.merchant_config[0].checkout;
 	var _checkout_object = {
 		"merchant": {
-			"name": "Affirm Example Code",
+			"name": config.merchant_name,
 		},
-		"mode": "modal",
+		"metadata": {
+			"mode": "modal",
+			"platform_type": config.platform_type
+		},
 		"shipping": {
 			"name": document.querySelector(config.shipping.full_name).value,
 			"address": {
