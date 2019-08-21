@@ -1118,7 +1118,7 @@ function failure(){
 if (queryPermission('inject_script', script)) {
  
   injectScript(script, success, failure);
-  //injectScript("https://affirm.github.io/example-code/gtm/merchant_config.js");
+  injectScript("https://affirm.github.io/example-code/gtm/merchant_config.js");
 }
 
 data.gtmOnSuccess();
@@ -1126,4 +1126,4 @@ data.gtmOnSuccess();
 
 ___NOTES___
 
-Created on 8/21/2019, 2:17:00 PM
+Created on 8/21/2019, 2:20:55 PM
