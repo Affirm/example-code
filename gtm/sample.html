@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GTM-VCN Example</title>
+	<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T5DN3KM');</script>
+<!-- End Google Tag Manager -->
+	<style>
+		html,body {
+			font-family: helvetica;
+			padding:0;
+			margin:0;
+		}
+		.container {
+			display:table;
+			width:100%;
+			margin-top:20px;
+		}
+		.col {
+			width:33%;
+			display:table-cell;
+		}
+		
+		#checkout_submit {
+			padding:1em 2em;
+			display:inline-block;
+			cursor:pointer;
+			border:1px solid #aaa;
+			text-align:center;
+			margin:2px;
+		}
+		.greyed {
+			color:#aaa !important;
+			background:#eee !important;
+		}
+		
+		#payment_affirm_label {
+			width: 80px;
+			display: inline-block;
+			margin: 2px;
+		}
+	</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5DN3KM"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div class="container">
+	<div class="col">
+		<table id="checkout_form">
+			<tr>
+				<th id="name">Item Name</th>
+				<th id="sku">Item SKU</th>
+				<th id="price">Item Price</th>
+				<th id="qty">Item Qty</th>
+				<th style="display:none" id="img">Item Qty</th>
+				<th style="display:none" id="url">Item URL</th>
+			</tr>
+			<tbody id="item_list">
+				<tr class="item">
+					<td><input type="text" name="checkout_item_name" class="checkout_item_name" value="Ultimate Stationary Bike"></td>
+
+					<td><input type="text" name="checkout_item_sku" class="checkout_item_sku" value="A1B2C3D4-E5"></td>
+
+					<td><input type="number" name="checkout_item_price" class="item-price checkout_item_price" value="30000"></td>
+
+					<td><input type="number" name="checkout_item_qty" class="checkout_item_qty" value="1"></td>
+
+					<td><input type="text" style="display:none" name="checkout_item_image_url" class="checkout_item_image_url" value="http://google.com"></td>
+
+					<td><input type="text" style="display:none" name="checkout_item_url" class="checkout_item_url" value="http://google.com"></td>
+
+				</tr>
+				<tr><td colspan = "3" ><span class="add-affirm-promo"></span></td></tr>
+				<tr class="item">
+					<td><input type="text" name= "checkout_item_name" class="checkout_item_name" value="Ultimate Stationary Bike Sport"></td>
+
+					<td><input type="text" name="checkout_item_sku" class="checkout_item_sku" value="A1B2C3D4-E6"></td>
+
+					<td><input type="number" name="checkout_item_price" class="item-price checkout_item_price" value="35000"></td>
+
+					<td><input type="number" name="checkout_item_qty" class="checkout_item_qty" value="1"></td>
+
+					<td><input type="text" style="display:none" name="checkout_item_image_url" class="checkout_item_image_url" value="http://google.com"></td>
+
+					<td><input type="text" style="display:none" name="checkout_item_url" class="checkout_item_url" value="http://google.com"></td>
+				</tr>
+				<tr><td colspan = "3" ><span class="add-affirm-promo"></span></td></tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col">
+		<table>
+			<tr>
+				<td>Full Name</td>
+				<td><input type="text" id="checkout_name" value="Joe Doe"></td>
+			</tr>
+			<tr>
+				<td>Line 1</td>
+				<td><input type="text" id="checkout_line1" value="650 California"></td>
+			</tr>
+			<tr>
+				<td>Line 2</td>
+				<td><input type="text" id="checkout_line2" value="Floor 12"></td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td><input type="text" id="checkout_city" value="San Francisco"></td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td><input type="text" id="checkout_state" value="CA"></td>
+			</tr>
+			<tr>
+				<td>Zip</td>
+				<td><input type="text" id="checkout_zip" value="94108"></td>
+			</tr>
+			<tr>
+				<td>Phone</td>
+				<td><input type="text" id="checkout_phone" value="4159081408"></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="text" id="checkout_email" value="joedoe@domain.com"></td>
+			</tr>
+		</table>
+		<table>
+			<tr>
+				<td>Shipping</td>
+				<td><input type="number" id="checkout_shipping" value="4000"></td>
+			</tr>
+			<tr>
+				<td>Tax</td>
+				<td><input type="number" id="checkout_tax" value="3000"></td>
+			</tr>
+			<tr>
+				<td>Total</td>
+				<td><input type="number" id="cart-total" value="72000"></td>
+			</tr>
+		</table>
+		<div class="payment-methods">
+			<span id="payment_affirm"></span>
+		</div>
+		<div id="checkout_submit">Generate Affirm Virtual Card</div>
+		<form id="payments">
+			<div><span class="affirm-logo"></span>Credit Card</div>
+			<div id="cc_form">
+				<table>
+					<tr>
+						<td>Cardholder Name: </td>
+						<td><span id="checkout_card_name"></span></td>
+					</tr>
+					<tr>
+						<td>Card Number: </td>
+						<td><span id="checkout_card_number"></span></td>
+					</tr>
+					<tr>
+						<td>Expiration: </td>
+						<td><span id="checkout_card_exp"></span></td>
+					</tr>
+					<tr>
+						<td>CVC: </td>
+						<td><span id="checkout_card_cvc"></span></td>
+					</tr>
+				</table>
+			</div>
+		</form>
+	</div>
+</div>
+</body>
+</html>
