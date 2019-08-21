@@ -1,5 +1,3 @@
-
-setTimeout(function(){
 var configuration = {
   	promoMessaging: window.affirm.merchant_config[0].promoMessaging,
   	checkout: window.affirm.merchant_config[0].checkout
@@ -19,8 +17,6 @@ var position = {
 	insideLast : "beforeend"
 }
 
-//Items container
-
 if(configuration.promoMessaging){
 
 	insertPromo(configuration.promoMessaging.singlePromo[0], position);
@@ -30,7 +26,6 @@ if(configuration.promoMessaging){
 	affirm.ui.refresh();
 }
 
-
 if(configuration.checkout){
 	
 	var checkout_submit = document.querySelector(configuration.checkout.submitEl);
@@ -38,13 +33,13 @@ if(configuration.checkout){
 	insertPaymentType(configuration.checkout.paymentButton, position, logoPath);
 	checkout_submit.addEventListener('click', initiateAffirmCheckout);
 }
-}, 300);
+
 function insertPromo(singlePromoConfig, position) {
 
   	let promoEl = document.querySelector(singlePromoConfig.promoEl),
-		price = document.querySelector(singlePromoConfig.priceEl),
-		promo = createPromo(singlePromoConfig, price.value);
-	
+		priceEl = document.querySelector(singlePromoConfig.priceEl);
+
+	let promo = createPromo(singlePromoConfig, priceEl.value);
 	promoEl.insertAdjacentElement(position[singlePromoConfig.promoPos], promo);
 }
 
@@ -86,15 +81,28 @@ function createLogo(color, width, logoPath){
 
 function createPromo(config, amount){
 
+	let totalAmount = amount.replace(/(<([^>]+)>)/ig,"");
+
+	let thisText = 'From |Regular price',
+		re = new RegExp(thisText,"g");
+	
+	totalAmount = totalAmount.replace(re, '');
+
+	var price = convertPricing(parseInt(totalAmount)).toString();
+
+	var numOnly = price.match(/^[0-9]+$/) != null;
+	
 	var promo = document.createElement('p');
-	promo.className = 'affirm-as-low-as';
-	promo.dataset.amount = amount;
-	promo.dataset.affirmType = config.affirmType;
 
-	if(config.affirmType === "logo") promo.dataset.affirmColor = config.logoColor;
+	if(numOnly){ 
+		promo.className = 'affirm-as-low-as';
+		promo.dataset.amount = price;
+		promo.dataset.affirmType = config.affirmType;
 
-	promo.dataset.pageType = config.pageType;
+		if(config.affirmType === "logo") promo.dataset.affirmColor = config.logoColor;
 
+		promo.dataset.pageType = config.pageType;
+	}
 	return promo;
 }
 
@@ -117,7 +125,6 @@ function checkoutSuccess(a) {
 }
 	
 function addAffirmPixel(orderId, affirmPixel) {
-    console.log('Affirm tracking pixel');
 
 	var affirmPixel = {
 		"storeName": "Affirm Example Code",
@@ -128,10 +135,10 @@ function addAffirmPixel(orderId, affirmPixel) {
 
 	var config = window.affirm.merchant_config[0].checkout;
 
-    affirmPixel.shipping = document.querySelector(config.shipping).value;
-    affirmPixel.tax = document.querySelector(config.tax).value;
+    affirmPixel.shipping = convertPricing(document.querySelector(config.shipping).value);
+    affirmPixel.tax = convertPricing(document.querySelector(config.tax).value);
     affirmPixel.orderId = orderId;
-    affirmPixel.total = document.querySelector(config.total).value;
+    affirmPixel.total = convertPricing(document.querySelector(config.total).value);
     affirm.analytics.trackOrderConfirmed(affirmPixel, getAllItemsforTracking());
 }
 	
@@ -156,9 +163,9 @@ function initiateAffirmCheckout() {
 			"email": document.querySelector(config.email).value
 		},
 		"items": getAllItemsforCheckout(),
-		"shipping_amount":document.querySelector(config.shipping).value,
-		"tax_amount": document.querySelector(config.tax).value,
-		"total": document.querySelector(config.total).value
+		"shipping_amount": convertPricing(document.querySelector(config.shipping).value),
+		"tax_amount": convertPricing(document.querySelector(config.tax).value),
+		"total": convertPricing(document.querySelector(config.total).value)
 	};
 	console.log(_checkout_object);
 	var _checkout = {
@@ -211,7 +218,7 @@ function getAllItemsforCheckout() {
 
 		let item = {};
 		item['display_name'] = checkout_items[i].querySelector(config.items.name).value;
-		item['unit_price'] = checkout_items[i].querySelector(config.items.price).value;
+		item['unit_price'] = convertPricing(checkout_items[i].querySelector(config.items.price).value);
 		item['sku'] = checkout_items[i].querySelector(config.items.sku).value;
 		item['qty'] = checkout_items[i].querySelector(config.items.qty).value;
 		item['item_image_url'] = checkout_items[i].querySelector(config.items.image_url).value;
@@ -237,7 +244,7 @@ function getAllItemsforTracking() {
 
 		let item = {};
 		item['name'] = checkout_items[i].querySelector(config.items.name).value;
-		item['price'] = checkout_items[i].querySelector(config.items.price).value;
+		item['price'] = convertPricing(checkout_items[i].querySelector(config.items.price).value);
 		item['productId'] = checkout_items[i].querySelector(config.items.sku).value;
 		item['quantity'] = checkout_items[i].querySelector(config.items.qty).value;
 
@@ -245,4 +252,8 @@ function getAllItemsforTracking() {
 	};
 
 	return items;
+}
+
+function convertPricing(price){
+	return price*100;
 }
