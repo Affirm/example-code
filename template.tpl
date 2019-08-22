@@ -1023,29 +1023,17 @@ var log = require('logToConsole');
 var createQueue = require('createQueue');
 var createArgumentsQueue = require('createArgumentsQueue');
 var injectScript = require('injectScript');
-const queryPermission = require('queryPermission');
+var queryPermission = require('queryPermission');
 
-var script = "";
+var affirmJS = "";
 if(data.affirmEnv === "sandbox"){
-  script = "https://cdn1-sandbox.affirm.com/js/v2/affirm.js";
+  
+  affirmJS = "https://cdn1-sandbox.affirm.com/js/v2/affirm.js";
 } else {
-  script = "https://cdn1.affirm.com/js/v2/affirm.js";
+  affirmJS = "https://cdn1.affirm.com/js/v2/affirm.js";
 }
 
-const affirm = createQueue('affirm');
-const checkout = createQueue('affirm.checkout');
-const underscore = createQueue('affirm.checkout._');
-const configuration = createQueue('affirm.merchant_config');
-
-var array = [];
-
-var addArguments = function(){
-  array.push("set");
-  array.push(arguments);
-}; 
-addArguments({public_api_key: data.apiKey});
-
-underscore(array);
+var merchantJS = "https://affirm.github.io/example-code/gtm/merchant_config.js";
 
 var merchant_config = {
   	promoMessaging:{
@@ -1105,25 +1093,60 @@ var merchant_config = {
 		}
   	}
 };
+
+var affirm = createQueue('affirm');
+var checkout = createQueue('affirm.checkout');
+var underscore = createQueue('affirm.checkout._');
+var configuration = createQueue('affirm.merchant_config');
+
+var arg = [];
+
+var addArguments = function(){
+  arg.push("set");
+  arg.push(arguments);
+};
+
+addArguments({public_api_key: data.apiKey});
+
+underscore(arg);
 configuration(merchant_config);
+
 log(merchant_config);
+	
+let numCallbacks = 2;
+let hasFailed = false;
 
-function success(){
-	log('inject success');
-}
-function failure(){
+const processAsync = (succeeded) => {
+
+  if (hasFailed) return;
+  
+  if (succeeded) {
+	
+    log('inject success');
+    numCallbacks--;
+
+    if (numCallbacks === 0) {
+		
+      log('gtm success');
+      data.gtmOnSuccess();
+    }
+
+  } else {
 	log('inject failure');
+    hasFailed = true;
+    data.gtmOnFailure();
+  }
+};
+
+if (queryPermission('inject_script', affirmJS)){
+  injectScript(affirmJS, processAsync(true), processAsync(false));
 }
 
-if (queryPermission('inject_script', script)) {
- 
-  injectScript(script, success, failure);
-  injectScript("https://affirm.github.io/example-code/gtm/merchant_config.js");
+if (queryPermission('inject_script', merchantJS)){
+  injectScript(merchantJS, processAsync(true), processAsync(false));
 }
-
-data.gtmOnSuccess();
 
 
 ___NOTES___
 
-Created on 8/21/2019, 2:20:55 PM
+Created on 8/22/2019, 1:43:50 PM
