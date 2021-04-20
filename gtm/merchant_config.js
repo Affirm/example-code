@@ -51,7 +51,7 @@ function insertPromo(singlePromoConfig, position) {
   	let promoEl = document.querySelector(singlePromoConfig.promoEl),
 		priceEl = document.querySelector(singlePromoConfig.priceEl);
 
-	let promo = createPromo(singlePromoConfig, priceEl.value);
+	let promo = createPromo(singlePromoConfig, priceEl.innerHTML);
 	promoEl.insertAdjacentElement(position[singlePromoConfig.promoPos], promo);
 }
 
@@ -62,7 +62,7 @@ function insertPromoList(listPromoConfig, position){
 
 	for(let i = 0; i < promoList.length; i++){
 
-		let promo = createPromo(listPromoConfig, priceList[i].value);
+		let promo = createPromo(listPromoConfig, priceList[i].innerHTML);
 		promoList[i].insertAdjacentElement(position[listPromoConfig.promoPos], promo);
 	}
 }
