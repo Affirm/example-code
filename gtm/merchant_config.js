@@ -34,7 +34,7 @@ if(configuration.promoMessaging){
 		insertLogo(configuration.promoMessaging.logo[i], position, logoPath);
 	}
 	
-	if(affirm != undefined) affirm.ui.ready(function(){affirm.ui.refresh()})
+	if(affirm != undefined && affirm.ui != undefined) affirm.ui.ready(function(){affirm.ui.refresh()})
 }
 
 
