@@ -227,7 +227,7 @@ function insertPaymentType(buttonConfig, position, logoPath){
 	label.appendChild(checkout_button);
 	if(logo) label.appendChild(logo);
 	label.appendChild(paymentName);
-	if(paymeny_affirm) payment_affirm.insertAdjacentElement(position[buttonConfig.position],label);
+	if(payment_affirm) payment_affirm.insertAdjacentElement(position[buttonConfig.position],label);
 }
 
  // Get all items - Needs modification as per items markup on checkout page
