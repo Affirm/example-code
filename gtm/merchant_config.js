@@ -43,7 +43,7 @@ if(configuration.checkout){
 	var checkout_submit = document.querySelector(configuration.checkout.submitEl);
 
 	insertPaymentType(configuration.checkout.paymentButton, position, logoPath);
-	checkout_submit.addEventListener('click', initiateAffirmCheckout);
+	if(checkout_submit) checkout_submit.addEventListener('click', initiateAffirmCheckout);
 }
 
 function insertPromo(singlePromoConfig, position) {
