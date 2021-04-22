@@ -93,7 +93,7 @@ function createLogo(color, width, logoPath){
 
 function createPromo(config, amount){
 
-	let totalAmount = amount.replace(/[^\\d]/g,"");
+	let totalAmount = amount.replace(/[^\d]/g,"");
 
         var price = parseInt(totalAmount).toString();
 
