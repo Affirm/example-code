@@ -96,7 +96,7 @@ function createPromo(config, amount){
 	var isDecimal = false;
 	var decimal = /^[-+]?[0-9]+\.[0-9]+$/; 
 	
-	if(amount.value.match(decimal)) isDecimal = true;
+	if(amount.match(decimal)) isDecimal = true;
 
 	let totalAmount = amount.replace(/[^\d]/g,"");
 
