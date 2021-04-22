@@ -92,10 +92,17 @@ function createLogo(color, width, logoPath){
 }
 
 function createPromo(config, amount){
+	
+	var isDecimal = false;
+	var decimal = /^[-+]?[0-9]+\.[0-9]+$/; 
+	
+	if(amount.value.match(decimal)) isDecimal = true;
 
 	let totalAmount = amount.replace(/[^\d]/g,"");
 
         var price = parseInt(totalAmount).toString();
+	
+	if(!isDecimal) price += '00';
 
 	var numOnly = price.match(/^[0-9]+$/) != null;
 	
