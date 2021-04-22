@@ -93,14 +93,9 @@ function createLogo(color, width, logoPath){
 
 function createPromo(config, amount){
 
-	let totalAmount = amount.replace(/(<([^>]+)>)/ig,"");
+	let totalAmount = amount.replace(/[^\\d]/g,"");
 
-	let thisText = 'From |Regular price',
-		re = new RegExp(thisText,"g");
-	
-	totalAmount = totalAmount.replace(re, '');
-
-	var price = convertPricing(parseInt(totalAmount)).toString();
+        var price = parseInt(totalAmount).toString();
 
 	var numOnly = price.match(/^[0-9]+$/) != null;
 	
