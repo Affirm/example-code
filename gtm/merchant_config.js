@@ -94,9 +94,15 @@ function createLogo(color, width, logoPath){
 function createPromo(config, amount){
 	
 	var isDecimal = false;
-	var decimal = /^[-+]?[0-9]+\.[0-9]+$/; 
 	
-	if(amount.match(decimal)) isDecimal = true;
+	if(typeof(amount) === "string"){
+		
+	    if(amount.includes(".")) isDecimal = true;
+	} else {
+
+	    var decimal = /^[-+]?[0-9]+\.[0-9]+$/; 
+	    if(amount.match(decimal)) isDecimal = true;
+	}
 
 	let totalAmount = amount.replace(/[^\d]/g,"");
 
